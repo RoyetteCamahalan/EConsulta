@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="e_konsulta.com.e_konsulta" >
+
+    <uses-permission android:name="android.permission.MAPS_RECEIVE" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.autofocus"
+        android:required="false" />
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+
+    <application
+        android:allowBackup="true"
+        android:name=".Tools.AppController"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme" >
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyCJ_kjcn07yp6ZwA1fnvl6oyGFzuAp5MiU" />
+
+        <activity android:name=".Activities.Login"
+            android:theme="@android:style/Theme.Holo.Light">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".Activities.Login_v2"
+            android:theme="@android:style/Theme.Holo.Light">
+        </activity>
+
+        <activity
+            android:name=".Activities.MainActivity"
+            android:theme="@android:style/Theme.Holo.Light.DarkActionBar">
+        </activity>
+
+        <activity
+            android:name=".Activities.Patient_Master"
+            android:theme="@android:style/Theme.Holo.Light">
+        </activity>
+
+        <activity android:name=".Activities.Clinic_Profile"
+            android:theme="@android:style/Theme.Holo.Light"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <activity android:name=".Activities.BMI_Calculator"
+            android:theme="@android:style/Theme.Holo.Light"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".Activities.User_Profile_Master_Tab"
+            android:theme="@android:style/Theme.Holo.Light"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".Activities.Add_Secretary"
+            android:theme="@android:style/Theme.Holo.Light"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activities.Secretary_Profile_Master"
+            android:theme="@android:style/Theme.Holo.Light"
+            android:screenOrientation="portrait"/>
+    </application>
+</manifest>

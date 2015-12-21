@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Royette M. Camahalan"
+        android:textColor="#040404"
+        android:textSize="20dip"
+        android:textStyle="bold"
+        android:typeface="sans"
+        android:id="@+id/patient_name" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dip"
+        android:textColor="#343434"
+        android:text="Medium Text"
+        android:id="@+id/clinic_name"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dip"
+        android:textColor="#343434"
+        android:text="Medium Text"
+        android:id="@+id/details_time"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dip"
+        android:textColor="#343434"
+        android:text="Patient Comment :"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dip"
+        android:textColor="#343434"
+        android:text="Medium Text"
+        android:maxLines="3"
+        android:lines="3"
+        android:focusable="false"
+        android:id="@+id/Patient_Comment"/>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:layout_marginTop="4dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dip"
+            android:textColor="#343434"
+            android:text="Doctors/Secretary Comment :"
+            android:layout_centerVertical="true"/>
+        <ImageView
+            android:id="@+id/img_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_edit_filled"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"/>
+    </RelativeLayout>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dip"
+        android:textColor="#343434"
+        android:text="Medium Text"
+        android:maxLines="3"
+        android:lines="3"
+        android:id="@+id/Doctors_Comment"/>
+    <TextView
+        android:id="@+id/view_patient_profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="10dp"
+        android:layout_margin="5dp"
+        android:text="View Patient Profile"
+        android:textColor="@color/white"
+        android:textSize="18dip"
+        android:background="@drawable/rounded_primary"/>
+</LinearLayout>

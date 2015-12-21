@@ -1,0 +1,82 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/mytoolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/ColorPrimary"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+        <fragment
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:id="@+id/map"
+            tools:context=".MapsActivity"
+            android:name="com.google.android.gms.maps.MapFragment" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dip"
+        android:background="@color/ColorPrimary" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="1dp">
+        <TextView
+            android:id="@+id/txt_clinic_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#040404"
+            android:textSize="20dip"
+            android:textStyle="bold"
+            android:typeface="sans"
+            android:text="Clinic Name"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="4dp"/>
+        <TextView
+            android:id="@+id/address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Clinic Address"
+            android:layout_marginTop="1dip"
+            android:textColor="#343434"
+            android:textSize="14dip"
+            android:layout_marginLeft="8dp"
+            android:layout_marginBottom="4dp"/>
+        <TextView
+            android:id="@+id/telephone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Clinic Contact"
+            android:layout_marginTop="1dip"
+            android:textColor="#343434"
+            android:textSize="14dip"
+            android:layout_marginLeft="8dp"
+            android:layout_marginBottom="4dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Schedule :"
+            android:layout_marginTop="4dip"
+            android:textColor="#343434"
+            android:textSize="14dip"
+            android:layout_marginLeft="8dp"
+            android:layout_marginBottom="4dp"/>
+        <TextView
+            android:id="@+id/txt_schedule"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Write Schedule Here"
+            android:layout_marginTop="1dip"
+            android:textColor="#343434"
+            android:textSize="14dip"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="4dp"/>
+    </LinearLayout>
+</LinearLayout>

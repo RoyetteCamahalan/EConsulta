@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">EConsulta</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="desc_list_item_icon">Item Icon</string>
+    <string name="forgot_pword"><u>Forgot Password?</u></string>
+    <string name="sign_dif_acc"><u>Sign in with different account</u></string>
+
+    <string-array name="nav_drawer_items">
+        <item>Home</item>
+        <item>Patients</item>
+        <item>Out Patient</item>
+        <item>Appointments</item>
+        <item>Secretaries</item>
+        <item>Clinics</item>
+        <item>Logout</item>
+    </string-array>
+    <array name="nav_drawer_icons">
+        <item>@drawable/ic_home</item>
+        <item>@drawable/ic_patients</item>
+        <item>@drawable/ic_medical_record</item>
+        <item>@drawable/ic_appointments</item>
+        <item>@drawable/ic_secretary</item>
+        <item>@drawable/ic_clinic</item>
+        <item>@drawable/ic_logout</item>
+    </array>
+    <string name="doctor_id">1</string>
+    <string name="fetch_patient_url">sdvsdv</string>
+</resources>

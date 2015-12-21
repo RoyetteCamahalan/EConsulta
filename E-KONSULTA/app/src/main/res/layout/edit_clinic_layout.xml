@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="15dp">
+    <EditText
+        android:id="@+id/ET_clinic_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#040404"
+        android:textSize="20dip"
+        android:textStyle="bold"
+        android:typeface="sans"
+        android:hint="Clinic Name"/>
+    <EditText
+        android:id="@+id/ET_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Clinic Address"
+        android:layout_marginTop="10dip"
+        android:textColor="#343434"
+        android:textSize="14dip"/>
+    <EditText
+        android:id="@+id/ET_telephone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Clinic Contact"
+        android:textColor="#343434"
+        android:textSize="14dip"
+        android:layout_marginTop="10dp"/>
+
+    <EditText
+        android:id="@+id/ET_schedule"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Write Schedule Here"
+        android:layout_marginTop="4dip"
+        android:textColor="#343434"
+        android:textSize="14dip"
+        android:lines="3"/>
+    <Button
+        android:id="@+id/btn_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        android:textColor="@color/white"
+        android:background="@drawable/rounded_primary"/>
+
+</LinearLayout>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<navigationModel
+  ns = "http://schemas.android.com?import=com.android.tools.idea.editors.navigation.model.*">
+  <locations  
+    class = "java.util.ArrayList">
+    <statePointEntry>
+      <state      
+        class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
+        className = "e_konsulta.com.e_konsulta.Activities.Login"/>
+      <point      
+        x = "2032"      
+        y = "28"/>
+    </statePointEntry>
+    <statePointEntry>
+      <state      
+        class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
+        className = "e_konsulta.com.e_konsulta.Activities.User_Profile_Master_Tab"/>
+      <point      
+        x = "1432"      
+        y = "60"/>
+    </statePointEntry>
+    <statePointEntry>
+      <state      
+        class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
+        className = "e_konsulta.com.e_konsulta.Activities.Clinic_Profile"/>
+      <point      
+        x = "-80"      
+        y = "80"/>
+    </statePointEntry>
+    <statePointEntry>
+      <state      
+        class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
+        className = "e_konsulta.com.e_konsulta.Activities.Patient_Master"/>
+      <point      
+        x = "1992"      
+        y = "292"/>
+    </statePointEntry>
+    <statePointEntry>
+      <state      
+        class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
+        className = "e_konsulta.com.e_konsulta.Activities.BMI_Calculator"/>
+      <point      
+        x = "1772"      
+        y = "-68"/>
+    </statePointEntry>
+    <statePointEntry>
+      <state      
+        class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
+        className = "e_konsulta.com.e_konsulta.Activities.Login_v2"/>
+      <point      
+        x = "1756"      
+        y = "276"/>
+    </statePointEntry>
+    <statePointEntry>
+      <state      
+        class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
+        className = "e_konsulta.com.e_konsulta.Activities.MainActivity"/>
+      <point      
+        x = "736"      
+        y = "96"/>
+    </statePointEntry>
+  </locations>
+</navigationModel>

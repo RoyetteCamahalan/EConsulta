@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/appointment_calendar"
+        android:orderInCategory="100"
+        android:showAsAction="always"
+        android:icon="@drawable/ic_calendar_filled"
+        android:title="My Calendar"
+        tools:ignore="AppCompatResource" />
+</menu>
