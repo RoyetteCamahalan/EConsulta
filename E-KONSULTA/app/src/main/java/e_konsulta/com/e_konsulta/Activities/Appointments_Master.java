@@ -1,4 +1,4 @@
-package e_konsulta.com.e_konsulta.Fragments;
+package e_konsulta.com.e_konsulta.Activities;
 
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
@@ -14,12 +14,15 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import e_konsulta.com.e_konsulta.Activities.MainActivity;
+import e_konsulta.com.e_konsulta.Fragments.fragment_patient_diagnosis;
+import e_konsulta.com.e_konsulta.Fragments.fragment_request;
+import e_konsulta.com.e_konsulta.Fragments.fragment_today;
 import e_konsulta.com.e_konsulta.R;
 
 /**
  * Created by Royette on 11/23/2015.
  */
-public class fragment_appointments extends Fragment {
+public class Appointments_Master extends Fragment {
 
     private String[] tabs = {"Today", "Incoming","Request"};
     private Appointments_Tab_Adapter mAdapter;
