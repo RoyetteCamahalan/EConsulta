@@ -9,7 +9,6 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -28,7 +27,6 @@ import java.util.ArrayList;
 
 import e_konsulta.com.e_konsulta.Fragments.fragment_Home;
 import e_konsulta.com.e_konsulta.Fragments.fragment_Patients;
-import e_konsulta.com.e_konsulta.Fragments.fragment_appointments;
 import e_konsulta.com.e_konsulta.Fragments.fragment_clinics;
 import e_konsulta.com.e_konsulta.Fragments.fragment_secretaries;
 import e_konsulta.com.e_konsulta.NavDrawerItem;
@@ -164,12 +162,6 @@ public class MainActivity extends FragmentActivity {
         this.finish();
         super.onBackPressed();
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (mDrawerToggle.onOptionsItemSelected(item))
@@ -203,7 +195,8 @@ public class MainActivity extends FragmentActivity {
                 fragment = new fragment_Patients();
                 break;
             case 4:
-                fragment = new fragment_appointments();
+                Intent appointment=new Intent(this,Appointments_Master.class);
+                startActivity(appointment);
                 break;
             case 5:
                 fragment = new fragment_secretaries();

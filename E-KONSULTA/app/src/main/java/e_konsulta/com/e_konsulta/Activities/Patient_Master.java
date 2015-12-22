@@ -2,19 +2,15 @@ package e_konsulta.com.e_konsulta.Activities;
 
 
 import android.app.ActionBar;
-import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.view.MenuItem;
 import android.widget.ImageView;
-import android.widget.Toast;
-
 import e_konsulta.com.e_konsulta.Fragments.fragment_Patient_Profile;
 import e_konsulta.com.e_konsulta.Fragments.fragment_patient_diagnosis;
 import e_konsulta.com.e_konsulta.Fragments.fragment_patient_history;

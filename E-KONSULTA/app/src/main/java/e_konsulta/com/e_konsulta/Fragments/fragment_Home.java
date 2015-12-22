@@ -12,6 +12,7 @@ import android.widget.ListView;
 
 import e_konsulta.com.e_konsulta.Activities.BMI_Calculator;
 import e_konsulta.com.e_konsulta.Activities.MainActivity;
+import e_konsulta.com.e_konsulta.Activities.Appointments_Master;
 import e_konsulta.com.e_konsulta.R;
 import e_konsulta.com.e_konsulta.Activities.User_Profile_Master_Tab;
 
@@ -65,7 +66,8 @@ public class fragment_Home extends Fragment implements View.OnClickListener {
             case R.id.img_appointments:
                 position=4;
                 title="Appointments";
-                fragment=new fragment_appointments();
+                Intent appointment=new Intent(getActivity(),Appointments_Master.class);
+                startActivity(appointment);
                 break;
             case R.id.img_secretary:
                 position=5;

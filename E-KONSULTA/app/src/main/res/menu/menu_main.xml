@@ -4,7 +4,7 @@
     <item
         android:id="@+id/appointment_calendar"
         android:orderInCategory="100"
-        android:showAsAction="always"
+        android:showAsAction="ifRoom"
         android:icon="@drawable/ic_calendar_filled"
         android:title="My Calendar"
         tools:ignore="AppCompatResource" />

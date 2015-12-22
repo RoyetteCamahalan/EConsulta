@@ -5,12 +5,12 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ImageView;
 
 import e_konsulta.com.e_konsulta.Activities.MainActivity;
@@ -22,7 +22,7 @@ import e_konsulta.com.e_konsulta.R;
 /**
  * Created by Royette on 11/23/2015.
  */
-public class Appointments_Master extends Fragment {
+public class Appointments_Master extends FragmentActivity {
 
     private String[] tabs = {"Today", "Incoming","Request"};
     private Appointments_Tab_Adapter mAdapter;
@@ -35,13 +35,14 @@ public class Appointments_Master extends Fragment {
     int pos = 0;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v=inflater.inflate(R.layout.appointments_tab_layout,container,false);
-        viewPager = (ViewPager) v.findViewById(R.id.pager);
-        mAdapter = new Appointments_Tab_Adapter(getFragmentManager());
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.appointments_tab_layout);
+        viewPager = (ViewPager) findViewById(R.id.pager);
+        mAdapter = new Appointments_Tab_Adapter(getSupportFragmentManager());
 
-        actionBar =getActivity().getActionBar();
-        actionBar.removeAllTabs();
+        actionBar =this.getActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
         viewPager.setAdapter(mAdapter);
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
         for (String tab_name : tabs) {
@@ -84,19 +85,27 @@ public class Appointments_Master extends Fragment {
             public void onPageScrollStateChanged(int arg0) {
             }
         });
-        return v;
+
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main,menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.appointment_calendar:
+                startActivity(new Intent(this,Schedule_Calendar.class));
+                break;
+            case android.R.id.home:
+                this.finish();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private class Appointments_Tab_Adapter extends FragmentStatePagerAdapter {
