@@ -50,6 +50,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public static final String TBL_SECRETARIES="secretaries",SECRETARY_ID="secretary_id",IS_ACTIVE="is_active",
             USERNAME="username",PASSWORD="password";
+    public static final String TBL_BLOCK_DATES="block_dates",EXPLANATION="explanation",SERVER_ID="server_id";
 
     public DBHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -60,14 +61,17 @@ public class DBHelper extends SQLiteOpenHelper {
                 TBL_PATIENTS, AI_ID, PATIENT_ID, FNAME, MNAME, LNAME, PTNT_OCCUPATION, PTNT_BIRTHDATE, PTNT_SEX, PTNT_CIVIL_STATUS, PTNT_HEIGHT, PTNT_WEIGHT, OPTIONAL_ADDRESS, BRGY_ID, BARANGAY, MUNICIPALITY, PROVINCE, REGION, TEL_NO, MOBILE_NO, EMAIL, PHOTO, PTNT_REFERRED_BY, CREATED_AT, UPDATED_AT, DELETED_AT);
         String sql_create_tbl_consultation_request = String.format("CREATE TABLE %s ( %s INTEGER PRIMARY KEY,%s INTEGER, %s INTEGER, %s TEXT, %s TEXT, %s INTEGER, %s TEXT, %s INTEGER, %s TEXT, %s TEXT)",
                 TBL_CONSULTATION_RQ, AI_ID, PATIENT_ID, CLINIC_ID, DATE, TIME, IS_APPROVED, COMMENT_DOCTOR, PATIENT_IS_APPROVED, PATIENT_COMMENT,CREATED_AT, UPDATED_AT);
-        String sql_create_tbl_clinics = String.format("CREATE TABLE %s (%s INTEGER, %s TEXT, %s TEXT, %s TEXT,%s TEXT)",
+        String sql_create_tbl_clinics = String.format("CREATE TABLE %s (%s INTEGER PRIMARY KEY, %s TEXT, %s TEXT, %s TEXT,%s TEXT)",
                 TBL_CLINICS, CLINIC_ID, NAME,TEL_NO,ADDRESS,CLINIC_SCHEDULE);
-        String sql_create_tbl_secretaries = String.format("CREATE TABLE %s (%s INTEGER, %s TEXT, %s TEXT, %s TEXT,%s TEXT,%s TEXT,%s TEXT,%s TEXT,%s TEXT,%s INTEGER,%s TEXT,%s TEXT,%s TEXT,%s TEXT,%s TEXT,%s TEXT,%s INTEGER,%s TEXT,%s TEXT)",
+        String sql_create_tbl_secretaries = String.format("CREATE TABLE %s (%s INTEGER PRIMARY KEY, %s TEXT, %s TEXT, %s TEXT,%s TEXT,%s TEXT,%s TEXT,%s TEXT,%s TEXT,%s INTEGER,%s TEXT,%s TEXT,%s TEXT,%s TEXT,%s TEXT,%s TEXT,%s INTEGER,%s TEXT,%s TEXT)",
                 TBL_SECRETARIES, SECRETARY_ID, FNAME,MNAME,LNAME,MOBILE_NO,TEL_NO,EMAIL,PHOTO,OPTIONAL_ADDRESS,BRGY_ID, BARANGAY, MUNICIPALITY, PROVINCE, REGION,USERNAME,PASSWORD,IS_ACTIVE, CREATED_AT, UPDATED_AT);
+        String sql_create_tbl_block_dates = String.format("CREATE TABLE %s (%s INTEGER PRIMARY KEY AUTOINCREMENT, %s TEXT, %s TEXT, %s TEXT,%s TEXT,%s INTEGER)",
+                TBL_BLOCK_DATES, AI_ID, DATE,EXPLANATION,CREATED_AT,UPDATED_AT,SERVER_ID);
         db.execSQL(sql_create_tbl_patients);
         db.execSQL(sql_create_tbl_consultation_request);
         db.execSQL(sql_create_tbl_clinics);
         db.execSQL(sql_create_tbl_secretaries);
+        db.execSQL(sql_create_tbl_block_dates);
     }
 
     @Override
@@ -80,6 +84,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("delete from " + TBL_PATIENTS);
         db.execSQL("delete from " + TBL_CONSULTATION_RQ);
         db.execSQL("delete from " + TBL_SECRETARIES);
+        db.execSQL("delete from " + TBL_BLOCK_DATES);
         db.close();
     }
 }

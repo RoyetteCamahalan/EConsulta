@@ -7,6 +7,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import android.app.Activity;
@@ -37,8 +38,6 @@ public class CalendarAdapter extends BaseAdapter {
     int maxWeeknumber;
     int maxP;
     int calMaxP;
-    int lastWeekDay;
-    int leftDays;
     int mnthlength;
     String itemvalue, curentDateString;
     DateFormat df;
@@ -46,10 +45,9 @@ public class CalendarAdapter extends BaseAdapter {
     private ArrayList<String> items;
     public static List<String> day_string;
     private View previousView;
-    public ArrayList<CalendarCollection>  date_collection_arr;
-
-    public CalendarAdapter(Context context, GregorianCalendar monthCalendar,ArrayList<CalendarCollection> date_collection_arr) {
-        this.date_collection_arr=date_collection_arr;
+    public ArrayList<HashMap<String,String>> d_collection;
+    public CalendarAdapter(Context context, GregorianCalendar monthCalendar,ArrayList<HashMap<String,String>> d_collection) {
+        this.d_collection=d_collection;
         CalendarAdapter.day_string = new ArrayList<String>();
         Locale.setDefault(Locale.US);
         month = monthCalendar;
@@ -88,7 +86,7 @@ public class CalendarAdapter extends BaseAdapter {
     // create a new view for each item referenced by the Adapter
     public View getView(int position, View convertView, ViewGroup parent) {
         View v = convertView;
-        TextView dayView;
+        TextView dayView,counterView;
         if (convertView == null) { // if it's not recycled, initialize some
             // attributes
             LayoutInflater vi = (LayoutInflater) context
@@ -99,6 +97,7 @@ public class CalendarAdapter extends BaseAdapter {
 
 
         dayView = (TextView) v.findViewById(R.id.date);
+        counterView = (TextView) v.findViewById(R.id.counter);
         String[] separatedTime = day_string.get(position).split("-");
 
 
@@ -120,8 +119,6 @@ public class CalendarAdapter extends BaseAdapter {
         if (day_string.get(position).equals(curentDateString)) {
 
             v.setBackgroundColor(Color.CYAN);
-        } else {
-            v.setBackgroundColor(Color.parseColor("#343434"));
         }
 
 
@@ -147,7 +144,7 @@ public class CalendarAdapter extends BaseAdapter {
         }
         */
 
-        setEventView(v, position,dayView);
+        setEventView(v, position,dayView,counterView);
 
         return v;
     }
@@ -229,61 +226,25 @@ public class CalendarAdapter extends BaseAdapter {
 
 
 
-    public void setEventView(View v,int pos,TextView txt){
+    public void setEventView(View v,int pos,TextView txt,TextView txt_counter){
 
-        int len=CalendarCollection.date_collection_arr.size();
+        int len=d_collection.size();
         for (int i = 0; i < len; i++) {
-            CalendarCollection cal_obj=CalendarCollection.date_collection_arr.get(i);
-            String date=cal_obj.date;
+            String date=d_collection.get(i).get(DBHelper.DATE);
             int len1=day_string.size();
             if (len1>pos) {
 
                 if (day_string.get(pos).equals(date)) {
-                    v.setBackgroundColor(Color.parseColor("#343434"));
-                    v.setBackgroundResource(R.drawable.rounded);
+                    v.setBackgroundColor(Color.CYAN);
+                    txt_counter.setVisibility(View.VISIBLE);
+                    txt_counter.setText(d_collection.get(i).get("COUNTER"));
 
-                    txt.setTextColor(Color.WHITE);
                 }
             }}
 
 
 
     }
-
-
-    public void getPositionList(String date,final Activity act){
-
-        int len=CalendarCollection.date_collection_arr.size();
-        for (int i = 0; i < len; i++) {
-            CalendarCollection cal_collection=CalendarCollection.date_collection_arr.get(i);
-            String event_date=cal_collection.date;
-
-            String event_message=cal_collection.event_message;
-
-            if (date.equals(event_date)) {
-
-                Toast.makeText(context, "You have event on this date: "+event_date, Toast.LENGTH_LONG).show();
-                new AlertDialog.Builder(context)
-                        .setIcon(android.R.drawable.ic_dialog_alert)
-                        .setTitle("Date: "+event_date)
-                        .setMessage("Event: "+event_message)
-                        .setPositiveButton("OK",new android.content.DialogInterface.OnClickListener(){
-                            public void onClick(DialogInterface dialog, int which)
-                            {
-                                act.finish();
-                            }
-                        }).show();
-                break;
-            }else{
-
-
-            }}
-
-
-
-    }
-
-
 }
 
 

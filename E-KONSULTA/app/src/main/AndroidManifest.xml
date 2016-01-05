@@ -82,5 +82,7 @@
         <activity android:name=".Activities.Schedule_Calendar"
             android:theme="@android:style/Theme.Holo.Light"
             android:screenOrientation="portrait"/>
+        <activity android:name=".Activities.View_Schedule"
+            android:theme="@android:style/Theme.Holo.Light"/>
     </application>
 </manifest>

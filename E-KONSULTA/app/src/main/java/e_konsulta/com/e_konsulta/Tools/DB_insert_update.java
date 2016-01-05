@@ -122,4 +122,31 @@ public class DB_insert_update extends DBHelper {
         db.close();
         return rowid>0;
     }
+
+
+
+
+
+    public int check_block_dates(int id){
+        String sql = "SELECT * from "+TBL_BLOCK_DATES +" where "+AI_ID+"="+id;
+        SQLiteDatabase db = getWritableDatabase();
+        int count = 0;
+        Cursor cur = db.rawQuery(sql, null);
+        count = cur.getCount();
+        db.close();
+        cur.close();
+        return count;
+    }
+    public boolean insertBlockDates(ContentValues values,int action,int id){
+        SQLiteDatabase db = getWritableDatabase();
+        long rowid=0;
+        if(action==0){
+            values.put(AI_ID,id);
+            rowid=db.insert(TBL_BLOCK_DATES,null,values);
+        }else{
+            rowid=db.update(TBL_BLOCK_DATES,values,AI_ID+"="+id,null);
+        }
+        db.close();
+        return rowid>0;
+    }
 }

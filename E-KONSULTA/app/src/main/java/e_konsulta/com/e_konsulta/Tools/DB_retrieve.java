@@ -232,6 +232,40 @@ public class DB_retrieve extends DBHelper {
 
         return secretary;
     }
+    public ArrayList<HashMap<String, String>> getBlockDates() {
+        ArrayList<HashMap<String, String>> block_dates = new ArrayList();
+        SQLiteDatabase db = getWritableDatabase();
+        String sql = "select "+DATE+",COUNT(*) AS 'COUNTER' from " + TBL_BLOCK_DATES + " GROUP BY "+DATE;
+        Cursor cur = db.rawQuery(sql, null);
 
+        while (cur.moveToNext()) {
+            HashMap<String, String> map = new HashMap();
+            map.put(DATE, cur.getString(cur.getColumnIndex(DATE)));
+            map.put("COUNTER", cur.getString(cur.getColumnIndex("COUNTER")));
+            block_dates.add(map);
+        }
+        db.close();
+        cur.close();
 
+        return block_dates;
+    }
+    public ArrayList<HashMap<String, String>> getBlockPerDate(String date) {
+        ArrayList<HashMap<String, String>> block_dates = new ArrayList();
+        SQLiteDatabase db = getWritableDatabase();
+        String sql = "select *  from " + TBL_BLOCK_DATES + " WHERE "+DATE+"="+date;
+        Cursor cur = db.rawQuery(sql, null);
+
+        while (cur.moveToNext()) {
+            HashMap<String, String> map = new HashMap();
+            map.put(AI_ID, cur.getString(cur.getColumnIndex(AI_ID)));
+            map.put(DATE, cur.getString(cur.getColumnIndex(DATE)));
+            map.put(EXPLANATION, cur.getString(cur.getColumnIndex(EXPLANATION)));
+            map.put(CREATED_AT, cur.getString(cur.getColumnIndex(DATE)));
+            block_dates.add(map);
+        }
+        db.close();
+        cur.close();
+
+        return block_dates;
+    }
 }

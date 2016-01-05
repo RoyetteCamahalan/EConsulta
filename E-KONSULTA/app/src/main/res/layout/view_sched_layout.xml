@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="8dp">
+        <TextView
+            android:id="@+id/txt_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:gravity="center"
+            android:text="Schedules-01-01-2016"
+            android:textColor="#ffffff"
+            android:textSize="18dip"
+            android:textStyle="bold"
+            android:background="@color/ColorPrimary"/>
+        <TextView
+            android:id="@+id/noSchedFound"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:text="No Schedule Found"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            android:layout_below="@+id/txt_title"/>
+
+        <ListView
+            android:id="@+id/list_of_appointments"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:divider="@color/ColorPrimary"
+            android:dividerHeight="1dp"
+            android:layout_below="@+id/noSchedFound"/>
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:gravity="bottom|right">
+
+            <ImageButton
+                android:id="@+id/add_secretary"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/circle_selector"
+                android:src="@drawable/ic_plus" />
+        </LinearLayout>
+
+    </RelativeLayout>
