@@ -150,7 +150,7 @@ public class Login extends Activity implements View.OnClickListener {
                                 JSONArray doctor=jsonObject.getJSONArray("doctor_profile");
                                 for (int i = 0; i < doctor.length() ; i++) {
                                     final JSONObject doctor_items = doctor.getJSONObject(i);
-                                    if(shareduserpref.getInt(USERID_KEY_LAST_LOG2,0)!=Integer.valueOf(doctor_items.getString("id"))){
+                                    if(shareduserpref.getInt(USERID_KEY_LAST_LOG2,0)!=Integer.valueOf(doctor_items.getString("id"))&& shareduserpref.getInt(USERID_KEY_LAST_LOG2,0)!=0){
                                         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(act_login);
                                         dialogBuilder.setTitle("User Identity Changed Detected");
                                         dialogBuilder.setMessage("Previous Data will be altered. Continue?");
@@ -223,7 +223,6 @@ public class Login extends Activity implements View.OnClickListener {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.d("loginsssss",error.toString());
                 PD.dismiss();
             }
         });
