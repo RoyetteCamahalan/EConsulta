@@ -1,0 +1,101 @@
+D:\Files\Projects\ECE MD Clinic APP\ECE MD Clinic APP\bin\Debug\app.config
+D:\Files\Projects\ECE MD Clinic APP\ECE MD Clinic APP\bin\Debug\ECE MD Clinic APP.exe.config
+D:\Files\Projects\ECE MD Clinic APP\ECE MD Clinic APP\bin\Debug\ECE MD Clinic APP.exe.manifest
+D:\Files\Projects\ECE MD Clinic APP\ECE MD Clinic APP\bin\Debug\ECE MD Clinic APP.application
+D:\Files\Projects\ECE MD Clinic APP\ECE MD Clinic APP\bin\Debug\ECE MD Clinic APP.exe
+D:\Files\Projects\ECE MD Clinic APP\ECE MD Clinic APP\bin\Debug\ECE MD Clinic APP.pdb
+D:\Files\Projects\ECE MD Clinic APP\ECE MD Clinic APP\bin\Debug\ECE MD Clinic APP.xml
+D:\Files\Projects\ECE MD Clinic APP\ECE MD Clinic APP\bin\Debug\Newtonsoft.Json.dll
+D:\Files\Projects\ECE MD Clinic APP\ECE MD Clinic APP\bin\Debug\Newtonsoft.Json.xml
+D:\Files\Projects\ECE MD Clinic APP\ECE MD Clinic APP\obj\x86\Debug\Interop.CRDESIGNERLib.dll
+D:\Files\Projects\ECE MD Clinic APP\ECE MD Clinic APP\obj\x86\Debug\Interop.CRVIEWERLib.dll
+D:\Files\Projects\ECE MD Clinic APP\ECE MD Clinic APP\obj\x86\Debug\Interop.MSAdodcLib.dll
+D:\Files\Projects\ECE MD Clinic APP\ECE MD Clinic APP\obj\x86\Debug\ECE MD Clinic APP.vbproj.ResolveComReference.cache
+D:\Files\Projects\ECE MD Clinic APP\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.frm_login.resources
+D:\Files\Projects\ECE MD Clinic APP\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.consult.resources
+D:\Files\Projects\ECE MD Clinic APP\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.Consultation.resources
+D:\Files\Projects\ECE MD Clinic APP\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.Doctors.resources
+D:\Files\Projects\ECE MD Clinic APP\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.incoming.resources
+D:\Files\Projects\ECE MD Clinic APP\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.librabries.resources
+D:\Files\Projects\ECE MD Clinic APP\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.Patients.resources
+D:\Files\Projects\ECE MD Clinic APP\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.secretary.resources
+D:\Files\Projects\ECE MD Clinic APP\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.today.resources
+D:\Files\Projects\ECE MD Clinic APP\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.user_contact.resources
+D:\Files\Projects\ECE MD Clinic APP\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.user_profile.resources
+D:\Files\Projects\ECE MD Clinic APP\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.add_prescription.resources
+D:\Files\Projects\ECE MD Clinic APP\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.new_consult.resources
+D:\Files\Projects\ECE MD Clinic APP\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.New_Consultation.resources
+D:\Files\Projects\ECE MD Clinic APP\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.New_Doctor.resources
+D:\Files\Projects\ECE MD Clinic APP\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.New_Patient.resources
+D:\Files\Projects\ECE MD Clinic APP\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.New_Secretary.resources
+D:\Files\Projects\ECE MD Clinic APP\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.select_doctor_test.resources
+D:\Files\Projects\ECE MD Clinic APP\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.select_treatment_template.resources
+D:\Files\Projects\ECE MD Clinic APP\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.main_menu.resources
+D:\Files\Projects\ECE MD Clinic APP\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.Resources.resources
+D:\Files\Projects\ECE MD Clinic APP\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.Notification.resources
+D:\Files\Projects\ECE MD Clinic APP\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.test_result.resources
+D:\Files\Projects\ECE MD Clinic APP\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.select_time.resources
+D:\Files\Projects\ECE MD Clinic APP\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.TextAndButtonControl.resources
+D:\Files\Projects\ECE MD Clinic APP\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.userbtnAccept.resources
+D:\Files\Projects\ECE MD Clinic APP\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.Verification.resources
+D:\Files\Projects\ECE MD Clinic APP\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.View_patient.resources
+D:\Files\Projects\ECE MD Clinic APP\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.patient_history.resources
+D:\Files\Projects\ECE MD Clinic APP\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.View_Secretary.resources
+D:\Files\Projects\ECE MD Clinic APP\ECE MD Clinic APP\obj\x86\Debug\ECE MD Clinic APP.vbproj.GenerateResource.Cache
+D:\Files\Projects\ECE MD Clinic APP\ECE MD Clinic APP\obj\x86\Debug\ECE MD Clinic APP.exe.manifest
+D:\Files\Projects\ECE MD Clinic APP\ECE MD Clinic APP\obj\x86\Debug\ECE MD Clinic APP.application
+D:\Files\Projects\ECE MD Clinic APP\ECE MD Clinic APP\obj\x86\Debug\ECE MD Clinic APP.exe
+D:\Files\Projects\ECE MD Clinic APP\ECE MD Clinic APP\obj\x86\Debug\ECE MD Clinic APP.xml
+D:\Files\Projects\ECE MD Clinic APP\ECE MD Clinic APP\obj\x86\Debug\ECE MD Clinic APP.pdb
+D:\Files\Projects\ECE MD Clinic APP\ECE MD Clinic APP\obj\x86\Debug\ECE MD Clinic APP.vbprojResolveAssemblyReference.cache
+D:\Files\Projects\ECE MD Clinic APP\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.prescription.resources
+D:\Files\Projects\ECE MD Clinic APP\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.patient_diagnosis.resources
+F:\Files\Projects\ECE MD Clinic APP1\ECE MD Clinic APP\obj\x86\Debug\ECE MD Clinic APP.vbprojResolveAssemblyReference.cache
+F:\Files\Projects\ECE MD Clinic APP1\ECE MD Clinic APP\obj\x86\Debug\ECE MD Clinic APP.vbproj.ResolveComReference.cache
+F:\Files\Projects\ECE MD Clinic APP1\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.frm_login.resources
+F:\Files\Projects\ECE MD Clinic APP1\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.consult.resources
+F:\Files\Projects\ECE MD Clinic APP1\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.Consultation.resources
+F:\Files\Projects\ECE MD Clinic APP1\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.Doctors.resources
+F:\Files\Projects\ECE MD Clinic APP1\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.incoming.resources
+F:\Files\Projects\ECE MD Clinic APP1\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.librabries.resources
+F:\Files\Projects\ECE MD Clinic APP1\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.Patients.resources
+F:\Files\Projects\ECE MD Clinic APP1\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.secretary.resources
+F:\Files\Projects\ECE MD Clinic APP1\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.today.resources
+F:\Files\Projects\ECE MD Clinic APP1\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.user_contact.resources
+F:\Files\Projects\ECE MD Clinic APP1\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.user_profile.resources
+F:\Files\Projects\ECE MD Clinic APP1\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.add_prescription.resources
+F:\Files\Projects\ECE MD Clinic APP1\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.new_consult.resources
+F:\Files\Projects\ECE MD Clinic APP1\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.New_Consultation.resources
+F:\Files\Projects\ECE MD Clinic APP1\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.New_Doctor.resources
+F:\Files\Projects\ECE MD Clinic APP1\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.New_Patient.resources
+F:\Files\Projects\ECE MD Clinic APP1\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.New_Secretary.resources
+F:\Files\Projects\ECE MD Clinic APP1\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.prescription.resources
+F:\Files\Projects\ECE MD Clinic APP1\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.select_doctor_test.resources
+F:\Files\Projects\ECE MD Clinic APP1\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.select_treatment_template.resources
+F:\Files\Projects\ECE MD Clinic APP1\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.main_menu.resources
+F:\Files\Projects\ECE MD Clinic APP1\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.Resources.resources
+F:\Files\Projects\ECE MD Clinic APP1\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.Notification.resources
+F:\Files\Projects\ECE MD Clinic APP1\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.patient_diagnosis.resources
+F:\Files\Projects\ECE MD Clinic APP1\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.test_result.resources
+F:\Files\Projects\ECE MD Clinic APP1\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.select_time.resources
+F:\Files\Projects\ECE MD Clinic APP1\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.TextAndButtonControl.resources
+F:\Files\Projects\ECE MD Clinic APP1\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.userbtnAccept.resources
+F:\Files\Projects\ECE MD Clinic APP1\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.Verification.resources
+F:\Files\Projects\ECE MD Clinic APP1\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.View_patient.resources
+F:\Files\Projects\ECE MD Clinic APP1\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.patient_history.resources
+F:\Files\Projects\ECE MD Clinic APP1\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.View_Secretary.resources
+F:\Files\Projects\ECE MD Clinic APP1\ECE MD Clinic APP\obj\x86\Debug\ECE MD Clinic APP.vbproj.GenerateResource.Cache
+F:\Files\Projects\ECE MD Clinic APP1\ECE MD Clinic APP\obj\x86\Debug\ECE MD Clinic APP.exe
+F:\Files\Projects\ECE MD Clinic APP1\ECE MD Clinic APP\obj\x86\Debug\ECE MD Clinic APP.xml
+F:\Files\Projects\ECE MD Clinic APP1\ECE MD Clinic APP\obj\x86\Debug\ECE MD Clinic APP.pdb
+F:\Files\Projects\ECE MD Clinic APP1\ECE MD Clinic APP\bin\Debug\app.config
+F:\Files\Projects\ECE MD Clinic APP1\ECE MD Clinic APP\bin\Debug\ECE MD Clinic APP.exe.config
+F:\Files\Projects\ECE MD Clinic APP1\ECE MD Clinic APP\bin\Debug\ECE MD Clinic APP.exe.manifest
+F:\Files\Projects\ECE MD Clinic APP1\ECE MD Clinic APP\bin\Debug\ECE MD Clinic APP.application
+F:\Files\Projects\ECE MD Clinic APP1\ECE MD Clinic APP\bin\Debug\ECE MD Clinic APP.exe
+F:\Files\Projects\ECE MD Clinic APP1\ECE MD Clinic APP\bin\Debug\ECE MD Clinic APP.pdb
+F:\Files\Projects\ECE MD Clinic APP1\ECE MD Clinic APP\bin\Debug\ECE MD Clinic APP.xml
+F:\Files\Projects\ECE MD Clinic APP1\ECE MD Clinic APP\bin\Debug\Newtonsoft.Json.dll
+F:\Files\Projects\ECE MD Clinic APP1\ECE MD Clinic APP\bin\Debug\Newtonsoft.Json.xml
+F:\Files\Projects\ECE MD Clinic APP1\ECE MD Clinic APP\obj\x86\Debug\ECE MD Clinic APP.exe.manifest
+F:\Files\Projects\ECE MD Clinic APP1\ECE MD Clinic APP\obj\x86\Debug\ECE MD Clinic APP.application
