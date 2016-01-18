@@ -25,7 +25,7 @@ Partial Class Patients
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Patients))
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.txt_search = New System.Windows.Forms.TextBox()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.btn_add_patient = New System.Windows.Forms.Button()
         Me.dtgv_patients = New System.Windows.Forms.DataGridView()
         CType(Me.dtgv_patients, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -33,28 +33,27 @@ Partial Class Patients
         'txt_search
         '
         Me.txt_search.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.txt_search.Font = New System.Drawing.Font("Hoefler Text Black", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txt_search.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txt_search.ForeColor = System.Drawing.SystemColors.GrayText
         Me.txt_search.Location = New System.Drawing.Point(25, 76)
         Me.txt_search.Name = "txt_search"
         Me.txt_search.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.txt_search.Size = New System.Drawing.Size(274, 21)
+        Me.txt_search.Size = New System.Drawing.Size(274, 20)
         Me.txt_search.TabIndex = 1
-        Me.txt_search.Text = "Search Patient here"
         '
-        'Button1
+        'btn_add_patient
         '
-        Me.Button1.BackgroundImage = CType(resources.GetObject("Button1.BackgroundImage"), System.Drawing.Image)
-        Me.Button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.Button1.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Button1.FlatAppearance.BorderSize = 0
-        Me.Button1.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control
-        Me.Button1.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control
-        Me.Button1.Location = New System.Drawing.Point(975, 49)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(143, 47)
-        Me.Button1.TabIndex = 3
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.btn_add_patient.BackgroundImage = CType(resources.GetObject("btn_add_patient.BackgroundImage"), System.Drawing.Image)
+        Me.btn_add_patient.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btn_add_patient.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btn_add_patient.FlatAppearance.BorderSize = 0
+        Me.btn_add_patient.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control
+        Me.btn_add_patient.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control
+        Me.btn_add_patient.Location = New System.Drawing.Point(975, 49)
+        Me.btn_add_patient.Name = "btn_add_patient"
+        Me.btn_add_patient.Size = New System.Drawing.Size(143, 47)
+        Me.btn_add_patient.TabIndex = 3
+        Me.btn_add_patient.UseVisualStyleBackColor = True
         '
         'dtgv_patients
         '
@@ -87,7 +86,7 @@ Partial Class Patients
         Me.BackColor = System.Drawing.SystemColors.Control
         Me.ClientSize = New System.Drawing.Size(1138, 611)
         Me.Controls.Add(Me.dtgv_patients)
-        Me.Controls.Add(Me.Button1)
+        Me.Controls.Add(Me.btn_add_patient)
         Me.Controls.Add(Me.txt_search)
         Me.Cursor = System.Windows.Forms.Cursors.Default
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
@@ -102,6 +101,6 @@ Partial Class Patients
 
     End Sub
     Friend WithEvents txt_search As System.Windows.Forms.TextBox
-    Friend WithEvents Button1 As System.Windows.Forms.Button
+    Friend WithEvents btn_add_patient As System.Windows.Forms.Button
     Friend WithEvents dtgv_patients As System.Windows.Forms.DataGridView
 End Class

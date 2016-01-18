@@ -194,7 +194,7 @@ Public Class main_menu
     Private Sub TimerSync_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TimerSync.Tick
         interval = interval + 1
         If interval = 300 Then
-            SyncToWeb()
+            'SyncToWeb()
             interval = 0
         End If
     End Sub
@@ -220,9 +220,6 @@ Public Class main_menu
         End Try
     End Sub
 
-    Private Sub btn_upload_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        SyncToWeb()
-    End Sub
 
     Private Sub toolstrip_log_out_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles toolstrip_log_out.Click
         readytoclose = False

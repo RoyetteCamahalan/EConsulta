@@ -134,6 +134,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationEvents.vb" />
+    <Compile Include="Custom_Adapters.vb" />
     <Compile Include="db_connection.vb" />
     <Compile Include="frm_login.Designer.vb">
       <DependentUpon>frm_login.vb</DependentUpon>

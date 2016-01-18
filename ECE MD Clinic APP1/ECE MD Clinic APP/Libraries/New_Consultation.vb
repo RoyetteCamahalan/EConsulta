@@ -1,18 +1,57 @@
-﻿Imports MySql.Data
-Imports MySql.Data.MySqlClient
-Public Class New_Consultation
-    Private da As New MySqlDataAdapter
-    Private cmd As New MySqlCommand
-    Private ds As New DataSet
+﻿Public Class New_Consultation
+#Region "Methods"
+    Public Sub DisplayPatient()
+        Try
+            Dim Param_Name As String() = {"@action_type", "@sub_action"}
+            Dim Param_Value As String() = {2, 2}
+            Dim MyAdapter As New Custom_Adapters
+            With cmb_patients
+                .DataSource = MyAdapter.CUSTOM_RETRIEVE("SP_Patient", Param_Name, Param_Value)
+                .ValueMember = "id"
+                .DisplayMember = "Name"
+                .SelectedIndex = -1
+            End With
+        Catch ex As Exception
+
+        End Try
+    End Sub
+    Private Sub DisplayDoctors()
+        Try
+            Dim Param_Name As String() = {"@action_type", "@sub_action", "@secretary_id", "@id"}
+            Dim Param_Value As String()
+            Dim MyAdapter As New Custom_Adapters
+            If UserType = 0 Then
+                Param_Value = {2, 1, UserId, ""}
+                cmb_doctors.Enabled = True
+            Else
+                Param_Value = {2, 1, "", UserId}
+                cmb_doctors.Enabled = False
+            End If
+            With cmb_doctors
+                .DataSource = MyAdapter.CUSTOM_RETRIEVE("SP_Patient", Param_Name, Param_Value)
+                .ValueMember = "id"
+                .DisplayMember = "doctors_name"
+                .SelectedIndex = -1
+            End With
+            If UserType = 1 Then
+                cmb_doctors.SelectedValue = UserId
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+#End Region
+#Region "Variables"
     Public what_to_do As Integer
     Public consult_id As Integer
     Public patient_id As Integer
     Public doctor_id As Integer
     Public consult_date As Date
     Public comment As String
+#End Region
     Private Sub New_Consultation_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        display_patient()
-        display_doctors()
+        DisplayPatient()
+        DisplayDoctors()
         If what_to_do = 1 Then
             Try
                 Me.Text = "Edit Consultation"
@@ -28,45 +67,8 @@ Public Class New_Consultation
             dtp_date.MinDate = Date.Now
         End If
     End Sub
-    Public Sub display_patient()
-        Try
-            da = New MySqlDataAdapter("select id,concat(fname,' ',mname,' ',lname) as Name from patients where is_from_app=0", conn)
-            da.Fill(ds, "patients")
-            With cmb_patients
-                .DataSource = ds.Tables("patients")
-                .ValueMember = "id"
-                .DisplayMember = "Name"
-                .SelectedIndex = -1
-            End With
-        Catch ex As Exception
 
-        End Try
-    End Sub
-    Private Sub display_doctors()
-        Try
-            Dim strquery As String
-            If UserType = 0 Then
-                strquery = "select d.id,concat(d.`fname`,' ',d.`mname`,' ',d.`lname`)as doctors_name from doctors d INNER JOIN secretary_access sc on sc.doctor_id=d.id WHERE sc.secretary_id=" + UserId.ToString
-                cmb_doctors.Enabled = True
-            Else
-                strquery = "select id,concat(`fname`,' ',`mname`,' ',`lname`)as doctors_name from doctors where id=" + UserId.ToString
-                cmb_doctors.Enabled = False
-            End If
-            da = New MySqlDataAdapter(strquery, conn)
-            da.Fill(ds, "doctors")
-            With cmb_doctors
-                .DataSource = ds.Tables("doctors")
-                .ValueMember = "id"
-                .DisplayMember = "doctors_name"
-                .SelectedIndex = -1
-            End With
-            If UserType = 1 Then
-                cmb_doctors.SelectedValue = UserId
-            End If
-        Catch ex As Exception
-
-        End Try
-    End Sub
+    
     Private Sub validate_save()
         If cmb_doctors.SelectedIndex < 0 Or cmb_patients.SelectedIndex < 0 Then
             btn_save.Enabled = False
@@ -87,36 +89,52 @@ Public Class New_Consultation
         Try
             If what_to_do = 0 Then
                 Dim insert_sql As String
-                da = New MySqlDataAdapter("select * from `doctor_patient` where `doctor_id`=" + cmb_doctors.SelectedValue.ToString + " and `patient_id`=" + cmb_patients.SelectedValue.ToString + " and `clinic_id`=" + My.Settings.ClinicID.ToString, conn)
-                da.Fill(ds, "checker")
-                If ds.Tables("checker").Rows.Count = 0 Then
-                    insert_sql = String.Format("INSERT INTO `doctor_patient`(`clinic_id`, `doctor_id`, `patient_id`, `username`, `password`) VALUES ({0},{1},{2},'{3}','{4}')",
-                                                                     My.Settings.ClinicID.ToString, cmb_doctors.SelectedValue.ToString, cmb_patients.SelectedValue.ToString, randomuname("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"), randomuname("ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890abcdefghijklmnopqrstuvwxyz"))
+                Dim Param_Name As String() = {"@action_type", "@sub_action", "@doctor_id", "@patient_id", "@clinic_id"}
+                Dim Param_Value As String() = {2, 1, cmb_doctors.SelectedValue, cmb_patients.SelectedValue, My.Settings.ClinicID}
+                Dim MyAdapter_Doctor_Patient As New Custom_Adapters
+                Dim MyAdapter_Patient_Consultation As New Custom_Adapters
+                If MyAdapter_Doctor_Patient.CUSTOM_TRANSACT_WITH_RETURN("SP_DoctorPatient", Param_Name, Param_Value) = 0 Then
+                    Param_Name = {"@action_type", "@sub_action", "@doctor_id", "@patient_id", "@clinic_id", "@username", "@password"}
+                    Param_Value = {2, 1, cmb_doctors.SelectedValue, cmb_patients.SelectedValue, My.Settings.ClinicID,
+                                        randomuname("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"),
+                                        randomuname("ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890abcdefghijklmnopqrstuvwxyz")}
 
-                    cmd = New MySqlCommand(insert_sql, conn)
-                    cmd.ExecuteNonQuery()
+                    MyAdapter_Doctor_Patient.CUSTOM_TRANSACT("SP_DoctorPatient", Param_Name, Param_Value)
                 End If
-                insert_sql = String.Format("INSERT INTO `patient_consultations`(`patient_id`, `doctor_id`, `date`, `time`, `isdone`) VALUES ({0},{1},'{2}','{3}',0)",
-                                                                     cmb_patients.SelectedValue.ToString, cmb_doctors.SelectedValue.ToString, Convert.ToDateTime(dtp_date.Value.ToString).ToString("yyyy-MM-dd hh:mm:ss"), dtp_date.Value.ToLongTimeString)
+                Param_Name = {"@action_type", "@doctor_id", "@patient_id", "@clinic_id", "@consult_date", "@consult_time", "@is_done", "@comment_doctor"}
+                Param_Value = {0, cmb_doctors.SelectedValue,
+                                  cmb_patients.SelectedValue,
+                                  My.Settings.ClinicID,
+                                  Convert.ToDateTime(dtp_date.Value.ToString).ToString("yyyy-MM-dd hh:mm:ss"),
+                                  dtp_date.Value.ToLongTimeString, 0, txt_notes.Text}
 
-                cmd = New MySqlCommand(insert_sql, conn)
-                cmd.ExecuteNonQuery()
-                MsgBox("Appointment Saved", , "APPOINTMENT NOTIFICATION")
-                Consultation.display_all("")
-                today.display_today("")
-                incoming.display_incoming("")
+                If MyAdapter_Patient_Consultation.CUSTOM_TRANSACT("SP_Consultation", Param_Name, Param_Value) Then
+                    MsgBox("Appointment Saved", , "APPOINTMENT NOTIFICATION")
+                    Consultation.DisplayAppointmentsAll()
+                    today.DisplayAppointmentToday()
+                    incoming.DisplayAppointmentIncoming()
+                Else
+                    MsgBox("Failed")
+                End If
+
             Else
-                Dim insert_sql As String = String.Format("Update `patient_consultations` set `patient_id`={0}, `doctor_id`={1}, `date`='{2}', `time`='{4}',updated_at=CURRENT_TIMESTAMP where id={3}",
-                                                                     cmb_patients.SelectedValue.ToString, cmb_doctors.SelectedValue.ToString, Convert.ToDateTime(dtp_date.Value.ToString).ToString("yyyy-MM-dd hh:mm:ss"), consult_id.ToString, dtp_date.Value.ToLongTimeString)
-                cmd = New MySqlCommand(insert_sql, conn)
-                cmd.ExecuteNonQuery()
-                MsgBox("Appointment Saved", , "APPOINTMENT NOTIFICATION")
-                Consultation.display_all("")
-                today.display_today("")
-                incoming.display_incoming("")
-            End If
-            'MsgBox(dtp_date.Value.Date.ToString("yyyy-MM-dd ") + dtp_date.Value.TimeOfDay.ToString)
+                Dim MyAdapter_Patient_Consultation As New Custom_Adapters
+                Dim Param_Name As String() = {"@action_type", "@sub_action", "@doctor_id", "@patient_id",
+                                              "@consult_date", "@consult_time", "@comment_doctor", "@id"}
+                Dim Param_Value As String() = {1, 2, cmb_doctors.SelectedValue, cmb_patients.SelectedValue,
+                                               Convert.ToDateTime(dtp_date.Value.ToString).ToString("yyyy-MM-dd hh:mm:ss"),
+                                               dtp_date.Value.ToLongTimeString,
+                                               consult_id}
+                If MyAdapter_Patient_Consultation.CUSTOM_TRANSACT("SP_Consultation", Param_Name, Param_Value) Then
+                    MsgBox("Appointment Saved", , "APPOINTMENT NOTIFICATION")
+                    Consultation.DisplayAppointmentsAll()
+                    today.DisplayAppointmentToday()
+                    incoming.DisplayAppointmentIncoming()
+                Else
+                    MsgBox("Failed")
+                End If
 
+            End If
             Me.Dispose()
         Catch ex As Exception
             MsgBox(ex.ToString)

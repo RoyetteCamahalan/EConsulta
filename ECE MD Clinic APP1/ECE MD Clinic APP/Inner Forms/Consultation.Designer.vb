@@ -23,20 +23,7 @@ Partial Class Consultation
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Consultation))
         Me.dtgv_allappointment = New System.Windows.Forms.DataGridView()
-        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
-        Me.txt_search = New System.Windows.Forms.TextBox()
-        Me.Consult_now = New System.Windows.Forms.ToolStripMenuItem()
-        Me.edit = New System.Windows.Forms.ToolStripMenuItem()
-        Me.context_options = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.view_details = New System.Windows.Forms.ToolStripMenuItem()
-        Me.cancel = New System.Windows.Forms.ToolStripMenuItem()
-        Me.unpostpone = New System.Windows.Forms.ToolStripMenuItem()
-        Me.edit_result = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.btn_next = New System.Windows.Forms.Button()
-        Me.btn_back = New System.Windows.Forms.Button()
         Me.id = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.patient_id = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.patient_name = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -49,6 +36,16 @@ Partial Class Consultation
         Me.actions = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.updated_at = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.patient_record_id = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.txt_search = New System.Windows.Forms.TextBox()
+        Me.Consult_now = New System.Windows.Forms.ToolStripMenuItem()
+        Me.edit = New System.Windows.Forms.ToolStripMenuItem()
+        Me.context_options = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.view_details = New System.Windows.Forms.ToolStripMenuItem()
+        Me.cancel = New System.Windows.Forms.ToolStripMenuItem()
+        Me.unpostpone = New System.Windows.Forms.ToolStripMenuItem()
+        Me.edit_result = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.dtgv_allappointment, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.context_options.SuspendLayout()
         Me.SuspendLayout()
@@ -65,98 +62,8 @@ Partial Class Consultation
         Me.dtgv_allappointment.Name = "dtgv_allappointment"
         Me.dtgv_allappointment.ReadOnly = True
         Me.dtgv_allappointment.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dtgv_allappointment.Size = New System.Drawing.Size(995, 346)
+        Me.dtgv_allappointment.Size = New System.Drawing.Size(995, 395)
         Me.dtgv_allappointment.TabIndex = 0
-        '
-        'Timer1
-        '
-        Me.Timer1.Interval = 20
-        '
-        'txt_search
-        '
-        Me.txt_search.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.txt_search.Font = New System.Drawing.Font("Hoefler Text Black", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txt_search.ForeColor = System.Drawing.SystemColors.GrayText
-        Me.txt_search.Location = New System.Drawing.Point(65, 17)
-        Me.txt_search.Name = "txt_search"
-        Me.txt_search.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.txt_search.Size = New System.Drawing.Size(274, 21)
-        Me.txt_search.TabIndex = 3
-        Me.txt_search.Text = "Search Patient here"
-        '
-        'Consult_now
-        '
-        Me.Consult_now.Name = "Consult_now"
-        Me.Consult_now.Size = New System.Drawing.Size(144, 22)
-        Me.Consult_now.Text = "Consult Now"
-        '
-        'edit
-        '
-        Me.edit.AutoSize = False
-        Me.edit.Name = "edit"
-        Me.edit.Size = New System.Drawing.Size(152, 22)
-        Me.edit.Text = "Edit"
-        '
-        'context_options
-        '
-        Me.context_options.BackColor = System.Drawing.Color.LightBlue
-        Me.context_options.DropShadowEnabled = False
-        Me.context_options.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.context_options.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.view_details, Me.Consult_now, Me.edit, Me.cancel, Me.unpostpone, Me.edit_result})
-        Me.context_options.Name = "ContextMenuStrip1"
-        Me.context_options.Size = New System.Drawing.Size(145, 136)
-        '
-        'view_details
-        '
-        Me.view_details.Name = "view_details"
-        Me.view_details.Size = New System.Drawing.Size(144, 22)
-        Me.view_details.Text = "View Details"
-        '
-        'cancel
-        '
-        Me.cancel.Name = "cancel"
-        Me.cancel.Size = New System.Drawing.Size(144, 22)
-        Me.cancel.Text = "Postpone"
-        '
-        'unpostpone
-        '
-        Me.unpostpone.Name = "unpostpone"
-        Me.unpostpone.Size = New System.Drawing.Size(144, 22)
-        Me.unpostpone.Text = "Unpostpone"
-        '
-        'edit_result
-        '
-        Me.edit_result.Name = "edit_result"
-        Me.edit_result.Size = New System.Drawing.Size(144, 22)
-        Me.edit_result.Text = "Edit Result"
-        '
-        'ToolStripMenuItem1
-        '
-        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
-        Me.ToolStripMenuItem1.Text = "Activate"
-        '
-        'btn_next
-        '
-        Me.btn_next.BackgroundImage = CType(resources.GetObject("btn_next.BackgroundImage"), System.Drawing.Image)
-        Me.btn_next.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btn_next.Location = New System.Drawing.Point(958, 396)
-        Me.btn_next.Name = "btn_next"
-        Me.btn_next.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.btn_next.Size = New System.Drawing.Size(102, 44)
-        Me.btn_next.TabIndex = 4
-        Me.btn_next.UseVisualStyleBackColor = True
-        '
-        'btn_back
-        '
-        Me.btn_back.BackgroundImage = CType(resources.GetObject("btn_back.BackgroundImage"), System.Drawing.Image)
-        Me.btn_back.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btn_back.Location = New System.Drawing.Point(65, 396)
-        Me.btn_back.Name = "btn_back"
-        Me.btn_back.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.btn_back.Size = New System.Drawing.Size(102, 44)
-        Me.btn_back.TabIndex = 5
-        Me.btn_back.UseVisualStyleBackColor = True
         '
         'id
         '
@@ -236,12 +143,77 @@ Partial Class Consultation
         Me.patient_record_id.ReadOnly = True
         Me.patient_record_id.Visible = False
         '
+        'Timer1
+        '
+        Me.Timer1.Interval = 20
+        '
+        'txt_search
+        '
+        Me.txt_search.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.txt_search.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txt_search.ForeColor = System.Drawing.SystemColors.GrayText
+        Me.txt_search.Location = New System.Drawing.Point(65, 17)
+        Me.txt_search.Name = "txt_search"
+        Me.txt_search.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.txt_search.Size = New System.Drawing.Size(274, 20)
+        Me.txt_search.TabIndex = 3
+        '
+        'Consult_now
+        '
+        Me.Consult_now.Name = "Consult_now"
+        Me.Consult_now.Size = New System.Drawing.Size(144, 22)
+        Me.Consult_now.Text = "Consult Now"
+        '
+        'edit
+        '
+        Me.edit.AutoSize = False
+        Me.edit.Name = "edit"
+        Me.edit.Size = New System.Drawing.Size(152, 22)
+        Me.edit.Text = "Edit"
+        '
+        'context_options
+        '
+        Me.context_options.BackColor = System.Drawing.Color.LightBlue
+        Me.context_options.DropShadowEnabled = False
+        Me.context_options.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.context_options.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.view_details, Me.Consult_now, Me.edit, Me.cancel, Me.unpostpone, Me.edit_result})
+        Me.context_options.Name = "ContextMenuStrip1"
+        Me.context_options.Size = New System.Drawing.Size(145, 136)
+        '
+        'view_details
+        '
+        Me.view_details.Name = "view_details"
+        Me.view_details.Size = New System.Drawing.Size(144, 22)
+        Me.view_details.Text = "View Details"
+        '
+        'cancel
+        '
+        Me.cancel.Name = "cancel"
+        Me.cancel.Size = New System.Drawing.Size(144, 22)
+        Me.cancel.Text = "Postpone"
+        '
+        'unpostpone
+        '
+        Me.unpostpone.Name = "unpostpone"
+        Me.unpostpone.Size = New System.Drawing.Size(144, 22)
+        Me.unpostpone.Text = "Unpostpone"
+        '
+        'edit_result
+        '
+        Me.edit_result.Name = "edit_result"
+        Me.edit_result.Size = New System.Drawing.Size(144, 22)
+        Me.edit_result.Text = "Edit Result"
+        '
+        'ToolStripMenuItem1
+        '
+        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
+        Me.ToolStripMenuItem1.Text = "Activate"
+        '
         'Consultation
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.ClientSize = New System.Drawing.Size(1121, 471)
-        Me.Controls.Add(Me.btn_back)
-        Me.Controls.Add(Me.btn_next)
         Me.Controls.Add(Me.txt_search)
         Me.Controls.Add(Me.dtgv_allappointment)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
@@ -266,8 +238,6 @@ Partial Class Consultation
     Friend WithEvents unpostpone As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents view_details As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents edit_result As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents btn_next As System.Windows.Forms.Button
-    Friend WithEvents btn_back As System.Windows.Forms.Button
     Friend WithEvents id As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents patient_id As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents patient_name As System.Windows.Forms.DataGridViewTextBoxColumn

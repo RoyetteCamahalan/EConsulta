@@ -108,9 +108,9 @@ Partial Class New_Consultation
         Me.Label5.Font = New System.Drawing.Font("Modern No. 20", 8.999999!, System.Drawing.FontStyle.Bold)
         Me.Label5.Location = New System.Drawing.Point(38, 193)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(113, 15)
+        Me.Label5.Size = New System.Drawing.Size(82, 15)
         Me.Label5.TabIndex = 10
-        Me.Label5.Text = "Additional Notes :"
+        Me.Label5.Text = "Comment(s) :"
         '
         'btn_cancel
         '

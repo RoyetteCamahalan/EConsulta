@@ -273,16 +273,16 @@ Public Class new_consult
                             End If
                         Next
                     End If
-                    consult.display_records("")
+                    consult.DisplayRecords()
                     MsgBox("Consultation Saved", , "Consultation NOTIFICATION")
                     'from appointment
                     If what_to_do = 2 Then
                         Dim update_sql As String = "UPDATE `patient_consultations` SET isdone=1,patient_record_id=" + treatment_id.ToString + " where id=" + appointment_id.ToString
                         cmd = New MySqlCommand(update_sql, conn)
                         cmd.ExecuteNonQuery()
-                        today.display_today("")
-                        incoming.display_incoming("")
-                        Consultation.display_all("")
+                        today.DisplayAppointmentToday()
+                        incoming.DisplayAppointmentIncoming()
+                        Consultation.DisplayAppointmentsAll()
                         btn_new_treatment.Visible = False
                         btn_addfromtemplate.Visible = False
                         btn_saveastemplate.Visible = False
@@ -331,7 +331,7 @@ Public Class new_consult
 
                         Next
                     End If
-                    consult.display_records("")
+                    consult.DisplayRecords()
                     MsgBox("Update Saved", , "Consultation NOTIFICATION")
                     Me.Text = "View Consultation"
                     ts_edit.Visible = True

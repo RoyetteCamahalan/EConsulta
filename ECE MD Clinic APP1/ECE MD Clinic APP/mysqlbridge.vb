@@ -9,149 +9,149 @@ Imports MySql.Data.MySqlClient
 Public Class mysqlbridge
 
 
-    Public Shared Sub get_appointments()
-        Try
-            main_menu.TextBox1.Text = "http://localhost/E-Clinic/sample.php?" + "last_update=" + My.Settings.Last_Update_Web.ToString + "&&clinic_id=" + My.Settings.ClinicID.ToString
-            Dim request As HttpWebRequest = WebRequest.Create("http://localhost/E-Clinic/sample.php?" + "last_update=" + My.Settings.Last_Update_Web.ToString + "&&clinic_id=" + My.Settings.ClinicID.ToString)
-            request.Method = WebRequestMethods.Http.Get
-            request.ContentType = "application/json"
-            Dim response1 As HttpWebResponse = request.GetResponse
+    'Public Shared Sub get_appointments()
+    '    Try
+    '        main_menu.TextBox1.Text = "http://localhost/E-Clinic/sample.php?" + "last_update=" + My.Settings.Last_Update_Web.ToString + "&&clinic_id=" + My.Settings.ClinicID.ToString
+    '        Dim request As HttpWebRequest = WebRequest.Create("http://localhost/E-Clinic/sample.php?" + "last_update=" + My.Settings.Last_Update_Web.ToString + "&&clinic_id=" + My.Settings.ClinicID.ToString)
+    '        request.Method = WebRequestMethods.Http.Get
+    '        request.ContentType = "application/json"
+    '        Dim response1 As HttpWebResponse = request.GetResponse
 
-            Dim receivestream As StreamReader = New StreamReader(response1.GetResponseStream)
-            Dim strjson As String = ""
+    '        Dim receivestream As StreamReader = New StreamReader(response1.GetResponseStream)
+    '        Dim strjson As String = ""
 
-            strjson = receivestream.ReadToEnd
+    '        strjson = receivestream.ReadToEnd
 
-            Dim Testobject As RootObject = JsonConvert.DeserializeObject(Of RootObject)(strjson)
-            For i As Integer = 0 To Testobject.appointments.Count - 1
-                Dim m_id As Integer = Testobject.appointments.Item(i).id
-                Dim m_patient_id As Integer = Testobject.appointments.Item(i).patient_id
-                Dim m_clinic_patient_id As Integer = Testobject.appointments.Item(i).clinic_patient_id
-                Dim m_doctor_id As Integer = Testobject.appointments.Item(i).doctor_id
-                Dim m_clinic_id As Integer = Testobject.appointments.Item(i).clinic_id
-                Dim m_date As String = Testobject.appointments.Item(i).appointment_date.ToString
-                Dim m_time As String = Testobject.appointments.Item(i).time.ToString
-                Dim m_is_approved As Integer = Testobject.appointments.Item(i).is_approved
-                Dim m_is_approved_patient As Integer = Testobject.appointments.Item(i).is_approved_patient
-                Dim m_created_at As String = Testobject.appointments.Item(i).created_at.ToString
-                Dim m_updated_at As String = Testobject.appointments.Item(i).updated_at.ToString
-                Dim ds As New DataSet
-                Dim da As New MySqlDataAdapter
-                da = New MySqlDataAdapter("SELECT id FROM consultations_request WHERE server_id=" + m_id.ToString, conn)
-                da.Fill(ds, "appointments")
-                If ds.Tables("appointments").Rows.Count > 0 Then 'update
-                    Dim cmd As New MySqlCommand
-                    Dim insert_sql As String = String.Format("UPDATE `consultations_request` SET `doctor_id`={0}, `date`='{1}', `time`='{2}', `comment_doctor`=@notes,`comment_patient`=@notes1,  `is_approved`={3},is_approved_patient=" + m_is_approved_patient.ToString + " WHERE `server_id`={4} ",
-                                                                     m_doctor_id.ToString, m_date, m_time, m_is_approved.ToString, m_id.ToString)
+    '        Dim Testobject As RootObject = JsonConvert.DeserializeObject(Of RootObject)(strjson)
+    '        For i As Integer = 0 To Testobject.appointments.Count - 1
+    '            Dim m_id As Integer = Testobject.appointments.Item(i).id
+    '            Dim m_patient_id As Integer = Testobject.appointments.Item(i).patient_id
+    '            Dim m_clinic_patient_id As Integer = Testobject.appointments.Item(i).clinic_patient_id
+    '            Dim m_doctor_id As Integer = Testobject.appointments.Item(i).doctor_id
+    '            Dim m_clinic_id As Integer = Testobject.appointments.Item(i).clinic_id
+    '            Dim m_date As String = Testobject.appointments.Item(i).appointment_date.ToString
+    '            Dim m_time As String = Testobject.appointments.Item(i).time.ToString
+    '            Dim m_is_approved As Integer = Testobject.appointments.Item(i).is_approved
+    '            Dim m_is_approved_patient As Integer = Testobject.appointments.Item(i).is_approved_patient
+    '            Dim m_created_at As String = Testobject.appointments.Item(i).created_at.ToString
+    '            Dim m_updated_at As String = Testobject.appointments.Item(i).updated_at.ToString
+    '            Dim ds As New DataSet
+    '            Dim da As New MySqlDataAdapter
+    '            da = New MySqlDataAdapter("SELECT id FROM consultations_request WHERE server_id=" + m_id.ToString, conn)
+    '            da.Fill(ds, "appointments")
+    '            If ds.Tables("appointments").Rows.Count > 0 Then 'update
+    '                Dim cmd As New MySqlCommand
+    '                Dim insert_sql As String = String.Format("UPDATE `consultations_request` SET `doctor_id`={0}, `date`='{1}', `time`='{2}', `comment_doctor`=@notes,`comment_patient`=@notes1,  `is_approved`={3},is_approved_patient=" + m_is_approved_patient.ToString + " WHERE `server_id`={4} ",
+    '                                                                 m_doctor_id.ToString, m_date, m_time, m_is_approved.ToString, m_id.ToString)
 
-                    cmd = New MySqlCommand(insert_sql, conn)
-                    cmd.Parameters.AddWithValue("notes", Testobject.appointments.Item(i).comment_doctor)
-                    cmd.Parameters.AddWithValue("notes1", Testobject.appointments.Item(i).comment_patient)
-                    cmd.ExecuteNonQuery()
-                    If m_is_approved = 1 And m_is_approved_patient = 1 Then
-                        da = New MySqlDataAdapter("select p.id from doctor_patient dp INNER JOIN patients p on p.server_id=dp.patient_id where dp.app_user_id=" + m_id.ToString, conn)
-                        da.Fill(ds, "checker")
-                        If ds.Tables("checker").Rows.Count > 0 Then
-                            insert_sql = String.Format("INSERT INTO `patient_consultations`(`clinic_id`, `patient_id`, `doctor_id`, `date`, `time`, `request_id`) VALUES ({0},{1},{2},'{3}','{4}',{5})",
-                                                                                                 My.Settings.ClinicID.ToString, ds.Tables("checker").Rows(0).Item(0).ToString, m_doctor_id.ToString, m_date, m_time, m_id.ToString)
-                            cmd = New MySqlCommand(insert_sql, conn)
-                            cmd.ExecuteNonQuery()
-                        End If
+    '                cmd = New MySqlCommand(insert_sql, conn)
+    '                cmd.Parameters.AddWithValue("notes", Testobject.appointments.Item(i).comment_doctor)
+    '                cmd.Parameters.AddWithValue("notes1", Testobject.appointments.Item(i).comment_patient)
+    '                cmd.ExecuteNonQuery()
+    '                If m_is_approved = 1 And m_is_approved_patient = 1 Then
+    '                    da = New MySqlDataAdapter("select p.id from doctor_patient dp INNER JOIN patients p on p.server_id=dp.patient_id where dp.app_user_id=" + m_id.ToString, conn)
+    '                    da.Fill(ds, "checker")
+    '                    If ds.Tables("checker").Rows.Count > 0 Then
+    '                        insert_sql = String.Format("INSERT INTO `patient_consultations`(`clinic_id`, `patient_id`, `doctor_id`, `date`, `time`, `request_id`) VALUES ({0},{1},{2},'{3}','{4}',{5})",
+    '                                                                                             My.Settings.ClinicID.ToString, ds.Tables("checker").Rows(0).Item(0).ToString, m_doctor_id.ToString, m_date, m_time, m_id.ToString)
+    '                        cmd = New MySqlCommand(insert_sql, conn)
+    '                        cmd.ExecuteNonQuery()
+    '                    End If
 
-                    End If
-                Else 'insert
-                    If m_clinic_patient_id = 0 Then
-                        Dim new_patient_id As Integer = get_new_patient_info(m_patient_id, m_doctor_id, m_clinic_id)
-                        m_patient_id = new_patient_id
-                    Else
-                        m_patient_id = m_clinic_patient_id
-                    End If
-                    Dim cmd As New MySqlCommand
-                    Dim from_patient As Integer = 1
-                    If Not m_is_approved = 0 Then
-                        from_patient = 1
-                    End If
-                    Dim insert_sql As String = String.Format("INSERT INTO `consultations_request`(`clinic_id`,`patient_id`, `doctor_id`, `date`, `time`,comment_doctor, `comment_patient`,`created_at`, `updated_at`,  `is_approved`, `server_id`,is_approved_patient) " +
-                                                                                "VALUES (" + My.Settings.ClinicID.ToString + ",{0},{1},'{2}','{3}',@notes_doctor,@notes,'{4}','{5}',{6},{7},{8})",
-                                                                     m_patient_id.ToString, m_doctor_id.ToString, m_date, m_time, m_created_at, m_updated_at, m_is_approved.ToString, m_id.ToString, m_is_approved_patient.ToString)
+    '                End If
+    '            Else 'insert
+    '                If m_clinic_patient_id = 0 Then
+    '                    Dim new_patient_id As Integer = get_new_patient_info(m_patient_id, m_doctor_id, m_clinic_id)
+    '                    m_patient_id = new_patient_id
+    '                Else
+    '                    m_patient_id = m_clinic_patient_id
+    '                End If
+    '                Dim cmd As New MySqlCommand
+    '                Dim from_patient As Integer = 1
+    '                If Not m_is_approved = 0 Then
+    '                    from_patient = 1
+    '                End If
+    '                Dim insert_sql As String = String.Format("INSERT INTO `consultations_request`(`clinic_id`,`patient_id`, `doctor_id`, `date`, `time`,comment_doctor, `comment_patient`,`created_at`, `updated_at`,  `is_approved`, `server_id`,is_approved_patient) " +
+    '                                                                            "VALUES (" + My.Settings.ClinicID.ToString + ",{0},{1},'{2}','{3}',@notes_doctor,@notes,'{4}','{5}',{6},{7},{8})",
+    '                                                                 m_patient_id.ToString, m_doctor_id.ToString, m_date, m_time, m_created_at, m_updated_at, m_is_approved.ToString, m_id.ToString, m_is_approved_patient.ToString)
 
-                    cmd = New MySqlCommand(insert_sql, conn)
-                    cmd.Parameters.AddWithValue("notes", Testobject.appointments.Item(i).comment_patient)
-                    cmd.Parameters.AddWithValue("notes_doctor", Testobject.appointments.Item(i).comment_doctor)
-                    cmd.ExecuteNonQuery()
-                End If
-                MsgBox(Testobject.appointments.Item(i).id.ToString)
-            Next
-            main_menu.Counter_Notification()
-            For i As Integer = 0 To Testobject.last_update.Count - 1
-                My.Settings.Last_Update_Web = Testobject.last_update.Item(0).new_last_update.ToString
-                My.Settings.Save()
-            Next
-        Catch ex As Exception
+    '                cmd = New MySqlCommand(insert_sql, conn)
+    '                cmd.Parameters.AddWithValue("notes", Testobject.appointments.Item(i).comment_patient)
+    '                cmd.Parameters.AddWithValue("notes_doctor", Testobject.appointments.Item(i).comment_doctor)
+    '                cmd.ExecuteNonQuery()
+    '            End If
+    '            MsgBox(Testobject.appointments.Item(i).id.ToString)
+    '        Next
+    '        main_menu.Counter_Notification()
+    '        For i As Integer = 0 To Testobject.last_update.Count - 1
+    '            My.Settings.Last_Update_Web = Testobject.last_update.Item(0).new_last_update.ToString
+    '            My.Settings.Save()
+    '        Next
+    '    Catch ex As Exception
 
-        End Try
+    '    End Try
 
-    End Sub
-    Public Shared Function get_new_patient_info(ByRef patient_id As Integer, ByRef doctor_id As Integer, ByRef clinic_id As Integer) As Integer
-        Try
-            Dim cmd As New MySqlCommand
-            Dim da As New MySqlDataAdapter
-            Dim ds As New DataSet
-            Dim request As HttpWebRequest = WebRequest.Create("http://localhost/E-Clinic/get_new_patient_info.php?patient_id=" + patient_id.ToString)
-            request.Method = WebRequestMethods.Http.Get
-            request.ContentType = "application/json"
-            Dim response1 As HttpWebResponse = request.GetResponse
+    'End Sub
+    'Public Shared Function get_new_patient_info(ByRef patient_id As Integer, ByRef doctor_id As Integer, ByRef clinic_id As Integer) As Integer
+    '    Try
+    'Dim cmd As New MySqlCommand
+    'Dim da As New MySqlDataAdapter
+    'Dim ds As New DataSet
+    'Dim request As HttpWebRequest = WebRequest.Create("http://localhost/E-Clinic/get_new_patient_info.php?patient_id=" + patient_id.ToString)
+    '        request.Method = WebRequestMethods.Http.Get
+    '        request.ContentType = "application/json"
+    'Dim response1 As HttpWebResponse = request.GetResponse
 
-            Dim receivestream As StreamReader = New StreamReader(response1.GetResponseStream)
-            Dim strjson As String = ""
+    'Dim receivestream As StreamReader = New StreamReader(response1.GetResponseStream)
+    'Dim strjson As String = ""
 
-            strjson = receivestream.ReadToEnd
-            da = New MySqlDataAdapter("select p.id from doctor_patient mrq INNER JOIN patients p on p.server_id=mrq.patient_id where mrq.patient_id=" + patient_id.ToString, conn)
-            da.Fill(ds, "checker")
-            If ds.Tables("checker").Rows.Count = 0 Then
-                Dim new_clinic_patient_id As Integer = mysqbridge_upload.UPLOAD_MEDICALREQUEST(patient_id, doctor_id, clinic_id)
-                Dim userobject As userRoot = JsonConvert.DeserializeObject(Of userRoot)(strjson)
+    '        strjson = receivestream.ReadToEnd
+    '        da = New MySqlDataAdapter("select p.id from doctor_patient mrq INNER JOIN patients p on p.server_id=mrq.patient_id where mrq.patient_id=" + patient_id.ToString, conn)
+    '        da.Fill(ds, "checker")
+    '        If ds.Tables("checker").Rows.Count = 0 Then
+    'Dim new_clinic_patient_id As Integer = mysqbridge_upload.UPLOAD_MEDICALREQUEST(patient_id, doctor_id, clinic_id)
+    'Dim userobject As userRoot = JsonConvert.DeserializeObject(Of userRoot)(strjson)
 
-                For i As Integer = 0 To userobject.user_info.Count - 1
+    '            For i As Integer = 0 To userobject.user_info.Count - 1
 
-                    Dim insert_str As String = "Insert into patients " +
-                                            "(fname, mname, lname, occupation, birthdate, sex, civil_status, height, weight, address_house_no, address_street, barangay_id,created_at, `email_address`, `mobile_no`, `tel_no`,is_from_app,server_id) values" +
-                                            " (@fname,@mname,@lname,@occupation,@bdate,@sex,@status,@height,@weight,@houseno,@street,@barangay,CURRENT_TIMESTAMP,@email,@mobile,@tel,1," + new_clinic_patient_id.ToString + ")"
+    'Dim insert_str As String = "Insert into patients " +
+    '                        "(fname, mname, lname, occupation, birthdate, sex, civil_status, height, weight, address_house_no, address_street, barangay_id,created_at, `email_address`, `mobile_no`, `tel_no`,is_from_app,server_id) values" +
+    '                        " (@fname,@mname,@lname,@occupation,@bdate,@sex,@status,@height,@weight,@houseno,@street,@barangay,CURRENT_TIMESTAMP,@email,@mobile,@tel,1," + new_clinic_patient_id.ToString + ")"
 
-                    cmd = New MySqlCommand(insert_str, conn)
-                    cmd.Parameters.AddWithValue("fname", userobject.user_info.Item(i).fname)
-                    cmd.Parameters.AddWithValue("mname", userobject.user_info.Item(i).mname)
-                    cmd.Parameters.AddWithValue("lname", userobject.user_info.Item(i).lname)
-                    cmd.Parameters.AddWithValue("occupation", userobject.user_info.Item(i).occupation)
-                    cmd.Parameters.AddWithValue("bdate", userobject.user_info.Item(i).birthdate)
-                    cmd.Parameters.AddWithValue("sex", userobject.user_info.Item(i).sex)
-                    cmd.Parameters.AddWithValue("status", userobject.user_info.Item(i).civil_status)
-                    cmd.Parameters.AddWithValue("height", userobject.user_info.Item(i).height)
-                    cmd.Parameters.AddWithValue("weight", userobject.user_info.Item(i).weight)
-                    cmd.Parameters.AddWithValue("houseno", userobject.user_info.Item(i).optional_address)
-                    cmd.Parameters.AddWithValue("street", userobject.user_info.Item(i).address_street)
-                    cmd.Parameters.AddWithValue("barangay", userobject.user_info.Item(i).address_barangay_id)
+    '                cmd = New MySqlCommand(insert_str, conn)
+    '                cmd.Parameters.AddWithValue("fname", userobject.user_info.Item(i).fname)
+    '                cmd.Parameters.AddWithValue("mname", userobject.user_info.Item(i).mname)
+    '                cmd.Parameters.AddWithValue("lname", userobject.user_info.Item(i).lname)
+    '                cmd.Parameters.AddWithValue("occupation", userobject.user_info.Item(i).occupation)
+    '                cmd.Parameters.AddWithValue("bdate", userobject.user_info.Item(i).birthdate)
+    '                cmd.Parameters.AddWithValue("sex", userobject.user_info.Item(i).sex)
+    '                cmd.Parameters.AddWithValue("status", userobject.user_info.Item(i).civil_status)
+    '                cmd.Parameters.AddWithValue("height", userobject.user_info.Item(i).height)
+    '                cmd.Parameters.AddWithValue("weight", userobject.user_info.Item(i).weight)
+    '                cmd.Parameters.AddWithValue("houseno", userobject.user_info.Item(i).optional_address)
+    '                cmd.Parameters.AddWithValue("street", userobject.user_info.Item(i).address_street)
+    '                cmd.Parameters.AddWithValue("barangay", userobject.user_info.Item(i).address_barangay_id)
 
-                    cmd.Parameters.AddWithValue("email", userobject.user_info.Item(i).email_address)
-                    cmd.Parameters.AddWithValue("mobile", userobject.user_info.Item(i).mobile_no)
-                    cmd.Parameters.AddWithValue("tel", userobject.user_info.Item(i).tel_no)
+    '                cmd.Parameters.AddWithValue("email", userobject.user_info.Item(i).email_address)
+    '                cmd.Parameters.AddWithValue("mobile", userobject.user_info.Item(i).mobile_no)
+    '                cmd.Parameters.AddWithValue("tel", userobject.user_info.Item(i).tel_no)
 
-                    cmd.ExecuteNonQuery()
-                    da = New MySqlDataAdapter("select max(id) from patients", conn)
-                    da.Fill(ds, "id")
-                    Return ds.Tables("id").Rows(0).Item(0)
-                Next
-            Else
-                Return ds.Tables("checker").Rows(0).Item(0)
-            End If
+    '                cmd.ExecuteNonQuery()
+    '                da = New MySqlDataAdapter("select max(id) from patients", conn)
+    '                da.Fill(ds, "id")
+    '                Return ds.Tables("id").Rows(0).Item(0)
+    '            Next
+    '        Else
+    '            Return ds.Tables("checker").Rows(0).Item(0)
+    '        End If
 
 
 
-        Catch ex As Exception
+    '    Catch ex As Exception
 
-        End Try
-        Return 0
-    End Function
+    '    End Try
+    '    Return 0
+    'End Function
 End Class
 #Region "appointments getter and setter"
 Public Class appointment_item

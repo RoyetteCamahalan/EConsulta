@@ -1,18 +1,40 @@
-﻿Imports MySql.Data
-Imports MySql.Data.MySqlClient
-Imports System.Text.StringBuilder
-Imports System.IO
-
+﻿
 Public Class New_Patient
-    Private dsaddress As New DataSet
+#Region "Methods"
+    Private Sub display_regions()
+        Try
+            DT_Region.Clear()
+            DT_Province.Clear()
+            DT_Municipality.Clear()
+            DT_Barangay.Clear()
+            Dim Param_Name As String() = {"@action_type"}
+            Dim Param_Value As String() = {0}
+            Dim MyAdapter As New Custom_Adapters
+            With cmb_region
+                .DataSource = MyAdapter.CUSTOM_RETRIEVE("SP_ADDRESS", Param_Name, Param_Value)
+                .DisplayMember = "name"
+                .ValueMember = "id"
+                .SelectedIndex = -1
+            End With
+        Catch ex As Exception
+
+        End Try
+        cmb_region.Text = "Select Region"
+    End Sub
+#End Region
+#Region "Variables"
     Private close_tag As Boolean = False
-    Private da As New MySqlDataAdapter
-    Private cmd As New MySqlCommand
     Private confirmed_pword As Boolean = False
     Private patient_info_arr(27) As String
     Private filename As String = ""
     Private path As String = ""
     Private email_checker As Boolean = True
+
+    Private DT_Region As New DataTable
+    Private DT_Province As New DataTable
+    Private DT_Municipality As New DataTable
+    Private DT_Barangay As New DataTable
+#End Region
     Private Sub btn_next_geninfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_next_geninfo.Click
         TabControl1.SelectedIndex = 1
     End Sub
@@ -284,10 +306,6 @@ Public Class New_Patient
     End Sub
 
     Private Sub New_Patient_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        dsaddress.Tables.Add("regions")
-        dsaddress.Tables.Add("provinces")
-        dsaddress.Tables.Add("municipalities")
-        dsaddress.Tables.Add("barangays")
         display_regions()
         birthdate_picker.MaxDate = Date.Now()
         imagedialog.Filter = "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png"
@@ -349,43 +367,38 @@ Public Class New_Patient
             If Not filename = "" Then
                 My.Computer.FileSystem.CopyFile(path, "C:\ECE MD Clinic APP\PROFILE_PICTURES\Patients\" + filename)
             End If
-            Dim insert_str As String = "Insert into patients " +
-                                        "(fname, mname, lname, occupation, doctor_referred_by, birthdate, sex, civil_status, height, weight, address_house_no, address_street, barangay_id,created_at,photo, `email_address`, `mobile_no`, `tel_no`) values" +
-                                        " (@fname,@mname,@lname,@occupation,@doctor_reffered_by,@bdate,@sex,@status,@height,@weight,@houseno,@street,@barangay,CURRENT_TIMESTAMP,@photo,@email,@mobile,@tel)"
-
-            cmd = New MySqlCommand(insert_str, conn)
-            cmd.Parameters.AddWithValue("fname", patient_info_arr(0))
-            cmd.Parameters.AddWithValue("mname", patient_info_arr(1))
-            cmd.Parameters.AddWithValue("lname", patient_info_arr(2))
-            cmd.Parameters.AddWithValue("occupation", patient_info_arr(5))
-            cmd.Parameters.AddWithValue("doctor_reffered_by", patient_info_arr(6))
-            cmd.Parameters.AddWithValue("bdate", patient_info_arr(7))
-            cmd.Parameters.AddWithValue("sex", patient_info_arr(8))
-            cmd.Parameters.AddWithValue("status", patient_info_arr(9))
-            cmd.Parameters.AddWithValue("height", patient_info_arr(10))
-            cmd.Parameters.AddWithValue("weight", patient_info_arr(11))
-            cmd.Parameters.AddWithValue("houseno", patient_info_arr(12))
-            cmd.Parameters.AddWithValue("street", patient_info_arr(13))
-            cmd.Parameters.AddWithValue("barangay", patient_info_arr(14))
-            cmd.Parameters.AddWithValue("photo", filename)
-
-            cmd.Parameters.AddWithValue("email", patient_info_arr(15))
-            cmd.Parameters.AddWithValue("mobile", patient_info_arr(16))
-            cmd.Parameters.AddWithValue("tel", patient_info_arr(17))
-
-            cmd.ExecuteNonQuery()
-            Patients.display_patients("")
-            New_Consultation.display_patient()
-            new_consult.display_patient()
-            close_tag = True
-            MsgBox("New Patient Succesfully Added")
+            Dim MyAdapter As New Custom_Adapters
+            Dim Param_Name As String() = {"@action_type",
+                                          "@fname", "@mname", "@lname",
+                                          "@email", "@mobile", "@tel",
+                                          "@photo", "@occupation",
+                                          "@reffered_by","@reffered_to",
+                                          "@birthdate","@sex","@civil_status",
+                                          "@height","@weight",
+                                          "@houseno","@street","@barangay_id"}
+            Dim Param_Value As String() = {0,
+                                           patient_info_arr(0), patient_info_arr(1), patient_info_arr(2),
+                                           patient_info_arr(15), patient_info_arr(16), patient_info_arr(17),
+                                           filename, patient_info_arr(5),
+                                           patient_info_arr(6), "",
+                                           patient_info_arr(7), patient_info_arr(8), patient_info_arr(9),
+                                           patient_info_arr(10), patient_info_arr(11),
+                                           patient_info_arr(12), patient_info_arr(13), patient_info_arr(14)}
+            If MyAdapter.CUSTOM_TRANSACT("SP_Patient", Param_Name, Param_Value) Then
+                Patients.DisplayPatients()
+                New_Consultation.DisplayPatient()
+                new_consult.display_patient()
+                close_tag = True
+                MsgBox("New Patient Succesfully Added")
+            Else
+                MsgBox("Saving Failed")
+            End If
             Me.Dispose()
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
     End Sub
     Private Sub collect_data()
-
         patient_info_arr(0) = txt_fname.Text
         If txt_mname.Text = "Middle Name" Then
             patient_info_arr(1) = ""
@@ -524,31 +537,16 @@ Public Class New_Patient
             validate_contact_info()
         End Try
     End Sub
-    Private Sub display_regions()
-        Try
-            dsaddress.Clear()
-            da = New MySqlDataAdapter("select id,name from regions", conn)
-            da.Fill(dsaddress, "regions")
-            With cmb_region
-                .DataSource = dsaddress.Tables("regions")
-                .DisplayMember = "name"
-                .ValueMember = "id"
-                .SelectedIndex = -1
-
-            End With
-        Catch ex As Exception
-
-        End Try
-        cmb_region.Text = "Select Region"
-    End Sub
+    
 
     Private Sub cmb_region_SelectedValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmb_region.SelectedValueChanged
         Try
-            dsaddress.Tables("provinces").Clear()
-            da = New MySqlDataAdapter("select id,name from provinces where region_id=" + cmb_region.SelectedValue.ToString, conn)
-            da.Fill(dsaddress, "provinces")
+            DT_Province.Clear()
+            Dim Param_Name As String() = {"@action_type"}
+            Dim Param_Value As String() = {1}
+            Dim MyAdapter As New Custom_Adapters
             With cmb_province
-                .DataSource = dsaddress.Tables("provinces")
+                .DataSource = MyAdapter.CUSTOM_RETRIEVE("SP_ADDRESS", Param_Name, Param_Value)
                 .DisplayMember = "name"
                 .ValueMember = "id"
                 .SelectedIndex = -1
@@ -562,11 +560,12 @@ Public Class New_Patient
 
     Private Sub cmb_province_SelectedValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmb_province.SelectedValueChanged
         Try
-            dsaddress.Tables("municipalities").Clear()
-            da = New MySqlDataAdapter("select id,name from municipalities where province_id=" + cmb_province.SelectedValue.ToString, conn)
-            da.Fill(dsaddress, "municipalities")
+            DT_Municipality.Clear()
+            Dim Param_Name As String() = {"@action_type"}
+            Dim Param_Value As String() = {2}
+            Dim MyAdapter As New Custom_Adapters
             With cmb_municipality
-                .DataSource = dsaddress.Tables("municipalities")
+                .DataSource = MyAdapter.CUSTOM_RETRIEVE("SP_ADDRESS", Param_Name, Param_Value)
                 .DisplayMember = "name"
                 .ValueMember = "id"
                 .SelectedIndex = -1
@@ -580,11 +579,12 @@ Public Class New_Patient
 
     Private Sub cmb_municipality_SelectedValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmb_municipality.SelectedValueChanged
         Try
-            dsaddress.Tables("barangays").Clear()
-            da = New MySqlDataAdapter("select id,name from barangays where municipality_id=" + cmb_municipality.SelectedValue.ToString, conn)
-            da.Fill(dsaddress, "barangays")
+            DT_Barangay.Clear 
+            Dim Param_Name As String() = {"@action_type"}
+            Dim Param_Value As String() = {3}
+            Dim MyAdapter As New Custom_Adapters
             With cmb_barangay
-                .DataSource = dsaddress.Tables("barangays")
+                .DataSource = MyAdapter.CUSTOM_RETRIEVE("SP_ADDRESS", Param_Name, Param_Value)
                 .DisplayMember = "name"
                 .ValueMember = "id"
                 .SelectedIndex = -1

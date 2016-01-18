@@ -1,18 +1,49 @@
-﻿Imports MySql.Data
-Imports MySql.Data.MySqlClient
-Public Class today
-    Private da As New MySqlDataAdapter
-    Private ds As New DataSet
-    Private cmd As New MySqlCommand
+﻿Public Class today
+#Region "Methods"
+    Public Sub DisplayAppointmentToday()
+        Dim Param_Name As String() = {"@action_type", "@sub_action", "@search", "@secretary_id", "@doctor_id"}
+        Dim Param_Value As String()
+        Dim MyAdapter As New Custom_Adapters
+        If UserType = 0 Then
+            Param_Value = {2, 1, GetSearchString(), UserId, 0}
+        Else
+            Param_Value = {2, 2, GetSearchString(), 0, UserId}
+        End If
+
+        Try
+            With dtgv_today
+                .DataSource = MyAdapter.CUSTOM_RETRIEVE("SP_Consultation", Param_Name, Param_Value)
+                .Columns(0).Visible = False
+                .Columns(1).Visible = False
+                .Columns(4).Visible = False
+                .Columns(9).Visible = False
+                .Columns(10).Visible = False
+                .Columns(8).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            End With
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+
+    Private Function GetSearchString()
+        If txt_search.Text = Search_Hint_Appointment Or txt_search.Text.Length = 0 Then
+            Return ""
+        End If
+        Return txt_search.Text
+    End Function
+#End Region
+#Region "Variables"
     Dim w As Integer = 221
     Dim h As Integer = 99
+    Private ButtonColumn As Integer = 8
+#End Region
     Private Sub today_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         dtgv_today.DefaultCellStyle.SelectionBackColor = Color.LightBlue
         dtgv_today.DefaultCellStyle.SelectionForeColor = Color.Black
+        dtgv_today.RowTemplate.Height = Default_Row_Height
         Me.Size = New System.Drawing.Size(w, h)
         Timer1.Start()
-        display_today("")
-        dtgv_today.RowTemplate.Height = 35
+        txt_search.Text = Search_Hint_Appointment
     End Sub
     Private Sub Timer1_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Timer1.Tick
         '1121, 519
@@ -34,54 +65,19 @@ Public Class today
 
     Private Sub txt_search_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txt_search.Leave
         If txt_search.Text = "" Then
-            txt_search.Text = "Search Patient here"
+            txt_search.Text = Search_Hint_Appointment
         End If
     End Sub
     Private Sub txt_search_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txt_search.TextChanged
-        If Not (txt_search.Text = "Search Patient here") Then
-            display_today("and (p.lname like '%" + txt_search.Text + "%' or p.fname like '%" + txt_search.Text + "%' or p.mname like '%" + txt_search.Text + "%')")
+        If Not (txt_search.Text = Search_Hint_Appointment) Then
+            DisplayAppointmentToday()
         End If
-    End Sub
-    Public Sub display_today(ByRef search As String)
-        Dim str As String
-        If UserId = 0 Then
-            str = "select pc.id,p.id as patient_id,concat(p.fname,' ',p.mname,' ',p.lname)as 'Patient Name',CONCAT(pc.date,' ',pc.time) as Date," +
-                            " d.id,concat(d.fname,' ',d.mname,' ',d.lname) as Doctor,'' dummy,pc.created_at as 'Encoded Date'," +
-                            " case WHEN pc.isdone=0 THEN 'Pending'when pc.isdone=1 then 'Done' when pc.isdone=2 then 'Postponed' end as 'Status',case WHEN pc.isdone=1 THEN 'View Details' else 'Options...' end as Actions,pc.updated_at,pc.patient_record_id from doctors d" +
-                            " INNER JOIN patient_consultations pc on pc.doctor_id=d.id" +
-                            " INNER JOIN patients p on p.id=pc.patient_id inner join secretary_access sc on sc.doctor_id=d.id where sc.secretary_id=" + UserId.ToString + " and Date(pc.date)=CURDATE() " + search + " order by pc.date"
-        Else
-            str = "select pc.id,p.id as patient_id,concat(p.fname,' ',p.mname,' ',p.lname)as 'Patient Name',CONCAT(pc.date,' ',pc.time) as Date," +
-                            " d.id,concat(d.fname,' ',d.mname,' ',d.lname) as Doctor,'' dummy,pc.created_at as 'Encoded Date'," +
-                            " case WHEN pc.isdone=0 THEN 'Pending'when pc.isdone=1 then 'Done' when pc.isdone=2 then 'Postponed' end as 'Status',case WHEN pc.isdone=1 THEN 'View Details' else 'Options...' end as Actions,pc.updated_at,pc.patient_record_id from doctors d" +
-                            " INNER JOIN patient_consultations pc on pc.doctor_id=d.id" +
-                            " INNER JOIN patients p on p.id=pc.patient_id where d.id=" + UserId.ToString + " and Date(pc.date)=CURDATE() " + search + " order by pc.date"
-        End If
-        
-        Try
-            ds.Clear()
-            da = New MySqlDataAdapter(str, conn)
-            da.Fill(ds)
-            With dtgv_today
-                .DataSource = ds.Tables(0)
-                .Columns(0).Visible = False
-                .Columns(1).Visible = False
-                .Columns(4).Visible = False
-                .Columns(6).Visible = False
-                .Columns(10).Visible = False
-                .Columns(11).Visible = False
-                .Columns(9).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-            End With
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-        End Try
-
     End Sub
     Private Sub dtgv_allappointment_CellMouseEnter(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dtgv_today.CellMouseEnter
         Try
             Dim myRow As Integer = e.RowIndex
             Dim myCol As Integer = e.ColumnIndex
-            If (myCol = 9 Or myCol = 2) And myRow <> -1 Then
+            If (myCol = ButtonColumn Or myCol = 2) And myRow <> -1 Then
                 dtgv_today.Rows(myRow).Cells(myCol).Style.ForeColor = Color.Red
                 Dim f = New Font("Hoefler Text Black", 8.25, FontStyle.Underline)
                 dtgv_today.Rows(myRow).Cells(myCol).Style.Font = f
@@ -99,7 +95,7 @@ Public Class today
         Try
             Dim myRow As Integer = e.RowIndex
             Dim myCol As Integer = e.ColumnIndex
-            If (myCol = 9 Or myCol = 2) And myRow <> -1 Then
+            If (myCol = ButtonColumn Or myCol = 2) And myRow <> -1 Then
                 dtgv_today.Rows(myRow).Cells(myCol).Style.ForeColor = Color.Black
                 Dim f = New Font("Modern No. 20", 12, FontStyle.Regular)
                 dtgv_today.Rows(myRow).Cells(myCol).Style.Font = f
@@ -118,7 +114,7 @@ Public Class today
             If hit.Type = DataGridViewHitTestType.Cell Then
                 Dim myRow As Integer = hit.RowIndex
                 Dim myCol As Integer = hit.ColumnIndex
-                If (myCol <> 9 Or myCol <> 2) And myRow <> -1 And Not dtgv_today.Rows(myRow).Cells(10).Value.ToString = "" Then
+                If (myCol <> ButtonColumn Or myCol <> 2) And myRow <> -1 And Not dtgv_today.Rows(myRow).Cells(10).Value.ToString = "" Then
                     Dim tempdate As Date = dtgv_today.Rows(myRow).Cells(10).Value
                     Dim msg As String = ""
                     Dim duration As TimeSpan = Now() - tempdate
@@ -156,21 +152,23 @@ Public Class today
             If myCol = 9 And myRow <> -1 Then
                 If dtgv_today.Rows(myRow).Cells(8).Value.ToString = "Done" Then
                     Try
-                        Dim dsdetails As New DataSet
-                        da = New MySqlDataAdapter("SELECT `id`, `patient_id`, `doctor_id`, `complaints`, `findings`, `created_at`, `updated_at` FROM `patient_records` WHERE id=" + dtgv_today.CurrentRow.Cells(11).Value.ToString, conn)
-                        da.Fill(dsdetails)
-                        If ds.Tables(0).Rows.Count > 0 Then
+                        Dim Param_Name As String() = {"@action_type", "@sub_action", "@id"}
+                        Dim Param_Value As String() = {2, 1, dtgv_today.CurrentRow.Cells(10).Value}
+                        Dim MyAdapter As New Custom_Adapters
+                        Dim DT As New DataTable
+                        DT = MyAdapter.CUSTOM_RETRIEVE("SP_PatientRecord", Param_Name, Param_Value)
+                        If DT.Rows.Count > 0 Then
                             Dim newconsult As New new_consult
                             newconsult.what_to_do = 1
                             newconsult.title_text = "View Consultation"
-                            newconsult.appointment_id = dsdetails.Tables(0).Rows(0).Item(0)
-                            newconsult.doctor_id = dsdetails.Tables(0).Rows(0).Item(2).ToString
-                            newconsult.patient_id = dsdetails.Tables(0).Rows(0).Item(1).ToString
-                            newconsult.complaints = dsdetails.Tables(0).Rows(0).Item(3).ToString
-                            newconsult.findings = dsdetails.Tables(0).Rows(0).Item(4).ToString
-                            newconsult.dateandtime = dsdetails.Tables(0).Rows(0).Item(5).ToString
-                            newconsult.last_update = dsdetails.Tables(0).Rows(0).Item(6).ToString
-                            newconsult.consult_id = dtgv_today.CurrentRow.Cells(11).Value
+                            newconsult.appointment_id = DT.Rows(0).Item(0)
+                            newconsult.doctor_id = DT.Rows(0).Item(2).ToString
+                            newconsult.patient_id = DT.Rows(0).Item(1).ToString
+                            newconsult.complaints = DT.Rows(0).Item(3).ToString
+                            newconsult.findings = DT.Rows(0).Item(4).ToString
+                            newconsult.dateandtime = DT.Rows(0).Item(5).ToString
+                            newconsult.last_update = DT.Rows(0).Item(6).ToString
+                            newconsult.consult_id = dtgv_today.CurrentRow.Cells(10).Value
                             newconsult.ShowDialog()
                         End If
                     Catch ex As Exception
@@ -217,12 +215,18 @@ Public Class today
         Dim res As MsgBoxResult = MsgBox("Are you sure you want to POSTPONE this schedule?", MsgBoxStyle.YesNo, "Postpone Schedule")
         If res = MsgBoxResult.Yes Then
             Try
-                cmd = New MySqlCommand("update patient_consultations SET isdone=2,updated_at=CURRENT_TIMESTAMP where id=" + Me.dtgv_today.CurrentRow.Cells(0).Value.ToString, conn)
-                cmd.ExecuteNonQuery()
-                dtgv_today.CurrentRow.Cells(8).Value = "Postponed"
-                dtgv_today.CurrentRow.Cells(10).Value = Now().ToString
-                Consultation.display_all("")
-                incoming.display_incoming("")
+                Dim Param_Name As String() = {"@action_type", "@sub_action", "@is_done"}
+                Dim Param_Value As String() = {1, 1, 2}
+                Dim MyAdapter As New Custom_Adapters
+                If MyAdapter.CUSTOM_TRANSACT("SP_Consultation", Param_Name, Param_Value) Then
+                    dtgv_today.CurrentRow.Cells(8).Value = "Postponed"
+                    dtgv_today.CurrentRow.Cells(10).Value = Now().ToString
+                    Consultation.DisplayAppointmentsAll()
+                    incoming.DisplayAppointmentIncoming()
+                Else
+                    MsgBox("Failed")
+                End If
+
             Catch ex As Exception
 
             End Try
@@ -233,12 +237,18 @@ Public Class today
         Dim res As MsgBoxResult = MsgBox("Are you sure you want to UNPOSTPONE this schedule?", MsgBoxStyle.YesNo, "Unpostpone Schedule")
         If res = MsgBoxResult.Yes Then
             Try
-                cmd = New MySqlCommand("update patient_consultations SET isdone=0,updated_at=CURRENT_TIMESTAMP where id=" + Me.dtgv_today.CurrentRow.Cells(0).Value.ToString, conn)
-                cmd.ExecuteNonQuery()
-                dtgv_today.CurrentRow.Cells(8).Value = "Pending"
-                dtgv_today.CurrentRow.Cells(10).Value = Now().ToString
-                incoming.display_incoming("")
-                Consultation.display_all("")
+                Dim Param_Name As String() = {"@action_type", "@sub_action", "@is_done"}
+                Dim Param_Value As String() = {1, 1, 0}
+                Dim MyAdapter As New Custom_Adapters
+                If MyAdapter.CUSTOM_TRANSACT("SP_Consultation", Param_Name, Param_Value) Then
+                    dtgv_today.CurrentRow.Cells(8).Value = "Pending"
+                    dtgv_today.CurrentRow.Cells(10).Value = Now().ToString
+                    incoming.DisplayAppointmentIncoming()
+                    Consultation.DisplayAppointmentsAll()
+                Else
+                    MsgBox("Failed")
+                End If
+
             Catch ex As Exception
 
             End Try

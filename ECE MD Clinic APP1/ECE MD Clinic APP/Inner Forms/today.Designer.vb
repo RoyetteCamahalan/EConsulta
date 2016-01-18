@@ -60,14 +60,13 @@ Partial Class today
         'txt_search
         '
         Me.txt_search.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.txt_search.Font = New System.Drawing.Font("Hoefler Text Black", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txt_search.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txt_search.ForeColor = System.Drawing.SystemColors.GrayText
         Me.txt_search.Location = New System.Drawing.Point(65, 17)
         Me.txt_search.Name = "txt_search"
         Me.txt_search.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.txt_search.Size = New System.Drawing.Size(274, 21)
+        Me.txt_search.Size = New System.Drawing.Size(274, 20)
         Me.txt_search.TabIndex = 3
-        Me.txt_search.Text = "Search Patient here"
         '
         'context_options
         '

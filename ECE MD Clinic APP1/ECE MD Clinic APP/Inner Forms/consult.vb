@@ -1,27 +1,17 @@
-﻿Imports MySql.Data
-Imports MySql.Data.MySqlClient
-Public Class consult
-    Private da As New MySqlDataAdapter
-    Private ds As New DataSet
-    Private Sub consult_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        dtgv_consult.DefaultCellStyle.SelectionBackColor = Color.LightBlue
-        dtgv_consult.DefaultCellStyle.SelectionForeColor = Color.Black
-        dtgv_consult.RowTemplate.Height = 35
-        display_records("")
-    End Sub
-    Public Sub display_records(ByRef search As String)
+﻿Public Class consult
+#Region "Methods"
+    Public Sub DisplayRecords()
         Try
-            ds.Clear()
-            Dim strquery As String
+            Dim Param_Name As String() = {"@action_type", "@sub_action", "@search"}
+            Dim Param_Value As String()
+            Dim MyAdapter As New Custom_Adapters
             If UserType = 0 Then 'secretary
-                strquery = "SELECT pr.id,p.id as 'Patient_Id',concat(p.fname,' ',p.mname,' ',p.lname) as 'Patient Name',d.id AS 'Doctor_Id',concat(d.fname,' ',d.mname,' ',d.lname) as 'Doctor Name',pr.created_at as 'Date','View More' as Action,pr.updated_at,pr.complaints,pr.findings from doctors d INNER JOIN patient_records pr on pr.doctor_id=d.id INNER JOIN patients p on p.id=pr.patient_id INNER JOIN secretary_access sc on sc.doctor_id=d.id where sc.secretary_id=" + UserId.ToString + search + " ORDER BY pr.created_at desc"
+                Param_Value = {2, 2, ""}
             Else 'doctor
-                strquery = "SELECT pr.id,p.id as 'Patient_Id',concat(p.fname,' ',p.mname,' ',p.lname) as 'Patient Name',d.id AS 'Doctor_Id',concat(d.fname,' ',d.mname,' ',d.lname) as 'Doctor Name',pr.created_at as 'Date','View More' as Action,pr.updated_at,pr.complaints,pr.findings from doctors d INNER JOIN patient_records pr on pr.doctor_id=d.id INNER JOIN patients p on p.id=pr.patient_id where d.id=" + UserId.ToString + search + " ORDER BY pr.created_at desc"
+                Param_Value = {2, 3, ""}
             End If
-            da = New MySqlDataAdapter(strquery, conn)
-            da.Fill(ds, "consult")
             With dtgv_consult
-                .DataSource = ds.Tables("consult")
+                .DataSource = MyAdapter.CUSTOM_RETRIEVE("SP_PatientRecord", Param_Name, Param_Value)
                 .Columns(0).Visible = False
                 .Columns(1).Visible = False
                 .Columns(3).Visible = False
@@ -34,13 +24,24 @@ Public Class consult
 
         End Try
     End Sub
+#End Region
+#Region "Variables"
+    Private ButtonColumn As Integer = 6
+#End Region
+    Private Sub consult_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        dtgv_consult.DefaultCellStyle.SelectionBackColor = Color.LightBlue
+        dtgv_consult.DefaultCellStyle.SelectionForeColor = Color.Black
+        dtgv_consult.RowTemplate.Height = Default_Row_Height
+        txt_search.Text = Search_Hint
+    End Sub
+    
     Private Sub txt_search_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txt_search.Enter
         txt_search.Clear()
     End Sub
 
     Private Sub txt_search_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txt_search.Leave
         If txt_search.Text = "" Then
-            txt_search.Text = "Search Anything here"
+            txt_search.Text = Search_Hint
         End If
     End Sub
 
@@ -54,7 +55,7 @@ Public Class consult
         Try
             Dim myRow As Integer = e.RowIndex
             Dim myCol As Integer = e.ColumnIndex
-            If myCol = 6 And myRow <> -1 Then
+            If myCol = ButtonColumn And myRow <> -1 Then
                 dtgv_consult.Rows(myRow).Cells(myCol).Style.ForeColor = Color.Red
                 Dim f = New Font("Hoefler Text Black", 8.25, FontStyle.Underline)
                 dtgv_consult.Rows(myRow).Cells(myCol).Style.Font = f
@@ -71,7 +72,7 @@ Public Class consult
         Try
             Dim myRow As Integer = e.RowIndex
             Dim myCol As Integer = e.ColumnIndex
-            If myCol = 6 And myRow <> -1 Then
+            If myCol = ButtonColumn And myRow <> -1 Then
                 dtgv_consult.Rows(myRow).Cells(myCol).Style.ForeColor = Color.Black
                 Dim f = New Font("Modern No. 20", 12, FontStyle.Regular)
                 dtgv_consult.Rows(myRow).Cells(myCol).Style.Font = f
@@ -90,7 +91,7 @@ Public Class consult
             If hit.Type = DataGridViewHitTestType.Cell Then
                 Dim myRow As Integer = hit.RowIndex
                 Dim myCol As Integer = hit.ColumnIndex
-                If myCol <> 6 And myRow <> -1 And Not dtgv_consult.Rows(myRow).Cells(7).Value.ToString = "" Then
+                If myCol <> ButtonColumn And myRow <> -1 And Not dtgv_consult.Rows(myRow).Cells(7).Value.ToString = "" Then
                     Dim tempdate As Date = dtgv_consult.Rows(myRow).Cells(7).Value
                     Dim msg As String = ""
                     Dim duration As TimeSpan = Now() - tempdate
@@ -125,7 +126,7 @@ Public Class consult
         Try
             Dim myRow As Integer = dtgv_consult.CurrentRow.Index
             Dim myCol As Integer = dtgv_consult.CurrentCell.ColumnIndex
-            If myCol = 6 And myRow <> -1 Then
+            If myCol = ButtonColumn And myRow <> -1 Then
                 new_consult.what_to_do = 1
                 new_consult.title_text = "View Consultation"
                 new_consult.doctor_id = Me.dtgv_consult.CurrentRow.Cells(3).Value
@@ -143,8 +144,8 @@ Public Class consult
     End Sub
 
     Private Sub txt_search_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txt_search.TextChanged
-        If Not (txt_search.Text = "Search Anything here") Then
-            display_records(" and (p.lname like '%" + txt_search.Text + "%' or p.fname like '%" + txt_search.Text + "%' or p.mname like '%" + txt_search.Text + "%')")
+        If Not (txt_search.Text = Search_Hint) Then
+            DisplayRecords()
         End If
     End Sub
 End Class

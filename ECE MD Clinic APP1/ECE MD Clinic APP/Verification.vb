@@ -14,13 +14,13 @@
         If PasswordTextBox.Text.ToLower = PassWord.ToLower Then
             Select Case action_verified
                 Case 1
-                    user_profile.save_userprofilecontact()
+                    'user_profile.save_userprofilecontact()
                 Case 2
                     View_Secretary.update_secretary_profile()
                 Case 3
-                    user_profile.save_userprofilebasic()
+                    'user_profile.save_userprofilebasic()
                 Case 4
-                    user_profile.save_userprofileaccount()
+                    'user_profile.save_userprofileaccount()
             End Select
             Label1.Hide()
             Me.Dispose()

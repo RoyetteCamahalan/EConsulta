@@ -303,9 +303,9 @@ Public Class View_Secretary
             uname = txt_uname.Text
             pword = txt_pword.Text
             If (secretary.txt_search.Text = "Search Secretary Here") Then
-                secretary.display_secretaries("")
+                secretary.DisplaySecretaries()
             Else
-                secretary.display_secretaries(secretary.txt_search.Text)
+                secretary.DisplaySecretaries()
             End If
 
             If chk_isactive.Checked = True Then
