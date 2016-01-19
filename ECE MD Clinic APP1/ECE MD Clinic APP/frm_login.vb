@@ -1,35 +1,29 @@
-﻿Imports MySql.Data.MySqlClient
-Imports MySql.Data
+﻿Imports System.Data.SqlClient
+Imports System.Data
 
 Public Class frm_login
-    Private da As New MySqlDataAdapter
-    Private cmd As New MySqlCommand
-    Private ds As New DataSet
-    Private Sub OK_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OK.Click
+#Region "Methods"
+    Private Sub VerifyUser()
         Try
-            ds.Clear()
-            cmd = New MySqlCommand("SELECT `id`,`username`, `password`,0 as Usertype FROM `secretaries` where username=@uname union all" +
-                            " SELECT `id`, `username`, `password`,1 as Usertype FROM `doctors` where username=@uname", conn)
-            cmd.Parameters.AddWithValue("uname", UsernameTextBox.Text)
-            da.SelectCommand = cmd
-            da.Fill(ds)
-            If ds.Tables(0).Rows.Count > 0 Then
+            Dim Param_Name As String() = {"@action_type", "@sub_action", "@username"}
+            Dim Param_Value As String() = {0, 1, UsernameTextBox.Text}
+            Dim MyAdapter As New Custom_Adapters
+            Dim DT As New DataTable
+            DT = MyAdapter.CUSTOM_RETRIEVE("SP_Miscellaneous", Param_Name, Param_Value)
+            If DT.Rows.Count > 0 Then
                 UserName = UsernameTextBox.Text
-                ds.Clear()
-                cmd = New MySqlCommand("SELECT `id`,`username`, `password`,0 as Usertype FROM `secretaries` inner join clinic_secretary on secretary_id=id where password=@pword and username=@uname union all" +
-                                        " SELECT `id`, `username`, `password`,1 as Usertype FROM `doctors` where password=@pword and  username=@uname", conn)
-                cmd.Parameters.AddWithValue("pword", PasswordTextBox.Text)
-                cmd.Parameters.AddWithValue("uname", UsernameTextBox.Text)
-                da.SelectCommand = cmd
-                da.Fill(ds)
-                If ds.Tables(0).Rows.Count > 0 Then
-                    UserType = ds.Tables(0).Rows(0).Item(3)
-                    UserId = ds.Tables(0).Rows(0).Item(0)
+                Param_Name = {"@action_type", "@sub_action", "@username", "@password"}
+                Param_Value = {0, 2, UsernameTextBox.Text, PasswordTextBox.Text}
+                DT = MyAdapter.CUSTOM_RETRIEVE("SP_Miscellaneous", Param_Name, Param_Value)
+                If DT.Rows.Count > 0 Then
+                    UserType = DT.Rows(0).Item(3)
+                    UserId = DT.Rows(0).Item(0)
                     If UserType = 0 Then
                         Dim dschecker As New DataSet
-                        da = New MySqlDataAdapter("select * from secretary_access where secretary_id=" + UserId.ToString, conn)
-                        da.Fill(dschecker)
-                        If dschecker.Tables(0).Rows.Count <= 0 Then
+                        Param_Name = {"@action_type", "@sub_action", "@secretary_id"}
+                        Param_Value = {1, 1, UserId}
+                        DT = MyAdapter.CUSTOM_RETRIEVE("SP_Miscellaneous", Param_Name, Param_Value)
+                        If DT.Rows.Count <= 0 Then
                             MsgBox("Access Denied, No Doctor who allow this account to access files.")
                         Else
                             Label1.Visible = False
@@ -59,6 +53,10 @@ Public Class frm_login
         Catch ex As Exception
 
         End Try
+    End Sub
+#End Region
+    Private Sub OK_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OK.Click
+        VerifyUser()
     End Sub
 
     Private Sub LoginForm1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load

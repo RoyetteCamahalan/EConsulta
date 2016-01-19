@@ -26,6 +26,7 @@
         dtgv_patients.DefaultCellStyle.SelectionForeColor = Color.Black
         dtgv_patients.RowTemplate.Height = Default_Row_Height
         txt_search.Text = Search_Hint_Patient
+        DisplayPatients()
     End Sub
     
     Private Sub btn_add_patient_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_add_patient.Click

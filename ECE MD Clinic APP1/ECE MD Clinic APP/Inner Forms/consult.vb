@@ -2,41 +2,49 @@
 #Region "Methods"
     Public Sub DisplayRecords()
         Try
-            Dim Param_Name As String() = {"@action_type", "@sub_action", "@search"}
+            Dim Param_Name As String() = {"@action_type", "@sub_action", "@search", "@secretaty_id", "@doctor_id"}
             Dim Param_Value As String()
             Dim MyAdapter As New Custom_Adapters
             If UserType = 0 Then 'secretary
-                Param_Value = {2, 2, ""}
+                Param_Value = {2, 2, GetSearchString(), UserId, ""}
             Else 'doctor
-                Param_Value = {2, 3, ""}
+                Param_Value = {2, 3, GetSearchString(), "", UserId}
             End If
             With dtgv_consult
                 .DataSource = MyAdapter.CUSTOM_RETRIEVE("SP_PatientRecord", Param_Name, Param_Value)
                 .Columns(0).Visible = False
                 .Columns(1).Visible = False
                 .Columns(3).Visible = False
-                .Columns(7).Visible = False
-                .Columns(8).Visible = False
                 .Columns(9).Visible = False
-                .Columns(6).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+                .Columns(ButtonColumn).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
             End With
         Catch ex As Exception
 
         End Try
     End Sub
+    Private Function GetSearchString() As String
+        If txt_search.Text = Search_Hint Or txt_search.Text.Length = 0 Then
+            Return ""
+        End If
+        Return txt_search.Text
+    End Function
 #End Region
 #Region "Variables"
-    Private ButtonColumn As Integer = 6
+    Private ButtonColumn As Integer = 8
 #End Region
     Private Sub consult_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         dtgv_consult.DefaultCellStyle.SelectionBackColor = Color.LightBlue
         dtgv_consult.DefaultCellStyle.SelectionForeColor = Color.Black
         dtgv_consult.RowTemplate.Height = Default_Row_Height
         txt_search.Text = Search_Hint
+        DisplayRecords()
     End Sub
     
     Private Sub txt_search_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txt_search.Enter
-        txt_search.Clear()
+        If txt_search.Text = Search_Hint Then
+            txt_search.Text = ""
+            txt_search.ForeColor = Color.Black
+        End If
     End Sub
 
     Private Sub txt_search_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txt_search.Leave
@@ -131,10 +139,10 @@
                 new_consult.title_text = "View Consultation"
                 new_consult.doctor_id = Me.dtgv_consult.CurrentRow.Cells(3).Value
                 new_consult.patient_id = Me.dtgv_consult.CurrentRow.Cells(1).Value
-                new_consult.complaints = Me.dtgv_consult.CurrentRow.Cells(8).Value.ToString
-                new_consult.findings = Me.dtgv_consult.CurrentRow.Cells(9).Value.ToString
+                new_consult.complaints = Me.dtgv_consult.CurrentRow.Cells(6).Value.ToString
+                new_consult.findings = Me.dtgv_consult.CurrentRow.Cells(7).Value.ToString
                 new_consult.dateandtime = Me.dtgv_consult.CurrentRow.Cells(5).Value.ToString
-                new_consult.last_update = Me.dtgv_consult.CurrentRow.Cells(7).Value.ToString
+                new_consult.last_update = Me.dtgv_consult.CurrentRow.Cells(9).Value.ToString
                 new_consult.consult_id = Me.dtgv_consult.CurrentRow.Cells(0).Value.ToString
                 new_consult.ShowDialog()
             End If

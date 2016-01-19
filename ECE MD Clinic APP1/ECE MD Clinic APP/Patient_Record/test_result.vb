@@ -1,10 +1,10 @@
-﻿Imports MySql.Data
-Imports MySql.Data.MySqlClient
+﻿Imports System.Data
+Imports System.Data.SqlClient
 Imports System.Text.StringBuilder
 Imports System.IO
 Public Class test_result
-    Private da As New MySqlDataAdapter
-    Private cmd As New MySqlCommand
+    Private da As New SqlDataAdapter
+    Private cmd As New SqlCommand
     Private ds As New DataSet
     Public patient_id As Integer = 1
     Private tempfolder As String
@@ -27,7 +27,7 @@ Public Class test_result
             Else
                 str = "SELECT t.`id`, t.`patient_id`, t.`doctor_id`, t.`photo`, t.`name`, t.`created_at`, t.`updated_at` FROM `test_results` t  where t.doctor_id=" + UserId.ToString + " and t.patient_id=" + patient_id.ToString
             End If
-            da = New MySqlDataAdapter(str, conn)
+            da = New SqlDataAdapter(str, conn)
             da.Fill(ds)
             ImageList1.Images.Clear()
             ListView1.Items.Clear()
@@ -94,7 +94,7 @@ Public Class test_result
                         newfilename = randomstring(filename) + extention
                     End While
                     'cmd = New MySqlCommand("INSERT INTO `test_results`(`patient_id`, `photo`,name) VALUES (" + patient_id.ToString + ",'" + MySqlHelper.EscapeString(newfilename) + "','" + MySqlHelper.EscapeString(filename) + "')", conn)
-                    cmd = New MySqlCommand("INSERT INTO `test_results`(`patient_id`,`doctor_id`, `photo`,name) VALUES (" + patient_id.ToString + "," + UserId.ToString + ",@param1,@param2)", conn)
+                    cmd = New SqlCommand("INSERT INTO `test_results`(`patient_id`,`doctor_id`, `photo`,name) VALUES (" + patient_id.ToString + "," + UserId.ToString + ",@param1,@param2)", conn)
                     cmd.Parameters.AddWithValue("param1", newfilename)
                     cmd.Parameters.AddWithValue("param2", filename)
                     cmd.ExecuteNonQuery()
@@ -118,7 +118,7 @@ Public Class test_result
                 newfilename = randomstring(filename) + extention
             End While
             'cmd = New MySqlCommand("INSERT INTO `test_results`(`patient_id`, `photo`,name) VALUES (" + patient_id.ToString + ",'" + MySqlHelper.EscapeString(newfilename) + "','" + MySqlHelper.EscapeString(filename) + "')", conn)
-            cmd = New MySqlCommand("INSERT INTO `test_results`(`patient_id`,`doctor_id`, `photo`,name) VALUES (" + patient_id.ToString + "," + doc_id.ToString + ",@param1,@param2)", conn)
+            cmd = New SqlCommand("INSERT INTO `test_results`(`patient_id`,`doctor_id`, `photo`,name) VALUES (" + patient_id.ToString + "," + doc_id.ToString + ",@param1,@param2)", conn)
             cmd.Parameters.AddWithValue("param1", newfilename)
             cmd.Parameters.AddWithValue("param2", filename)
             cmd.ExecuteNonQuery()
@@ -166,7 +166,7 @@ Public Class test_result
                 MsgBox("Invalid File Name", MsgBoxStyle.OkOnly, "Warning")
                 e.CancelEdit = True
             Else
-                cmd = New MySqlCommand("UPDATE `test_results` SET `name`=@param1 where id=" + ListView1.Items(e.Item).ImageKey.ToString, conn)
+                cmd = New SqlCommand("UPDATE `test_results` SET `name`=@param1 where id=" + ListView1.Items(e.Item).ImageKey.ToString, conn)
                 cmd.Parameters.AddWithValue("param1", e.Label.ToString)
                 cmd.ExecuteNonQuery()
             End If

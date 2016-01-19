@@ -2,8 +2,8 @@
 #Region "Methods"
     Public Sub DisplaySecretaries()
         Try
-             Dim Param_Name As String() = {"@action_type", "@sub_action", "@search"}
-            Dim Param_Value As String() = {2, 1, GetSearchString()}
+            Dim Param_Name As String() = {"@action_type", "@sub_action", "@search", "@doctor_id"}
+            Dim Param_Value As String() = {2, 1, GetSearchString(), UserId}
             Dim MyAdapter As New Custom_Adapters
             With (dtgv_secretaries)
                 .DataSource = MyAdapter.CUSTOM_RETRIEVE("SP_Secretary", Param_Name, Param_Value)
@@ -40,6 +40,7 @@
         dtgv_secretaries.DefaultCellStyle.SelectionForeColor = Color.Black
         dtgv_secretaries.RowTemplate.Height = Default_Row_Height
         txt_search.Text = Search_Hint_Secretary
+        DisplaySecretaries()
     End Sub
     
 

@@ -12,6 +12,7 @@ Module db_connection
     Public Search_Hint_Secretary As String = "Search Secretary Here"
     Public Search_Hint_Appointment As String = "Search Appointment Here"
     Public Search_Hint As String = "Search Here"
+    Public Search_Hint_Medicine As String = "Search Medicine Here"
 #End Region
     Public Function connect() As Boolean
 

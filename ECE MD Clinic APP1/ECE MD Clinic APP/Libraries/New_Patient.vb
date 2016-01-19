@@ -384,10 +384,10 @@ Public Class New_Patient
                                            patient_info_arr(7), patient_info_arr(8), patient_info_arr(9),
                                            patient_info_arr(10), patient_info_arr(11),
                                            patient_info_arr(12), patient_info_arr(13), patient_info_arr(14)}
-            If MyAdapter.CUSTOM_TRANSACT("SP_Patient", Param_Name, Param_Value) Then
+            If MyAdapter.CUSTOM_TRANSACT("SP_Doctors", Param_Name, Param_Value) Then
                 Patients.DisplayPatients()
                 New_Consultation.DisplayPatient()
-                new_consult.display_patient()
+                new_consult.DisplayPatient()
                 close_tag = True
                 MsgBox("New Patient Succesfully Added")
             Else

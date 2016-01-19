@@ -137,3 +137,14 @@ C:\Users\Royette\EConsulta\ECE MD Clinic APP1\ECE MD Clinic APP\obj\x86\Debug\EC
 C:\Users\Royette\EConsulta\ECE MD Clinic APP1\ECE MD Clinic APP\obj\x86\Debug\ECE MD Clinic APP.exe
 C:\Users\Royette\EConsulta\ECE MD Clinic APP1\ECE MD Clinic APP\obj\x86\Debug\ECE MD Clinic APP.xml
 C:\Users\Royette\EConsulta\ECE MD Clinic APP1\ECE MD Clinic APP\obj\x86\Debug\ECE MD Clinic APP.pdb
+C:\Users\Royette\EConsulta\ECE MD Clinic APP1\ECE MD Clinic APP\bin\Debug\app.config
+C:\Users\Royette\EConsulta\ECE MD Clinic APP1\ECE MD Clinic APP\bin\Debug\ECE MD Clinic APP.exe.config
+C:\Users\Royette\EConsulta\ECE MD Clinic APP1\ECE MD Clinic APP\bin\Debug\ECE MD Clinic APP.exe.manifest
+C:\Users\Royette\EConsulta\ECE MD Clinic APP1\ECE MD Clinic APP\bin\Debug\ECE MD Clinic APP.application
+C:\Users\Royette\EConsulta\ECE MD Clinic APP1\ECE MD Clinic APP\bin\Debug\ECE MD Clinic APP.exe
+C:\Users\Royette\EConsulta\ECE MD Clinic APP1\ECE MD Clinic APP\bin\Debug\ECE MD Clinic APP.pdb
+C:\Users\Royette\EConsulta\ECE MD Clinic APP1\ECE MD Clinic APP\bin\Debug\ECE MD Clinic APP.xml
+C:\Users\Royette\EConsulta\ECE MD Clinic APP1\ECE MD Clinic APP\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Royette\EConsulta\ECE MD Clinic APP1\ECE MD Clinic APP\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Royette\EConsulta\ECE MD Clinic APP1\ECE MD Clinic APP\obj\x86\Debug\ECE MD Clinic APP.exe.manifest
+C:\Users\Royette\EConsulta\ECE MD Clinic APP1\ECE MD Clinic APP\obj\x86\Debug\ECE MD Clinic APP.application

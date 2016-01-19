@@ -274,10 +274,10 @@ Partial Class new_consult
         Me.dtp_date.CustomFormat = "MM-dd-yyyy hh:mm tt"
         Me.dtp_date.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!)
         Me.dtp_date.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.dtp_date.Location = New System.Drawing.Point(24, 205)
+        Me.dtp_date.Location = New System.Drawing.Point(101, 190)
         Me.dtp_date.Name = "dtp_date"
         Me.dtp_date.ShowUpDown = True
-        Me.dtp_date.Size = New System.Drawing.Size(267, 20)
+        Me.dtp_date.Size = New System.Drawing.Size(192, 20)
         Me.dtp_date.TabIndex = 31
         Me.dtp_date.Visible = False
         '
@@ -285,7 +285,7 @@ Partial Class new_consult
         '
         Me.lbl_date.AutoSize = True
         Me.lbl_date.Font = New System.Drawing.Font("Modern No. 20", 8.999999!, System.Drawing.FontStyle.Bold)
-        Me.lbl_date.Location = New System.Drawing.Point(21, 190)
+        Me.lbl_date.Location = New System.Drawing.Point(1, 190)
         Me.lbl_date.Name = "lbl_date"
         Me.lbl_date.Size = New System.Drawing.Size(101, 15)
         Me.lbl_date.TabIndex = 32
@@ -377,6 +377,7 @@ Partial Class new_consult
         Me.Label6.Size = New System.Drawing.Size(84, 15)
         Me.Label6.TabIndex = 37
         Me.Label6.Text = "Department :"
+        Me.Label6.Visible = False
         '
         'cmb_department
         '
@@ -385,6 +386,7 @@ Partial Class new_consult
         Me.cmb_department.Name = "cmb_department"
         Me.cmb_department.Size = New System.Drawing.Size(208, 21)
         Me.cmb_department.TabIndex = 36
+        Me.cmb_department.Visible = False
         '
         'btn_saveastemplate
         '

@@ -1,7 +1,7 @@
-﻿Imports MySql.Data
-Imports MySql.Data.MySqlClient
+﻿Imports System.Data
+Imports System.Data.SqlClient
 Public Class View_Secretary
-    Private da As New MySqlDataAdapter
+    Private da As New SqlDataAdapter
     Private ds As New DataSet
     Private dsaddress As New DataSet
     Public secretary_id, isactive As Integer
@@ -17,7 +17,7 @@ Public Class View_Secretary
             dsaddress.Tables.Add("barangays")
             display_regions()
             ds.Clear()
-            da = New MySqlDataAdapter("SELECT s.`fname`, s.`mname`, s.`lname`, s.`username`, s.`password`, s.`address_house_no`, s.`address_street`, b.`id`, m.`id`, " +
+            da = New SqlDataAdapter("SELECT s.`fname`, s.`mname`, s.`lname`, s.`username`, s.`password`, s.`address_house_no`, s.`address_street`, b.`id`, m.`id`, " +
                                       "p.`id`, r.`id`, s.`cell_no`, s.`tel_no`, s.`email`, s.`photo`, s.`created_at`, s.`updated_at`, s.`deleted_at` FROM `secretaries`s " +
                                       "inner join clinic_secretary cs on cs.secretary_id=s.id INNER join barangays b on b.id=s.barangay_id INNER JOIN municipalities m ON" +
                                       " m.id=b.municipality_id INNER JOIN provinces p on p.id=m.province_id INNER JOIN regions r ON r.id=p.region_id WHERE s.id=" + secretary_id.ToString, conn)
@@ -251,8 +251,8 @@ Public Class View_Secretary
     End Sub
     Public Sub update_secretary_profile()
         Try
-            Dim cmd As New MySqlCommand
-            cmd = New MySqlCommand("UPDATE `secretaries` SET `username`=@uname,`password`=@pword," +
+            Dim cmd As New SqlCommand
+            cmd = New SqlCommand("UPDATE `secretaries` SET `username`=@uname,`password`=@pword," +
                                    "`lname`=@lname,`mname`=@mname,`fname`=@fname," +
                                    "`address_house_no`=@houseno,`address_street`=@street,`barangay_id`=@brgy," +
                                    "`cell_no`=@celno,`tel_no`=@telno," +
@@ -273,13 +273,13 @@ Public Class View_Secretary
 
 
             If chk_isactive.Checked = True And isactive = 0 Then
-                cmd = New MySqlCommand("INSERT INTO `secretary_access`(`clinic_id`, `doctor_id`, `secretary_id`) VALUES (@clinic_id,@doctor_id,@sec_id)", conn)
+                cmd = New SqlCommand("INSERT INTO `secretary_access`(`clinic_id`, `doctor_id`, `secretary_id`) VALUES (@clinic_id,@doctor_id,@sec_id)", conn)
                 cmd.Parameters.AddWithValue("sec_id", secretary_id.ToString)
                 cmd.Parameters.AddWithValue("doctor_id", UserId.ToString)
                 cmd.Parameters.AddWithValue("clinic_id", My.Settings.ClinicID.ToString)
                 cmd.ExecuteNonQuery()
             ElseIf chk_isactive.Checked = False And isactive = 1 Then
-                    cmd = New MySqlCommand("DELETE FROM `secretary_access` WHERE clinic_id=@clinic_id AND doctor_id=@doctor_id AND secretary_id=@sec_id", conn)
+                cmd = New SqlCommand("DELETE FROM `secretary_access` WHERE clinic_id=@clinic_id AND doctor_id=@doctor_id AND secretary_id=@sec_id", conn)
                     cmd.Parameters.AddWithValue("sec_id", secretary_id.ToString)
                     cmd.Parameters.AddWithValue("doctor_id", UserId.ToString)
                     cmd.Parameters.AddWithValue("clinic_id", My.Settings.ClinicID.ToString)
@@ -324,7 +324,7 @@ Public Class View_Secretary
     Private Sub display_regions()
         Try
             dsaddress.Clear()
-            da = New MySqlDataAdapter("select id,name from regions", conn)
+            da = New SqlDataAdapter("select id,name from regions", conn)
             da.Fill(dsaddress, "regions")
             With cmb_region
                 .DataSource = dsaddress.Tables("regions")
@@ -342,7 +342,7 @@ Public Class View_Secretary
     Private Sub cmb_region_SelectedValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmb_region.SelectedValueChanged
         Try
             dsaddress.Tables("provinces").Clear()
-            da = New MySqlDataAdapter("select id,name from provinces where region_id=" + cmb_region.SelectedValue.ToString, conn)
+            da = New SqlDataAdapter("select id,name from provinces where region_id=" + cmb_region.SelectedValue.ToString, conn)
             da.Fill(dsaddress, "provinces")
             With cmb_province
                 .DataSource = dsaddress.Tables("provinces")
@@ -360,7 +360,7 @@ Public Class View_Secretary
     Private Sub cmb_province_SelectedValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmb_province.SelectedValueChanged
         Try
             dsaddress.Tables("municipalities").Clear()
-            da = New MySqlDataAdapter("select id,name from municipalities where province_id=" + cmb_province.SelectedValue.ToString, conn)
+            da = New SqlDataAdapter("select id,name from municipalities where province_id=" + cmb_province.SelectedValue.ToString, conn)
             da.Fill(dsaddress, "municipalities")
             With cmb_municipality
                 .DataSource = dsaddress.Tables("municipalities")
@@ -378,7 +378,7 @@ Public Class View_Secretary
     Private Sub cmb_municipality_SelectedValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmb_municipality.SelectedValueChanged
         Try
             dsaddress.Tables("barangays").Clear()
-            da = New MySqlDataAdapter("select id,name from barangays where municipality_id=" + cmb_municipality.SelectedValue.ToString, conn)
+            da = New SqlDataAdapter("select id,name from barangays where municipality_id=" + cmb_municipality.SelectedValue.ToString, conn)
             da.Fill(dsaddress, "barangays")
             With cmb_barangay
                 .DataSource = dsaddress.Tables("barangays")

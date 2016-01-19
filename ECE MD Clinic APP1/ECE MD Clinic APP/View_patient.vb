@@ -1,12 +1,12 @@
-﻿Imports MySql.Data
-Imports MySql.Data.MySqlClient
+﻿Imports System.Data
+Imports System.Data.SqlClient
 Imports System.Text.StringBuilder
 Imports System.IO
 Public Class View_patient
-    Private da As New MySqlDataAdapter
+    Private da As New SqlDataAdapter
     Private ds As New DataSet
     Private dsaddress As New DataSet
-    Private cmd As New MySqlCommand
+    Private cmd As New SqlCommand
     Private selected_index As Integer = 0
     Public patient_id As Integer = 0
     Private historyinfo As New patient_history
@@ -38,7 +38,7 @@ Public Class View_patient
     Private Sub display_patient_info(ByRef id As Integer)
         Try
             ds.Clear()
-            da = New MySqlDataAdapter("SELECT pa.`id`,pa.`fname`, pa.`mname`, pa.`lname`, pa.`address_house_no`, pa.`address_street`, b.`id`, m.`id`, p.`id`, r.`id`, pa.`mobile_no`, pa.`tel_no`, pa.`email_address`, pa.`photo`, pa.`created_at`, pa.`updated_at`,pa.sex,pa.civil_status,pa.occupation,pa.height,pa.weight,pa.birthdate FROM `patients` pa INNER join barangays b on b.id=pa.barangay_id INNER JOIN municipalities m ON m.id=b.municipality_id INNER JOIN provinces p on p.id=m.province_id INNER JOIN regions r ON r.id=p.region_id where pa.id=" + id.ToString, conn)
+            da = New SqlDataAdapter("SELECT pa.`id`,pa.`fname`, pa.`mname`, pa.`lname`, pa.`address_house_no`, pa.`address_street`, b.`id`, m.`id`, p.`id`, r.`id`, pa.`mobile_no`, pa.`tel_no`, pa.`email_address`, pa.`photo`, pa.`created_at`, pa.`updated_at`,pa.sex,pa.civil_status,pa.occupation,pa.height,pa.weight,pa.birthdate FROM `patients` pa INNER join barangays b on b.id=pa.barangay_id INNER JOIN municipalities m ON m.id=b.municipality_id INNER JOIN provinces p on p.id=m.province_id INNER JOIN regions r ON r.id=p.region_id where pa.id=" + id.ToString, conn)
             da.Fill(ds)
             'profilepic
             profilename = "C:\ECE MD Clinic APP\PROFILE_PICTURES\Patients\" + ds.Tables(0).Rows(0).Item(13).ToString
@@ -212,7 +212,7 @@ Public Class View_patient
                 Dim res As MsgBoxResult
                 res = MsgBox("Are you sure you want to SAVE this Profile Pic", MsgBoxStyle.YesNoCancel, "Warning!")
                 If res = MsgBoxResult.Yes Then
-                    cmd = New MySqlCommand("update patients set photo=@param1 where id=" + patient_id.ToString, conn)
+                    cmd = New SqlCommand("update patients set photo=@param1 where id=" + patient_id.ToString, conn)
                     cmd.Parameters.AddWithValue("param1", newfilename)
                     cmd.ExecuteNonQuery()
                     My.Computer.FileSystem.CopyFile(filepath, "C:\ECE MD Clinic APP\PROFILE_PICTURES\Patients\" + newfilename)
@@ -256,7 +256,7 @@ Public Class View_patient
                     My.Computer.FileSystem.DeleteFile(profilename, FileIO.UIOption.OnlyErrorDialogs, FileIO.RecycleOption.DeletePermanently)
                 End If
                 profilename = ""
-                cmd = New MySqlCommand("update patients set photo='' where id=" + patient_id.ToString, conn)
+                cmd = New SqlCommand("update patients set photo='' where id=" + patient_id.ToString, conn)
                 cmd.ExecuteNonQuery()
             End If
         Catch ex As Exception
@@ -353,7 +353,7 @@ Public Class View_patient
 
     Private Sub ts_save_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ts_save.Click
         Try
-            cmd = New MySqlCommand("UPDATE `patients` SET `fname`=@fname,`mname`=@mname,`lname`=@lname,`occupation`=@occupation,`birthdate`=@bdate,`sex`=@sex,`civil_status`=@status,`height`=@height,`weight`=@weight,`email_address`=@email,`mobile_no`=@mobile,`tel_no`=@tel,`address_house_no`=@houseno,`barangay_id`=@barangay,updated_at=CURRENT_TIMESTAMP where id=@id", conn)
+            cmd = New SqlCommand("UPDATE `patients` SET `fname`=@fname,`mname`=@mname,`lname`=@lname,`occupation`=@occupation,`birthdate`=@bdate,`sex`=@sex,`civil_status`=@status,`height`=@height,`weight`=@weight,`email_address`=@email,`mobile_no`=@mobile,`tel_no`=@tel,`address_house_no`=@houseno,`barangay_id`=@barangay,updated_at=CURRENT_TIMESTAMP where id=@id", conn)
             cmd.Parameters.AddWithValue("fname", txt_fname.Text)
             cmd.Parameters.AddWithValue("mname", txt_mname.Text)
             cmd.Parameters.AddWithValue("lname", txt_lname.Text)
@@ -386,7 +386,7 @@ Public Class View_patient
     Private Sub display_regions()
         Try
             dsaddress.Clear()
-            da = New MySqlDataAdapter("select id,name from regions", conn)
+            da = New SqlDataAdapter("select id,name from regions", conn)
             da.Fill(dsaddress, "regions")
             With cmb_region
                 .DataSource = dsaddress.Tables("regions")
@@ -403,7 +403,7 @@ Public Class View_patient
     Private Sub cmb_region_SelectedValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmb_region.SelectedValueChanged
         Try
             dsaddress.Tables("provinces").Clear()
-            da = New MySqlDataAdapter("select id,name from provinces where region_id=" + cmb_region.SelectedValue.ToString, conn)
+            da = New SqlDataAdapter("select id,name from provinces where region_id=" + cmb_region.SelectedValue.ToString, conn)
             da.Fill(dsaddress, "provinces")
             With cmb_province
                 .DataSource = dsaddress.Tables("provinces")
@@ -421,7 +421,7 @@ Public Class View_patient
     Private Sub cmb_province_SelectedValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmb_province.SelectedValueChanged
         Try
             dsaddress.Tables("municipalities").Clear()
-            da = New MySqlDataAdapter("select id,name from municipalities where province_id=" + cmb_province.SelectedValue.ToString, conn)
+            da = New SqlDataAdapter("select id,name from municipalities where province_id=" + cmb_province.SelectedValue.ToString, conn)
             da.Fill(dsaddress, "municipalities")
             With cmb_municipality
                 .DataSource = dsaddress.Tables("municipalities")
@@ -439,7 +439,7 @@ Public Class View_patient
     Private Sub cmb_municipality_SelectedValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmb_municipality.SelectedValueChanged
         Try
             dsaddress.Tables("barangays").Clear()
-            da = New MySqlDataAdapter("select id,name from barangays where municipality_id=" + cmb_municipality.SelectedValue.ToString, conn)
+            da = New SqlDataAdapter("select id,name from barangays where municipality_id=" + cmb_municipality.SelectedValue.ToString, conn)
             da.Fill(dsaddress, "barangays")
             With cmb_barangay
                 .DataSource = dsaddress.Tables("barangays")

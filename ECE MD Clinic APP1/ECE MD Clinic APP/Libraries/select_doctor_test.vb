@@ -1,7 +1,7 @@
-﻿Imports MySql.Data
-Imports MySql.Data.MySqlClient
+﻿Imports System.Data
+Imports System.Data.SqlClient
 Public Class select_doctor_test
-    Private da As New MySqlDataAdapter
+    Private da As New SqlDataAdapter
     Private ds As New DataSet
     Public testresult As test_result
     Private Sub select_doctor_test_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -18,7 +18,7 @@ Public Class select_doctor_test
                 strquery = "select id,concat(`fname`,' ',`mname`,' ',`lname`)as doctors_name from doctors where id=" + UserId.ToString
                 cmb_doctors.Enabled = False
             End If
-            da = New MySqlDataAdapter(strquery, conn)
+            da = New SqlDataAdapter(strquery, conn)
             da.Fill(ds, "doctors")
 
             With cmb_doctors

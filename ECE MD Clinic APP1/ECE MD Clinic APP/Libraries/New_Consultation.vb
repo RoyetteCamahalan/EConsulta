@@ -28,7 +28,7 @@
                 cmb_doctors.Enabled = False
             End If
             With cmb_doctors
-                .DataSource = MyAdapter.CUSTOM_RETRIEVE("SP_Patient", Param_Name, Param_Value)
+                .DataSource = MyAdapter.CUSTOM_RETRIEVE("SP_Doctors", Param_Name, Param_Value)
                 .ValueMember = "id"
                 .DisplayMember = "doctors_name"
                 .SelectedIndex = -1
@@ -88,7 +88,6 @@
     Private Sub btn_save_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_save.Click
         Try
             If what_to_do = 0 Then
-                Dim insert_sql As String
                 Dim Param_Name As String() = {"@action_type", "@sub_action", "@doctor_id", "@patient_id", "@clinic_id"}
                 Dim Param_Value As String() = {2, 1, cmb_doctors.SelectedValue, cmb_patients.SelectedValue, My.Settings.ClinicID}
                 Dim MyAdapter_Doctor_Patient As New Custom_Adapters

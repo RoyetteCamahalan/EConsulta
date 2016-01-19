@@ -1,9 +1,9 @@
-﻿Imports MySql.Data
-Imports MySql.Data.MySqlClient
+﻿Imports System.Data
+Imports System.Data.SqlClient
 Public Class Notification
     Private ds As New DataSet
-    Private da As New MySqlDataAdapter
-    Private cmd As New MySqlCommand
+    Private da As New SqlDataAdapter
+    Private cmd As New SqlCommand
     Dim txbtnControl As New TextAndButtonControl
     Dim btnaccept As New userbtnAccept
     Private Sub Notification_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -54,7 +54,7 @@ Public Class Notification
             Else 'doctor
                 strquery = "SELECT pc.server_id,c.name,CONCAT(d.lname,' ',d.mname,'',d.fname) as doctor_name,CONCAT(p.lname,' ',p.mname,'',p.fname) as patient_name,pc.date,pc.time,pc.comment_doctor,pc.comment_patient,pc.is_approved_patient,pc.is_approved FROM doctors d INNER JOIN `consultations_request` pc on pc.doctor_id=d.id INNER JOIN patients p on p.server_id=pc.patient_id INNER JOIN clinics c on c.id=pc.clinic_id WHERE d.id=" + UserId.ToString
             End If
-            da = New MySqlDataAdapter(strquery, conn)
+            da = New SqlDataAdapter(strquery, conn)
             da.Fill(ds)
             For i As Integer = 0 To ds.Tables(0).Rows.Count - 1
                 Dim server_id As Integer = ds.Tables(0).Rows(i).Item(0)
@@ -95,7 +95,7 @@ Public Class Notification
     End Sub
     Public Sub accept(ByRef rowindex As Integer, ByRef t As Date, ByRef comment As String)
         Try
-            cmd = New MySqlCommand("UPDATE `consultations_request` SET comment_doctor=@comment, `is_approved`=1,time='" + t.TimeOfDay.ToString + "',`updated_at`=CURRENT_TIMESTAMP WHERE server_id=" + dtgcv_notifs.Rows(rowindex).Cells(0).Value.ToString, conn)
+            cmd = New SqlCommand("UPDATE `consultations_request` SET comment_doctor=@comment, `is_approved`=1,time='" + t.TimeOfDay.ToString + "',`updated_at`=CURRENT_TIMESTAMP WHERE server_id=" + dtgcv_notifs.Rows(rowindex).Cells(0).Value.ToString, conn)
             cmd.Parameters.AddWithValue("comment", comment)
             cmd.ExecuteNonQuery()
             dtgcv_notifs.Controls.RemoveByKey("usercontrol" + rowindex.ToString)
@@ -113,7 +113,7 @@ Public Class Notification
     End Sub
     Public Sub decline(ByRef rowindex As Integer, ByRef comment As String)
         Try
-            cmd = New MySqlCommand("UPDATE `consultations_request` SET comment_doctor=@comment,`is_approved`=2,`updated_at`=CURRENT_TIMESTAMP WHERE server_id=" + dtgcv_notifs.Rows(rowindex).Cells(0).Value.ToString, conn)
+            cmd = New SqlCommand("UPDATE `consultations_request` SET comment_doctor=@comment,`is_approved`=2,`updated_at`=CURRENT_TIMESTAMP WHERE server_id=" + dtgcv_notifs.Rows(rowindex).Cells(0).Value.ToString, conn)
             cmd.Parameters.AddWithValue("comment", comment)
             cmd.ExecuteNonQuery()
             dtgcv_notifs.Controls.RemoveByKey("usercontrol" + rowindex.ToString)

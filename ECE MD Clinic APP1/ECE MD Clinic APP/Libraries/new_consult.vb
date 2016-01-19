@@ -1,9 +1,6 @@
-﻿Imports MySql.Data
-Imports MySql.Data.MySqlClient
+﻿Imports System.Data
+Imports System.Data.SqlClient
 Public Class new_consult
-    Private da As New MySqlDataAdapter
-    Private cmd As New MySqlCommand
-    Private ds As New DataSet
     Private rowindex As Integer
     Public appointment_id As Integer
     Private errormsg As String
@@ -15,9 +12,64 @@ Public Class new_consult
     Private from_update_ctr As Integer = 0
     Public title_text As String
     Public str_medicine_id As String = ""
+#Region "Methods"
+    Public Sub DisplayPatient()
+        Try
+            Dim Param_Name As String() = {"@action_type", "@sub_action"}
+            Dim Param_Value As String() = {2, 2}
+            Dim MyAdapter As New Custom_Adapters
+            With cmb_patients
+                .DataSource = MyAdapter.CUSTOM_RETRIEVE("SP_Patient", Param_Name, Param_Value)
+                .ValueMember = "id"
+                .DisplayMember = "Name"
+                .SelectedIndex = -1
+            End With
+        Catch ex As Exception
+
+        End Try
+    End Sub
+    Private Sub DisplayDoctors()
+        Try
+            Dim Param_Name As String() = {"@action_type", "@sub_action", "@secretary_id", "@id"}
+            Dim Param_Value As String()
+            Dim MyAdapter As New Custom_Adapters
+            If UserType = 0 Then
+                Param_Value = {2, 1, UserId, ""}
+                cmb_doctors.Enabled = True
+            Else
+                Param_Value = {2, 2, "", UserId}
+                cmb_doctors.Enabled = False
+            End If
+            With cmb_doctors
+                .DataSource = MyAdapter.CUSTOM_RETRIEVE("SP_Doctors", Param_Name, Param_Value)
+                .ValueMember = "id"
+                .DisplayMember = "doctors_name"
+                .SelectedIndex = -1
+            End With
+            If UserType = 1 Then
+                cmb_doctors.SelectedValue = UserId
+            End If
+            'strquery = "SELECT `id`, `department_name`, `description` FROM `department`"
+            'da = New SqlDataAdapter(strquery, conn)
+            'da.Fill(ds, "departments")
+            'With cmb_department
+            '    .DataSource = ds.Tables("departments")
+            '    .ValueMember = "id"
+            '    .DisplayMember = "department_name"
+            '    .SelectedIndex = -1
+            'End With
+        Catch ex As Exception
+
+        End Try
+    End Sub
+#End Region
+#Region "Variables"
+    Private DT_Routes As New DataTable
+    Private DT_Frequency As New DataTable
+#End Region
     Private Sub new_consult_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        display_patient()
-        display_doctors()
+        DisplayPatient()
+        DisplayDoctors()
         getfrequency_route()
         btn_saveastemplate.ForeColor = Color.Gray
         TabControl1.TabPages.Remove(ob_gyne)
@@ -89,25 +141,31 @@ Public Class new_consult
     End Sub
     Private Sub load_treatments()
         Try
-            Dim dstreatment As New DataSet
             dtgv_treatments.Rows.Clear()
-            da = New MySqlDataAdapter("SELECT pi.`patient_record_id`,pi.`medicine_id`, m.`med_name`,pi.no_generics,pi.quantity, `route`, `frequency`, `refills` FROM medicines m inner join prescription_items pi on m.id=pi.medicine_id where patient_record_id=" + consult_id.ToString, conn)
-            da.Fill(dstreatment, "treatments")
-            If dstreatment.Tables("treatments").Rows.Count > 0 Then
-                For i As Integer = 0 To dstreatment.Tables("treatments").Rows.Count - 1
-                    dtgv_treatments.Rows.Add(dstreatment.Tables("treatments").Rows(i).Item(1).ToString, dstreatment.Tables("treatments").Rows(i).Item(2).ToString, dstreatment.Tables("treatments").Rows(i).Item(3).ToString, dstreatment.Tables("treatments").Rows(i).Item(4).ToString, "", "", dstreatment.Tables("treatments").Rows(i).Item(7).ToString, "", "Remove")
+            Dim Param_Name As String() = {"@action_type", "@sub_action", "@id"}
+            Dim Param_Value As String() = {2, 5, consult_id}
+            Dim MyAdapter As New Custom_Adapters
+            Dim DT As New DataTable
+            DT = MyAdapter.CUSTOM_RETRIEVE("SP_PatientRecord", Param_Name, Param_Value)
+            If DT.Rows.Count > 0 Then
+                For i As Integer = 0 To DT.Rows.Count - 1
+                    dtgv_treatments.Rows.Add(DT.Rows(i).Item(1).ToString,
+                                             DT.Rows(i).Item(2).ToString,
+                                             DT.Rows(i).Item(3).ToString,
+                                             DT.Rows(i).Item(4).ToString, "", "",
+                                             DT.Rows(i).Item(7).ToString, "", "Remove")
                     Dim lastrow As Integer = dtgv_treatments.Rows.Count - 1
                     Dim chknogen As DataGridViewCheckBoxCell = dtgv_treatments.Rows(lastrow).Cells(2)
-                    chknogen.Value = dstreatment.Tables("treatments").Rows(i).Item(3)
+                    chknogen.Value = DT.Rows(i).Item(3)
                     Dim cellfrequency As DataGridViewComboBoxCell = dtgv_treatments.Rows(lastrow).Cells(5)
-                    cellfrequency.DataSource = ds.Tables("frequency")
+                    cellfrequency.DataSource = DT_Frequency
                     cellfrequency.DisplayMember = "name"
-                    cellfrequency.Value = dstreatment.Tables("treatments").Rows(i).Item(6).ToString
+                    cellfrequency.Value = DT.Rows(i).Item(6).ToString
                     'cellfrequency.ValueMember = "id"
                     Dim cellroutes As DataGridViewComboBoxCell = dtgv_treatments.Rows(lastrow).Cells(4)
-                    cellroutes.DataSource = ds.Tables("routes")
+                    cellroutes.DataSource = DT_Routes
                     cellroutes.DisplayMember = "name"
-                    cellroutes.Value = dstreatment.Tables("treatments").Rows(i).Item(5).ToString
+                    cellroutes.Value = DT.Rows(i).Item(5).ToString
                     'cellroutes.ValueMember = "id"
                     Dim cellduration As DataGridViewTextBoxCell = dtgv_treatments.Rows(lastrow).Cells(7)
                 Next
@@ -133,56 +191,6 @@ Public Class new_consult
         Else
             Me.Dispose()
         End If
-    End Sub
-
-    Public Sub display_patient()
-        Try
-            da = New MySqlDataAdapter("select id,concat(fname,' ',mname,' ',lname) as Name from patients", conn)
-            da.Fill(ds, "patients")
-            With cmb_patients
-                .DataSource = ds.Tables("patients")
-                .ValueMember = "id"
-                .DisplayMember = "Name"
-                .SelectedIndex = -1
-            End With
-        Catch ex As Exception
-
-        End Try
-    End Sub
-    Private Sub display_doctors()
-        Try
-            Dim strquery As String
-            If UserType = 0 Then
-                strquery = "select d.id,concat(d.`fname`,' ',d.`mname`,' ',d.`lname`)as doctors_name from doctors d INNER JOIN secretary_access sc on sc.doctor_id=d.id WHERE sc.secretary_id=" + UserId.ToString
-                cmb_doctors.Enabled = True
-            Else
-                strquery = "select id,concat(`fname`,' ',`mname`,' ',`lname`)as doctors_name from doctors where id=" + UserId.ToString
-                cmb_doctors.Enabled = False
-            End If
-            da = New MySqlDataAdapter(strquery, conn)
-            da.Fill(ds, "doctors")
-
-            With cmb_doctors
-                .DataSource = ds.Tables("doctors")
-                .ValueMember = "id"
-                .DisplayMember = "doctors_name"
-                .SelectedIndex = -1
-            End With
-            If UserType = 1 Then
-                cmb_doctors.SelectedValue = UserId
-            End If
-            strquery = "SELECT `id`, `department_name`, `description` FROM `department`"
-            da = New MySqlDataAdapter(strquery, conn)
-            da.Fill(ds, "departments")
-            With cmb_department
-                .DataSource = ds.Tables("departments")
-                .ValueMember = "id"
-                .DisplayMember = "department_name"
-                .SelectedIndex = -1
-            End With
-        Catch ex As Exception
-
-        End Try
     End Sub
     Private Sub validate_data()
         Try
@@ -233,53 +241,62 @@ Public Class new_consult
             MsgBox(errormsg)
         Else
             If what_to_do = 0 Or what_to_do = 2 Then
-                Dim treatment_id As Integer
                 Try
-                    Dim insert_sql As String
-                    da = New MySqlDataAdapter("select * from `doctor_patient` where `doctor_id`=" + cmb_doctors.SelectedValue.ToString + " and `patient_id`=" + cmb_patients.SelectedValue.ToString + " and `clinic_id`=" + My.Settings.ClinicID.ToString, conn)
-                    da.Fill(ds, "checker")
-                    If ds.Tables("checker").Rows.Count = 0 Then
-                        insert_sql = String.Format("INSERT INTO `doctor_patient`(`clinic_id`, `doctor_id`, `patient_id`, `username`, `password`) VALUES ({0},{1},{2},'{3}','{4}')",
-                                                                         My.Settings.ClinicID.ToString, cmb_doctors.SelectedValue.ToString, cmb_patients.SelectedValue.ToString, randomuname("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"), randomuname("ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890abcdefghijklmnopqrstuvwxyz"))
+                    Dim Param_Name As String() = {"@action_type", "@sub_action", "@doctor_id", "@patient_id", "@clinic_id"}
+                    Dim Param_Value As String() = {2, 1, cmb_doctors.SelectedValue, cmb_patients.SelectedValue, My.Settings.ClinicID}
+                    Dim MyAdapter_Doctor_Patient As New Custom_Adapters
+                    Dim MyAdapter_Patient_Record As New Custom_Adapters
+                    If MyAdapter_Doctor_Patient.CUSTOM_TRANSACT_WITH_RETURN("SP_DoctorPatient", Param_Name, Param_Value) = 0 Then
+                        Param_Name = {"@action_type", "@sub_action", "@doctor_id", "@patient_id", "@clinic_id", "@username", "@password"}
+                        Param_Value = {2, 1, cmb_doctors.SelectedValue, cmb_patients.SelectedValue, My.Settings.ClinicID,
+                                            randomuname("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"),
+                                            randomuname("ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890abcdefghijklmnopqrstuvwxyz")}
 
-                        cmd = New MySqlCommand(insert_sql, conn)
-                        cmd.ExecuteNonQuery()
+                        MyAdapter_Doctor_Patient.CUSTOM_TRANSACT("SP_DoctorPatient", Param_Name, Param_Value)
                     End If
                     'insert new patient record
-                    cmd = New MySqlCommand("INSERT INTO `patient_records`( `patient_id`, `doctor_id`, `complaints`, `findings`, `created_at`) VALUES (@patientid,@doctorid,@complaints,@findings,CURRENT_TIMESTAMP)", conn)
-                    cmd.Parameters.AddWithValue("patientid", cmb_patients.SelectedValue.ToString)
-                    cmd.Parameters.AddWithValue("doctorid", cmb_doctors.SelectedValue.ToString)
-                    cmd.Parameters.AddWithValue("complaints", txt_complaints.Text)
-                    cmd.Parameters.AddWithValue("findings", txt_findings.Text)
-                    cmd.ExecuteNonQuery()
-                    da = New MySqlDataAdapter("select max(id) from patient_records", conn)
-                    da.Fill(ds, "id")
-                    treatment_id = ds.Tables("id").Rows(0).Item(0)
-                    If dtgv_treatments.Rows.Count > 0 And check_row(0) Then
-                        For i As Integer = 0 To dtgv_treatments.RowCount - 1
-                            If check_row(i) Then
-                                cmd = New MySqlCommand("INSERT INTO `prescription_items`(`patient_record_id`, `medicine_id`, `no_generics`, `quantity`, `route`, `frequency`, `refills`, `duration`, `duration_type`) " +
-                                                       "VALUES (@patient_record_id,@medicine_id,@no_generics,@quantity,@route,@frequency,@refills,@duration,@duration_type)", conn)
-                                cmd.Parameters.AddWithValue("patient_record_id", treatment_id.ToString)
-                                cmd.Parameters.AddWithValue("medicine_id", dtgv_treatments.Rows(i).Cells(0).Value.ToString)
-                                cmd.Parameters.AddWithValue("no_generics", dtgv_treatments.Rows(i).Cells(2).Value.ToString)
-                                cmd.Parameters.AddWithValue("quantity", dtgv_treatments.Rows(i).Cells(3).Value.ToString)
-                                cmd.Parameters.AddWithValue("route", dtgv_treatments.Rows(i).Cells(4).Value.ToString)
-                                cmd.Parameters.AddWithValue("frequency", dtgv_treatments.Rows(i).Cells(5).Value.ToString)
-                                cmd.Parameters.AddWithValue("refills", dtgv_treatments.Rows(i).Cells(6).Value.ToString)
-                                cmd.Parameters.AddWithValue("duration", "2")
-                                cmd.Parameters.AddWithValue("duration_type", "1")
-                                cmd.ExecuteNonQuery()
-                            End If
-                        Next
+                    Param_Name = {"@action_type", "@sub_action", "@doctor_id", "@patient_id", "@complaints", "@findings", "@record_date"}
+                    Param_Value = {0, 1, cmb_doctors.SelectedValue,
+                                      cmb_patients.SelectedValue,
+                                      txt_complaints.Text,
+                                      txt_findings.Text,
+                                      dtp_date.Value.ToLongTimeString}
+                    Dim newID As Integer = MyAdapter_Patient_Record.CUSTOM_TRANSACT_WITH_RETURN("SP_PatientRecord", Param_Name, Param_Value)
+                    If newID > 0 Then
+                        If dtgv_treatments.Rows.Count > 0 And check_row(0) Then
+                            Param_Name = {"@action_type", "@sub_action", "@id"}
+                            Param_Value = {3, 1, consult_id}
+                            MyAdapter_Patient_Record.CUSTOM_TRANSACT("SP_PatientRecord", Param_Name, Param_Value)
+                            For i As Integer = 0 To dtgv_treatments.RowCount - 1
+                                If check_row(i) Then
+                                    Dim checknogen As DataGridViewCheckBoxCell = dtgv_treatments.Rows(i).Cells(2)
+                                    Dim CheckNoGen_value As Integer
+                                    If checknogen.Value = 1 Then
+                                        CheckNoGen_value = 1
+                                    Else
+                                        CheckNoGen_value = 0
+                                    End If
+                                    Dim cellfrequency As DataGridViewComboBoxCell = dtgv_treatments.Rows(i).Cells(5)
+                                    Dim cellroutes As DataGridViewComboBoxCell = dtgv_treatments.Rows(i).Cells(4)
+                                    Param_Name = {"@action_type", "@sub_action", "@id", "@medicine_id",
+                                                  "@no_generics", "@quantity", "@route", "@frequency",
+                                                  "@refills", "@duration", "@duration_type"}
+                                    Param_Value = {0, 2, newID, dtgv_treatments.Rows(i).Cells(0).Value,
+                                                      CheckNoGen_value, dtgv_treatments.Rows(i).Cells(3).Value.ToString, cellroutes.EditedFormattedValue.ToString, cellfrequency.EditedFormattedValue.ToString,
+                                                      dtgv_treatments.Rows(i).Cells(6).Value.ToString, "2", "1"}
+                                    MyAdapter_Patient_Record.CUSTOM_TRANSACT("SP_PatientRecord", Param_Name, Param_Value)
+                                End If
+                            Next
+                        End If
                     End If
+
                     consult.DisplayRecords()
                     MsgBox("Consultation Saved", , "Consultation NOTIFICATION")
                     'from appointment
                     If what_to_do = 2 Then
-                        Dim update_sql As String = "UPDATE `patient_consultations` SET isdone=1,patient_record_id=" + treatment_id.ToString + " where id=" + appointment_id.ToString
-                        cmd = New MySqlCommand(update_sql, conn)
-                        cmd.ExecuteNonQuery()
+                        Param_Name = {"@action_type", "@sub_action", "@id", "@is_done", "@patient_record_id"}
+                        Param_Value = {1, 2, appointment_id, 1, newID}
+                        MyAdapter_Patient_Record.CUSTOM_TRANSACT("SP_Consultation", Param_Name, Param_Value)
                         today.DisplayAppointmentToday()
                         incoming.DisplayAppointmentIncoming()
                         Consultation.DisplayAppointmentsAll()
@@ -294,43 +311,41 @@ Public Class new_consult
 
             ElseIf what_to_do = 1 Then
                 Try
-                    cmd = New MySqlCommand("UPDATE `patient_records` SET `patient_id`=@patientid,`doctor_id`=@doctorid,`complaints`=@complaints,`findings`=@findings,`updated_at`=CURRENT_TIMESTAMP where id=@id", conn)
-                    cmd.Parameters.AddWithValue("patientid", cmb_patients.SelectedValue.ToString)
-                    cmd.Parameters.AddWithValue("doctorid", cmb_doctors.SelectedValue.ToString)
-                    cmd.Parameters.AddWithValue("complaints", txt_complaints.Text)
-                    cmd.Parameters.AddWithValue("findings", txt_findings.Text)
-                    cmd.Parameters.AddWithValue("id", consult_id.ToString)
-                    cmd.ExecuteNonQuery()
-                    If dtgv_treatments.Rows.Count > 0 And check_row(0) Then
-                        Dim update_sql2 As String = String.Format("delete from `prescription_items` where patient_record_id=" + consult_id.ToString)
-                        cmd = New MySqlCommand(update_sql2, conn)
-                        cmd.ExecuteNonQuery()
-                        For i As Integer = 0 To dtgv_treatments.RowCount - 1
-                            If check_row(i) Then
-                                cmd = New MySqlCommand("INSERT INTO `prescription_items`(`patient_record_id`, `medicine_id`, `no_generics`, `quantity`, `route`, `frequency`, `refills`, `duration`, `duration_type`) " +
-                                                       "VALUES (@patient_record_id,@medicine_id,@no_generics,@quantity,@route,@frequency,@refills,@duration,@duration_type)", conn)
-                                cmd.Parameters.AddWithValue("patient_record_id", consult_id.ToString)
-                                cmd.Parameters.AddWithValue("medicine_id", dtgv_treatments.Rows(i).Cells(0).Value.ToString)
-                                Dim checknogen As DataGridViewCheckBoxCell = dtgv_treatments.Rows(i).Cells(2)
-                                If checknogen.Value = 1 Then
-                                    cmd.Parameters.AddWithValue("no_generics", "1")
-                                Else
-                                    cmd.Parameters.AddWithValue("no_generics", "0")
+                    Dim Param_Name As String() = {"@action_type", "@sub_action", "@doctor_id",
+                                                  "@patient_id", "@complaints", "@findings", "@record_date", "@id"}
+                    Dim Param_Value As String() = {1, 1, cmb_doctors.SelectedValue,
+                                                   cmb_patients.SelectedValue, Me.txt_complaints.Text,
+                                                   Me.txt_findings.Text, dtp_date.Value.ToLongTimeString, consult_id.ToString}
+                    Dim MyAdapter_Patient_Record As New Custom_Adapters
+                    If MyAdapter_Patient_Record.CUSTOM_TRANSACT("SP_PatientRecord", Param_Name, Param_Value) Then
+                        Param_Name = {"@action_type", "@sub_action", "@id"}
+                        Param_Value = {3, 1, consult_id}
+                        MyAdapter_Patient_Record.CUSTOM_TRANSACT("SP_PatientRecord", Param_Name, Param_Value)
+                        If dtgv_treatments.Rows.Count > 0 And check_row(0) Then
+                            For i As Integer = 0 To dtgv_treatments.RowCount - 1
+                                If check_row(i) Then
+                                    Dim checknogen As DataGridViewCheckBoxCell = dtgv_treatments.Rows(i).Cells(2)
+                                    Dim CheckNoGen_value As Integer
+                                    If checknogen.Value = 1 Then
+                                        CheckNoGen_value = 1
+                                    Else
+                                        CheckNoGen_value = 0
+                                    End If
+                                    Dim cellfrequency As DataGridViewComboBoxCell = dtgv_treatments.Rows(i).Cells(5)
+                                    Dim cellroutes As DataGridViewComboBoxCell = dtgv_treatments.Rows(i).Cells(4)
+                                    Param_Name = {"@action_type", "@sub_action", "@id", "@medicine_id",
+                                                  "@no_generics", "@quantity", "@route", "@frequency",
+                                                  "@refills", "@duration", "@duration_type"}
+                                    Param_Value = {0, 2, consult_id, dtgv_treatments.Rows(i).Cells(0).Value,
+                                                      CheckNoGen_value, dtgv_treatments.Rows(i).Cells(3).Value.ToString, cellroutes.EditedFormattedValue.ToString, cellfrequency.EditedFormattedValue.ToString,
+                                                      dtgv_treatments.Rows(i).Cells(6).Value.ToString, "2", "1"}
+                                    MyAdapter_Patient_Record.CUSTOM_TRANSACT("SP_PatientRecord", Param_Name, Param_Value)
                                 End If
 
-                                cmd.Parameters.AddWithValue("quantity", dtgv_treatments.Rows(i).Cells(3).Value.ToString)
-                                Dim cellfrequency As DataGridViewComboBoxCell = dtgv_treatments.Rows(i).Cells(5)
-                                Dim cellroutes As DataGridViewComboBoxCell = dtgv_treatments.Rows(i).Cells(4)
-                                cmd.Parameters.AddWithValue("route", cellroutes.EditedFormattedValue.ToString)
-                                cmd.Parameters.AddWithValue("frequency", cellfrequency.EditedFormattedValue.ToString)
-                                cmd.Parameters.AddWithValue("refills", dtgv_treatments.Rows(i).Cells(6).Value.ToString)
-                                cmd.Parameters.AddWithValue("duration", "2")
-                                cmd.Parameters.AddWithValue("duration_type", "1")
-                                cmd.ExecuteNonQuery()
-                            End If
-
-                        Next
+                            Next
+                        End If
                     End If
+
                     consult.DisplayRecords()
                     MsgBox("Update Saved", , "Consultation NOTIFICATION")
                     Me.Text = "View Consultation"
@@ -419,16 +434,18 @@ Public Class new_consult
         timer_last_update.Stop()
     End Sub
     Private Sub btn_new_treatment_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_new_treatment.Click
-        get_med_ids()
         add_prescription.ShowDialog()
     End Sub
 
     Private Sub getfrequency_route()
         Try
-            da = New MySqlDataAdapter("SELECT `id`, `name` FROM `prescription_frequency`", conn)
-            da.Fill(ds, "frequency")
-            da = New MySqlDataAdapter("SELECT `id`, `name` FROM `presciption_routes`", conn)
-            da.Fill(ds, "routes")
+            Dim Param_Name As String() = {"@action_type", "@sub_action"}
+            Dim Param_Value As String() = {2, 4}
+            Dim MyAdapter_Frequency As New Custom_Adapters
+            Dim MyAdapter_Routes As New Custom_Adapters
+            DT_Frequency = MyAdapter_Frequency.CUSTOM_RETRIEVE("SP_Miscellaneous", Param_Name, Param_Value)
+            Param_Value = {2, 5}
+            DT_Routes = MyAdapter_Routes.CUSTOM_RETRIEVE("SP_Miscellaneous", Param_Name, Param_Value)
         Catch ex As Exception
 
         End Try
@@ -461,38 +478,19 @@ Public Class new_consult
         Dim chknogen As DataGridViewCheckBoxCell = dtgv_treatments.Rows(lastrow).Cells(2)
         chknogen.Value = 0
         Dim cellfrequency As DataGridViewComboBoxCell = dtgv_treatments.Rows(lastrow).Cells(5)
-        cellfrequency.DataSource = ds.Tables("frequency")
+        cellfrequency.DataSource = DT_Frequency
         cellfrequency.DisplayMember = "name"
         'cellfrequency.ValueMember = "id"
         Dim cellroutes As DataGridViewComboBoxCell = dtgv_treatments.Rows(lastrow).Cells(4)
-        cellroutes.DataSource = ds.Tables("routes")
+        cellroutes.DataSource = DT_Routes
         cellroutes.DisplayMember = "name"
         'cellroutes.ValueMember = "id"
         Dim cellduration As DataGridViewTextBoxCell = dtgv_treatments.Rows(lastrow).Cells(7)
-    End Sub
-    Public Sub get_med_ids()
-        Try
-            str_medicine_id = ""
-            For i As Integer = 0 To dtgv_treatments.Rows.Count - 1
-                If i = 0 Then
-                    str_medicine_id = " and id not in(" + dtgv_treatments.Rows(i).Cells(0).Value.ToString
-                Else
-                    str_medicine_id = str_medicine_id + "," + dtgv_treatments.Rows(i).Cells(0).Value.ToString
-                End If
-            Next
-            If dtgv_treatments.Rows.Count > 0 Then
-                str_medicine_id = str_medicine_id + ")"
-            End If
-
-        Catch ex As Exception
-
-        End Try
     End Sub
 
     Private Sub dtgv_treatments_CellContentClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dtgv_treatments.CellContentClick
         Try
             If e.ColumnIndex = 8 Then
-                get_med_ids()
                 Me.dtgv_treatments.Rows.RemoveAt(e.RowIndex)
             ElseIf e.ColumnIndex = 2 Then
                 Dim checknogen As DataGridViewCheckBoxCell = dtgv_treatments.Rows(e.RowIndex).Cells(2)
@@ -520,31 +518,32 @@ Public Class new_consult
                 If templatename = "" Then
                     MsgBox("Template name needed.")
                 Else
-                    Dim templateid As Integer
                     Try
                         'insert new patient record
-                        cmd = New MySqlCommand("INSERT INTO `prescription_template`(`name`) VALUES(@templatename)", conn)
-                        cmd.Parameters.AddWithValue("templatename", templatename)
-                        cmd.ExecuteNonQuery()
-                        Dim ds As New DataSet
-                        da = New MySqlDataAdapter("select max(id) from prescription_template", conn)
-                        da.Fill(ds, "id")
-                        templateid = ds.Tables("id").Rows(0).Item(0)
+                        Dim Param_Name As String() = {"@action_type", "@sub_action", "@templatename"}
+                        Dim Param_Value As String() = {2, 1, templatename}
+                        Dim MyAdapter As New Custom_Adapters
+                        Dim templateid As Integer = 0
+                        templateid = MyAdapter.CUSTOM_TRANSACT_WITH_RETURN("SP_Miscellaneous", Param_Name, Param_Value)
                         If dtgv_treatments.Rows.Count > 1 Or check_row(0) Then
                             For i As Integer = 0 To dtgv_treatments.RowCount - 1
                                 If check_row(i) Then
-                                    cmd = New MySqlCommand("INSERT INTO `prescription_template_items`(`template_id`, `medicine_id`, `no_generics`, `quantity`, `route`, `frequency`, `refills`, `duration`, `duration_type`) " +
-                                                           "VALUES (@template_id,@medicine_id,@no_generics,@quantity,@route,@frequency,@refills,@duration,@duration_type)", conn)
-                                    cmd.Parameters.AddWithValue("template_id", templateid.ToString)
-                                    cmd.Parameters.AddWithValue("medicine_id", dtgv_treatments.Rows(i).Cells(0).Value.ToString)
-                                    cmd.Parameters.AddWithValue("no_generics", dtgv_treatments.Rows(i).Cells(2).Value.ToString)
-                                    cmd.Parameters.AddWithValue("quantity", dtgv_treatments.Rows(i).Cells(3).Value.ToString)
-                                    cmd.Parameters.AddWithValue("route", dtgv_treatments.Rows(i).Cells(4).Value.ToString)
-                                    cmd.Parameters.AddWithValue("frequency", dtgv_treatments.Rows(i).Cells(5).Value.ToString)
-                                    cmd.Parameters.AddWithValue("refills", dtgv_treatments.Rows(i).Cells(6).Value.ToString)
-                                    cmd.Parameters.AddWithValue("duration", "2")
-                                    cmd.Parameters.AddWithValue("duration_type", "1")
-                                    cmd.ExecuteNonQuery()
+                                    Dim checknogen As DataGridViewCheckBoxCell = dtgv_treatments.Rows(i).Cells(2)
+                                    Dim CheckNoGen_value As Integer
+                                    If checknogen.Value = 1 Then
+                                        CheckNoGen_value = 1
+                                    Else
+                                        CheckNoGen_value = 0
+                                    End If
+                                    Dim cellfrequency As DataGridViewComboBoxCell = dtgv_treatments.Rows(i).Cells(5)
+                                    Dim cellroutes As DataGridViewComboBoxCell = dtgv_treatments.Rows(i).Cells(4)
+                                    Param_Name = {"@action_type", "@sub_action", "@id", "@medicine_id",
+                                                  "@no_generics", "@quantity", "@route", "@frequency",
+                                                  "@refills", "@duration", "@duration_type"}
+                                    Param_Value = {0, 2, consult_id, dtgv_treatments.Rows(i).Cells(0).Value,
+                                                      CheckNoGen_value, dtgv_treatments.Rows(i).Cells(3).Value.ToString, cellroutes.EditedFormattedValue.ToString, cellfrequency.EditedFormattedValue.ToString,
+                                                      dtgv_treatments.Rows(i).Cells(6).Value.ToString, "2", "1"}
+                                    MyAdapter.CUSTOM_TRANSACT("SP_PatientRecord", Param_Name, Param_Value)
                                 End If
                             Next
                         End If

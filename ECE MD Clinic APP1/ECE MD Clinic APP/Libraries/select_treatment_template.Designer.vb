@@ -22,7 +22,7 @@ Partial Class select_treatment_template
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.txt_search = New System.Windows.Forms.TextBox()
         Me.lst_templates = New System.Windows.Forms.ListBox()
@@ -54,14 +54,13 @@ Partial Class select_treatment_template
         'txt_search
         '
         Me.txt_search.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.txt_search.Font = New System.Drawing.Font("Hoefler Text Black", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txt_search.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txt_search.ForeColor = System.Drawing.SystemColors.GrayText
         Me.txt_search.Location = New System.Drawing.Point(0, 26)
         Me.txt_search.Name = "txt_search"
         Me.txt_search.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.txt_search.Size = New System.Drawing.Size(139, 21)
+        Me.txt_search.Size = New System.Drawing.Size(139, 20)
         Me.txt_search.TabIndex = 24
-        Me.txt_search.Text = "Search here"
         '
         'lst_templates
         '
@@ -127,9 +126,9 @@ Partial Class select_treatment_template
         'qty
         '
         Me.qty.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        DataGridViewCellStyle3.Format = "N0"
-        DataGridViewCellStyle3.NullValue = "0"
-        Me.qty.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle1.Format = "N0"
+        DataGridViewCellStyle1.NullValue = "0"
+        Me.qty.DefaultCellStyle = DataGridViewCellStyle1
         Me.qty.HeaderText = "Quantity"
         Me.qty.Name = "qty"
         Me.qty.ReadOnly = True

@@ -24,24 +24,23 @@ Partial Class add_prescription
     Private Sub InitializeComponent()
         Me.txt_search = New System.Windows.Forms.TextBox()
         Me.dtgv_meds = New System.Windows.Forms.DataGridView()
+        Me.btn_add_med = New System.Windows.Forms.Button()
         Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column1 = New System.Windows.Forms.DataGridViewButtonColumn()
-        Me.btn_add_med = New System.Windows.Forms.Button()
         CType(Me.dtgv_meds, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'txt_search
         '
         Me.txt_search.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.txt_search.Font = New System.Drawing.Font("Hoefler Text Black", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txt_search.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txt_search.ForeColor = System.Drawing.SystemColors.GrayText
         Me.txt_search.Location = New System.Drawing.Point(17, 23)
         Me.txt_search.Name = "txt_search"
         Me.txt_search.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.txt_search.Size = New System.Drawing.Size(297, 21)
+        Me.txt_search.Size = New System.Drawing.Size(297, 20)
         Me.txt_search.TabIndex = 23
-        Me.txt_search.Text = "Search Medicine here"
         '
         'dtgv_meds
         '
@@ -55,6 +54,17 @@ Partial Class add_prescription
         Me.dtgv_meds.RowHeadersVisible = False
         Me.dtgv_meds.Size = New System.Drawing.Size(409, 278)
         Me.dtgv_meds.TabIndex = 24
+        '
+        'btn_add_med
+        '
+        Me.btn_add_med.ForeColor = System.Drawing.Color.Black
+        Me.btn_add_med.Location = New System.Drawing.Point(320, 21)
+        Me.btn_add_med.Name = "btn_add_med"
+        Me.btn_add_med.Size = New System.Drawing.Size(106, 23)
+        Me.btn_add_med.TabIndex = 25
+        Me.btn_add_med.Text = "Save to List"
+        Me.btn_add_med.UseVisualStyleBackColor = True
+        Me.btn_add_med.Visible = False
         '
         'Column3
         '
@@ -71,26 +81,13 @@ Partial Class add_prescription
         Me.Column4.HeaderText = "Medicine Name"
         Me.Column4.Name = "Column4"
         Me.Column4.ReadOnly = True
-        Me.Column4.Width = 326
+        Me.Column4.Width = 320
         '
         'Column1
         '
-        Me.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
         Me.Column1.FillWeight = 5.076142!
         Me.Column1.HeaderText = "Action"
         Me.Column1.Name = "Column1"
-        Me.Column1.Width = 80
-        '
-        'btn_add_med
-        '
-        Me.btn_add_med.ForeColor = System.Drawing.Color.Black
-        Me.btn_add_med.Location = New System.Drawing.Point(320, 21)
-        Me.btn_add_med.Name = "btn_add_med"
-        Me.btn_add_med.Size = New System.Drawing.Size(106, 23)
-        Me.btn_add_med.TabIndex = 25
-        Me.btn_add_med.Text = "Save to List"
-        Me.btn_add_med.UseVisualStyleBackColor = True
-        Me.btn_add_med.Visible = False
         '
         'add_prescription
         '

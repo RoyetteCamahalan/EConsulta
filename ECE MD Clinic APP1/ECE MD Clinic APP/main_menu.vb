@@ -1,8 +1,8 @@
 ﻿Imports System.IO
-Imports MySql.Data
-Imports MySql.Data.MySqlClient
+Imports System.Data
+Imports System.Data.SqlClient
 Public Class main_menu
-    Private da As New MySqlDataAdapter
+    Private da As New SqlDataAdapter
     Private ds As New DataSet
     Private today_tag As Boolean = False
     Private incoming_tag As Boolean = False
@@ -265,7 +265,7 @@ Public Class main_menu
             Else 'doctor
                 strquery = "SELECT id from consultations_request where is_approved=0 and doctor_id=" + UserId.ToString
             End If
-            da = New MySqlDataAdapter(strquery, conn)
+            da = New SqlDataAdapter(strquery, conn)
             da.Fill(ds1)
             If ds1.Tables(0).Rows.Count > 0 Then
                 Me.notification_label.Text = ds1.Tables(0).Rows.Count.ToString
@@ -286,13 +286,13 @@ Public Class main_menu
 
 
     Private Sub newThread2()
-        Call mysqlbridge.get_appointments()
+        'Call mysqlbridge.get_appointments()
         is_done = 1
         Threading.Thread.CurrentThread.Abort()
     End Sub
     Private Sub newThread()
         'Call mysqbridge_upload.UPLOAD_PATIENT()
-        Call mysqbridge_upload.UPLOAD_APPOINTMENTS()
+        'Call mysqbridge_upload.UPLOAD_APPOINTMENTS()
         'Call mysqbridge_upload.UPLOAD_PATIENT_RECORDS()
         'Call mysqbridge_upload.UPLOAD_MEDICINES()
         is_done = 1
