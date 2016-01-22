@@ -22,7 +22,7 @@ Partial Class secretary
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(secretary))
         Me.dtgv_secretaries = New System.Windows.Forms.DataGridView()
         Me.btn_new_secretary = New System.Windows.Forms.Button()
@@ -37,16 +37,16 @@ Partial Class secretary
         Me.dtgv_secretaries.AllowUserToOrderColumns = True
         Me.dtgv_secretaries.AllowUserToResizeRows = False
         Me.dtgv_secretaries.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dtgv_secretaries.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.5!)
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dtgv_secretaries.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.dtgv_secretaries.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dtgv_secretaries.Location = New System.Drawing.Point(22, 98)
+        Me.dtgv_secretaries.Location = New System.Drawing.Point(22, 102)
         Me.dtgv_secretaries.MultiSelect = False
         Me.dtgv_secretaries.Name = "dtgv_secretaries"
         Me.dtgv_secretaries.ReadOnly = True
@@ -61,7 +61,7 @@ Partial Class secretary
         Me.btn_new_secretary.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btn_new_secretary.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btn_new_secretary.FlatAppearance.BorderSize = 0
-        Me.btn_new_secretary.Location = New System.Drawing.Point(972, 45)
+        Me.btn_new_secretary.Location = New System.Drawing.Point(974, 49)
         Me.btn_new_secretary.Name = "btn_new_secretary"
         Me.btn_new_secretary.Size = New System.Drawing.Size(143, 47)
         Me.btn_new_secretary.TabIndex = 6
@@ -70,9 +70,9 @@ Partial Class secretary
         'txt_search
         '
         Me.txt_search.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.txt_search.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txt_search.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.5!)
         Me.txt_search.ForeColor = System.Drawing.SystemColors.GrayText
-        Me.txt_search.Location = New System.Drawing.Point(22, 72)
+        Me.txt_search.Location = New System.Drawing.Point(22, 76)
         Me.txt_search.Name = "txt_search"
         Me.txt_search.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.txt_search.Size = New System.Drawing.Size(274, 20)
@@ -81,12 +81,14 @@ Partial Class secretary
         'secretary
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.ClientSize = New System.Drawing.Size(1138, 663)
+        Me.ClientSize = New System.Drawing.Size(1138, 611)
         Me.Controls.Add(Me.dtgv_secretaries)
         Me.Controls.Add(Me.btn_new_secretary)
         Me.Controls.Add(Me.txt_search)
+        Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.5!)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "secretary"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "secretary"
         CType(Me.dtgv_secretaries, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)

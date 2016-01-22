@@ -247,8 +247,8 @@ Public Class new_consult
                     Dim MyAdapter_Doctor_Patient As New Custom_Adapters
                     Dim MyAdapter_Patient_Record As New Custom_Adapters
                     If MyAdapter_Doctor_Patient.CUSTOM_TRANSACT_WITH_RETURN("SP_DoctorPatient", Param_Name, Param_Value) = 0 Then
-                        Param_Name = {"@action_type", "@sub_action", "@doctor_id", "@patient_id", "@clinic_id", "@username", "@password"}
-                        Param_Value = {2, 1, cmb_doctors.SelectedValue, cmb_patients.SelectedValue, My.Settings.ClinicID,
+                        Param_Name = {"@action_type", "@doctor_id", "@patient_id", "@clinic_id", "@username", "@password"}
+                        Param_Value = {0, cmb_doctors.SelectedValue, cmb_patients.SelectedValue, My.Settings.ClinicID,
                                             randomuname("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"),
                                             randomuname("ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890abcdefghijklmnopqrstuvwxyz")}
 
@@ -290,16 +290,14 @@ Public Class new_consult
                         End If
                     End If
 
-                    consult.DisplayRecords()
+                    Patient_Record.DisplayRecords()
                     MsgBox("Consultation Saved", , "Consultation NOTIFICATION")
                     'from appointment
                     If what_to_do = 2 Then
                         Param_Name = {"@action_type", "@sub_action", "@id", "@is_done", "@patient_record_id"}
-                        Param_Value = {1, 2, appointment_id, 1, newID}
+                        Param_Value = {1, 3, appointment_id, 1, newID}
                         MyAdapter_Patient_Record.CUSTOM_TRANSACT("SP_Consultation", Param_Name, Param_Value)
-                        today.DisplayAppointmentToday()
-                        incoming.DisplayAppointmentIncoming()
-                        Consultation.DisplayAppointmentsAll()
+                        Appointments.DisplayAppointments()
                         btn_new_treatment.Visible = False
                         btn_addfromtemplate.Visible = False
                         btn_saveastemplate.Visible = False
@@ -346,7 +344,7 @@ Public Class new_consult
                         End If
                     End If
 
-                    consult.DisplayRecords()
+                    Patient_Record.DisplayRecords()
                     MsgBox("Update Saved", , "Consultation NOTIFICATION")
                     Me.Text = "View Consultation"
                     ts_edit.Visible = True

@@ -134,36 +134,37 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationEvents.vb" />
-    <Compile Include="Custom_Adapters.vb" />
-    <Compile Include="db_connection.vb" />
-    <Compile Include="frm_login.Designer.vb">
+    <Compile Include="Tools\Custom_Adapters.vb" />
+    <Compile Include="Tools\db_connection.vb" />
+    <Compile Include="Form_Main.Designer.vb">
+      <DependentUpon>Form_Main.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form_Main.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tools\frm_login.Designer.vb">
       <DependentUpon>frm_login.vb</DependentUpon>
     </Compile>
-    <Compile Include="frm_login.vb">
+    <Compile Include="Tools\frm_login.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Inner Forms\consult.Designer.vb">
-      <DependentUpon>consult.vb</DependentUpon>
+    <Compile Include="Tools\Helpers.vb" />
+    <Compile Include="Inner Forms\Appointments.Designer.vb">
+      <DependentUpon>Appointments.vb</DependentUpon>
     </Compile>
-    <Compile Include="Inner Forms\consult.vb">
+    <Compile Include="Inner Forms\Appointments.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Inner Forms\Consultation.Designer.vb">
-      <DependentUpon>Consultation.vb</DependentUpon>
+    <Compile Include="Inner Forms\Patient_Record.Designer.vb">
+      <DependentUpon>Patient_Record.vb</DependentUpon>
     </Compile>
-    <Compile Include="Inner Forms\Consultation.vb">
+    <Compile Include="Inner Forms\Patient_Record.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Inner Forms\Doctors.Designer.vb">
       <DependentUpon>Doctors.vb</DependentUpon>
     </Compile>
     <Compile Include="Inner Forms\Doctors.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Inner Forms\incoming.Designer.vb">
-      <DependentUpon>incoming.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Inner Forms\incoming.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Inner Forms\librabries.Designer.vb">
@@ -176,12 +177,6 @@
       <DependentUpon>secretary.vb</DependentUpon>
     </Compile>
     <Compile Include="Inner Forms\secretary.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Inner Forms\today.Designer.vb">
-      <DependentUpon>today.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Inner Forms\today.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Inner Forms\user_contact.Designer.vb">
@@ -250,6 +245,12 @@
     <Compile Include="Libraries\select_treatment_template.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Libraries\Setup_Clinic_Details.Designer.vb">
+      <DependentUpon>Setup_Clinic_Details.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Libraries\Setup_Clinic_Details.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="main_menu.Designer.vb">
       <DependentUpon>main_menu.vb</DependentUpon>
     </Compile>
@@ -277,12 +278,12 @@
     <Compile Include="Inner Forms\Patients.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="mysqbridge_upload.vb" />
-    <Compile Include="mysqlbridge.vb" />
-    <Compile Include="Notification.Designer.vb">
+    <Compile Include="Tools\Helper_Upload.vb" />
+    <Compile Include="Tools\Helper_Download.vb" />
+    <Compile Include="Tools\Notification.Designer.vb">
       <DependentUpon>Notification.vb</DependentUpon>
     </Compile>
-    <Compile Include="Notification.vb">
+    <Compile Include="Tools\Notification.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Patient_Record\patient_diagnosis.Designer.vb">
@@ -297,22 +298,22 @@
     <Compile Include="Patient_Record\test_result.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="select_time.Designer.vb">
+    <Compile Include="Tools\select_time.Designer.vb">
       <DependentUpon>select_time.vb</DependentUpon>
     </Compile>
-    <Compile Include="select_time.vb">
+    <Compile Include="Tools\select_time.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TextAndButtonControl.Designer.vb">
+    <Compile Include="Tools\TextAndButtonControl.Designer.vb">
       <DependentUpon>TextAndButtonControl.vb</DependentUpon>
     </Compile>
-    <Compile Include="TextAndButtonControl.vb">
+    <Compile Include="Tools\TextAndButtonControl.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="userbtnAccept.Designer.vb">
+    <Compile Include="Tools\userbtnAccept.Designer.vb">
       <DependentUpon>userbtnAccept.vb</DependentUpon>
     </Compile>
-    <Compile Include="userbtnAccept.vb">
+    <Compile Include="Tools\userbtnAccept.vb">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Verification.Designer.vb">
@@ -341,20 +342,20 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="frm_login.resx">
+    <EmbeddedResource Include="Form_Main.resx">
+      <DependentUpon>Form_Main.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tools\frm_login.resx">
       <DependentUpon>frm_login.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Inner Forms\consult.resx">
-      <DependentUpon>consult.vb</DependentUpon>
+    <EmbeddedResource Include="Inner Forms\Appointments.resx">
+      <DependentUpon>Appointments.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Inner Forms\Consultation.resx">
-      <DependentUpon>Consultation.vb</DependentUpon>
+    <EmbeddedResource Include="Inner Forms\Patient_Record.resx">
+      <DependentUpon>Patient_Record.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Inner Forms\Doctors.resx">
       <DependentUpon>Doctors.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Inner Forms\incoming.resx">
-      <DependentUpon>incoming.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Inner Forms\librabries.resx">
       <DependentUpon>librabries.vb</DependentUpon>
@@ -364,9 +365,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Inner Forms\secretary.resx">
       <DependentUpon>secretary.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Inner Forms\today.resx">
-      <DependentUpon>today.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Inner Forms\user_contact.resx">
       <DependentUpon>user_contact.vb</DependentUpon>
@@ -401,6 +399,9 @@
     <EmbeddedResource Include="Libraries\select_treatment_template.resx">
       <DependentUpon>select_treatment_template.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Libraries\Setup_Clinic_Details.resx">
+      <DependentUpon>Setup_Clinic_Details.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="main_menu.resx">
       <DependentUpon>main_menu.vb</DependentUpon>
     </EmbeddedResource>
@@ -410,7 +411,7 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Notification.resx">
+    <EmbeddedResource Include="Tools\Notification.resx">
       <DependentUpon>Notification.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Patient_Record\patient_diagnosis.resx">
@@ -419,13 +420,13 @@
     <EmbeddedResource Include="Patient_Record\test_result.resx">
       <DependentUpon>test_result.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="select_time.resx">
+    <EmbeddedResource Include="Tools\select_time.resx">
       <DependentUpon>select_time.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TextAndButtonControl.resx">
+    <EmbeddedResource Include="Tools\TextAndButtonControl.resx">
       <DependentUpon>TextAndButtonControl.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="userbtnAccept.resx">
+    <EmbeddedResource Include="Tools\userbtnAccept.resx">
       <DependentUpon>userbtnAccept.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Verification.resx">

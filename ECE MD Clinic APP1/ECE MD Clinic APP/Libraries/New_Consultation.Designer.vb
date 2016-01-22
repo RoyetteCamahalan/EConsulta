@@ -39,84 +39,88 @@ Partial Class New_Consultation
         '
         Me.cmb_patients.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
         Me.cmb_patients.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.cmb_patients.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!)
         Me.cmb_patients.FormattingEnabled = True
-        Me.cmb_patients.Location = New System.Drawing.Point(41, 37)
+        Me.cmb_patients.Location = New System.Drawing.Point(48, 43)
         Me.cmb_patients.Name = "cmb_patients"
-        Me.cmb_patients.Size = New System.Drawing.Size(229, 21)
+        Me.cmb_patients.Size = New System.Drawing.Size(266, 23)
         Me.cmb_patients.TabIndex = 1
         '
         'cmb_doctors
         '
+        Me.cmb_doctors.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!)
         Me.cmb_doctors.FormattingEnabled = True
-        Me.cmb_doctors.Location = New System.Drawing.Point(41, 111)
+        Me.cmb_doctors.Location = New System.Drawing.Point(48, 128)
         Me.cmb_doctors.Name = "cmb_doctors"
-        Me.cmb_doctors.Size = New System.Drawing.Size(229, 21)
+        Me.cmb_doctors.Size = New System.Drawing.Size(266, 23)
         Me.cmb_doctors.TabIndex = 2
         '
         'dtp_date
         '
         Me.dtp_date.CustomFormat = "MM-dd-yyyy hh:mm tt"
-        Me.dtp_date.Font = New System.Drawing.Font("Modern No. 20", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dtp_date.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!)
         Me.dtp_date.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.dtp_date.Location = New System.Drawing.Point(41, 152)
+        Me.dtp_date.Location = New System.Drawing.Point(48, 175)
         Me.dtp_date.Name = "dtp_date"
         Me.dtp_date.ShowUpDown = True
-        Me.dtp_date.Size = New System.Drawing.Size(229, 28)
+        Me.dtp_date.Size = New System.Drawing.Size(266, 21)
         Me.dtp_date.TabIndex = 3
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Modern No. 20", 8.999999!, System.Drawing.FontStyle.Bold)
-        Me.Label1.Location = New System.Drawing.Point(38, 95)
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!)
+        Me.Label1.Location = New System.Drawing.Point(44, 110)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(93, 15)
+        Me.Label1.Size = New System.Drawing.Size(86, 15)
         Me.Label1.TabIndex = 4
         Me.Label1.Text = "Select Doctor :"
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Modern No. 20", 8.999999!, System.Drawing.FontStyle.Bold)
-        Me.Label2.Location = New System.Drawing.Point(38, 21)
+        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!)
+        Me.Label2.Location = New System.Drawing.Point(44, 24)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(98, 15)
+        Me.Label2.Size = New System.Drawing.Size(88, 15)
         Me.Label2.TabIndex = 5
         Me.Label2.Text = "Select Patient :"
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Modern No. 20", 8.999999!, System.Drawing.FontStyle.Bold)
-        Me.Label3.Location = New System.Drawing.Point(38, 136)
+        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!)
+        Me.Label3.Location = New System.Drawing.Point(44, 157)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(43, 15)
+        Me.Label3.Size = New System.Drawing.Size(39, 15)
         Me.Label3.TabIndex = 6
         Me.Label3.Text = "Date :"
         '
         'txt_notes
         '
-        Me.txt_notes.Location = New System.Drawing.Point(41, 209)
+        Me.txt_notes.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!)
+        Me.txt_notes.Location = New System.Drawing.Point(48, 241)
         Me.txt_notes.Multiline = True
         Me.txt_notes.Name = "txt_notes"
-        Me.txt_notes.Size = New System.Drawing.Size(229, 67)
+        Me.txt_notes.Size = New System.Drawing.Size(266, 77)
         Me.txt_notes.TabIndex = 5
         '
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Font = New System.Drawing.Font("Modern No. 20", 8.999999!, System.Drawing.FontStyle.Bold)
-        Me.Label5.Location = New System.Drawing.Point(38, 193)
+        Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!)
+        Me.Label5.Location = New System.Drawing.Point(44, 223)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(82, 15)
+        Me.Label5.Size = New System.Drawing.Size(81, 15)
         Me.Label5.TabIndex = 10
         Me.Label5.Text = "Comment(s) :"
         '
         'btn_cancel
         '
-        Me.btn_cancel.Location = New System.Drawing.Point(156, 282)
+        Me.btn_cancel.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!)
+        Me.btn_cancel.Location = New System.Drawing.Point(182, 325)
         Me.btn_cancel.Name = "btn_cancel"
-        Me.btn_cancel.Size = New System.Drawing.Size(114, 36)
+        Me.btn_cancel.Size = New System.Drawing.Size(133, 42)
         Me.btn_cancel.TabIndex = 7
         Me.btn_cancel.Text = "Cancel"
         Me.btn_cancel.UseVisualStyleBackColor = True
@@ -124,30 +128,30 @@ Partial Class New_Consultation
         'btn_save
         '
         Me.btn_save.Enabled = False
-        Me.btn_save.Location = New System.Drawing.Point(41, 282)
+        Me.btn_save.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!)
+        Me.btn_save.Location = New System.Drawing.Point(48, 325)
         Me.btn_save.Name = "btn_save"
-        Me.btn_save.Size = New System.Drawing.Size(114, 36)
+        Me.btn_save.Size = New System.Drawing.Size(133, 42)
         Me.btn_save.TabIndex = 6
         Me.btn_save.Text = "Save"
         Me.btn_save.UseVisualStyleBackColor = True
         '
         'Button1
         '
-        Me.Button1.Font = New System.Drawing.Font("Modern No. 20", 8.999999!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!)
         Me.Button1.ForeColor = System.Drawing.Color.Black
-        Me.Button1.Location = New System.Drawing.Point(100, 63)
+        Me.Button1.Location = New System.Drawing.Point(117, 73)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(117, 28)
+        Me.Button1.Size = New System.Drawing.Size(136, 32)
         Me.Button1.TabIndex = 11
         Me.Button1.Text = "Add Patient"
         Me.Button1.UseVisualStyleBackColor = True
         '
         'New_Consultation
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.BackColor = System.Drawing.Color.Lavender
-        Me.ClientSize = New System.Drawing.Size(306, 324)
+        Me.ClientSize = New System.Drawing.Size(360, 374)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.btn_cancel)
         Me.Controls.Add(Me.btn_save)
@@ -159,6 +163,7 @@ Partial Class New_Consultation
         Me.Controls.Add(Me.dtp_date)
         Me.Controls.Add(Me.cmb_doctors)
         Me.Controls.Add(Me.cmb_patients)
+        Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
         Me.MinimizeBox = False

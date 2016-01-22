@@ -67,14 +67,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ECE MD Clinic APP.exe" size="2063872">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ECE MD Clinic APP.exe" size="2128384">
       <assemblyIdentity name="ECE MD Clinic APP" version="2.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>B8yv7junc7gEEV62RFgi3j0ZZb0=</dsig:DigestValue>
+        <dsig:DigestValue>8GefUK9O5RNie6ZpqAgskRGPJqE=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -102,13 +102,13 @@
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="ECE MD Clinic APP.exe.config" size="2495">
+  <file name="ECE MD Clinic APP.exe.config" size="2618">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>ynWuOhv7av8gZlJiDuxrif2amkE=</dsig:DigestValue>
+      <dsig:DigestValue>t/9QqHbGBaGN3sYVpOU5k+qygvo=</dsig:DigestValue>
     </hash>
   </file>
   <compatibility xmlns="urn:schemas-microsoft-com:compatibility.v1">

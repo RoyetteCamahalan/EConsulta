@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="ClinicID" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">1</Value>
+      <Value Profile="(Default)">2</Value>
     </Setting>
     <Setting Name="TimeToCheckInterval" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">20</Value>
@@ -13,6 +13,9 @@
     </Setting>
     <Setting Name="Last_Update_Web" Type="System.String" Scope="User">
       <Value Profile="(Default)">2015-11-04 12:00:00</Value>
+    </Setting>
+    <Setting Name="transition" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>
 </SettingsFile>

@@ -22,6 +22,8 @@
     Private ButtonColumn As Integer = 5
 #End Region
     Private Sub Patients_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        Me.SetStyle(ControlStyles.SupportsTransparentBackColor, True)
+        Me.BackColor = Color.Transparent
         dtgv_patients.DefaultCellStyle.SelectionBackColor = Color.LightBlue
         dtgv_patients.DefaultCellStyle.SelectionForeColor = Color.Black
         dtgv_patients.RowTemplate.Height = Default_Row_Height
@@ -53,7 +55,7 @@
             Dim myCol As Integer = e.ColumnIndex
             If myCol = ButtonColumn And myRow <> -1 Then
                 dtgv_patients.Rows(myRow).Cells(myCol).Style.ForeColor = Color.Red
-                Dim f = New Font("Hoefler Text Black", 8.25, FontStyle.Underline)
+                Dim f = New Font("Microsoft Sans Serif", 9, FontStyle.Underline)
                 dtgv_patients.Rows(myRow).Cells(myCol).Style.Font = f
                 dtgv_patients.Cursor = Cursors.Hand
                 dtgv_patients.Rows(myRow).DefaultCellStyle.BackColor = Color.LightBlue
@@ -71,7 +73,7 @@
             Dim myCol As Integer = e.ColumnIndex
             If myCol = ButtonColumn And myRow <> -1 Then
                 dtgv_patients.Rows(myRow).Cells(myCol).Style.ForeColor = Color.Black
-                Dim f = New Font("Hoefler Text Black", 8.25, FontStyle.Regular)
+                Dim f = New Font("Microsoft Sans Serif", 8.5, FontStyle.Regular)
                 dtgv_patients.Rows(myRow).Cells(myCol).Style.Font = f
                 dtgv_patients.Rows(myRow).DefaultCellStyle.BackColor = Color.White
                 dtgv_patients.Cursor = Cursors.Arrow

@@ -102,14 +102,10 @@ F:\Files\Projects\ECE MD Clinic APP1\ECE MD Clinic APP\obj\x86\Debug\ECE MD Clin
 C:\Users\Royette\EConsulta\ECE MD Clinic APP1\ECE MD Clinic APP\obj\x86\Debug\ECE MD Clinic APP.vbprojResolveAssemblyReference.cache
 C:\Users\Royette\EConsulta\ECE MD Clinic APP1\ECE MD Clinic APP\obj\x86\Debug\ECE MD Clinic APP.vbproj.ResolveComReference.cache
 C:\Users\Royette\EConsulta\ECE MD Clinic APP1\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.frm_login.resources
-C:\Users\Royette\EConsulta\ECE MD Clinic APP1\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.consult.resources
-C:\Users\Royette\EConsulta\ECE MD Clinic APP1\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.Consultation.resources
 C:\Users\Royette\EConsulta\ECE MD Clinic APP1\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.Doctors.resources
-C:\Users\Royette\EConsulta\ECE MD Clinic APP1\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.incoming.resources
 C:\Users\Royette\EConsulta\ECE MD Clinic APP1\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.librabries.resources
 C:\Users\Royette\EConsulta\ECE MD Clinic APP1\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.Patients.resources
 C:\Users\Royette\EConsulta\ECE MD Clinic APP1\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.secretary.resources
-C:\Users\Royette\EConsulta\ECE MD Clinic APP1\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.today.resources
 C:\Users\Royette\EConsulta\ECE MD Clinic APP1\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.user_contact.resources
 C:\Users\Royette\EConsulta\ECE MD Clinic APP1\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.user_profile.resources
 C:\Users\Royette\EConsulta\ECE MD Clinic APP1\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.add_prescription.resources
@@ -148,3 +144,7 @@ C:\Users\Royette\EConsulta\ECE MD Clinic APP1\ECE MD Clinic APP\bin\Debug\Newton
 C:\Users\Royette\EConsulta\ECE MD Clinic APP1\ECE MD Clinic APP\bin\Debug\Newtonsoft.Json.xml
 C:\Users\Royette\EConsulta\ECE MD Clinic APP1\ECE MD Clinic APP\obj\x86\Debug\ECE MD Clinic APP.exe.manifest
 C:\Users\Royette\EConsulta\ECE MD Clinic APP1\ECE MD Clinic APP\obj\x86\Debug\ECE MD Clinic APP.application
+C:\Users\Royette\EConsulta\ECE MD Clinic APP1\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.Form_Main.resources
+C:\Users\Royette\EConsulta\ECE MD Clinic APP1\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.Appointments.resources
+C:\Users\Royette\EConsulta\ECE MD Clinic APP1\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.Setup_Clinic_Details.resources
+C:\Users\Royette\EConsulta\ECE MD Clinic APP1\ECE MD Clinic APP\obj\x86\Debug\ECE_MD_Clinic_APP.Patient_Record.resources

@@ -1,42 +1,39 @@
 ﻿Imports System.Data
 Imports System.Data.SqlClient
 Public Class View_Secretary
-    Private da As New SqlDataAdapter
-    Private ds As New DataSet
-    Private dsaddress As New DataSet
+    Private DT_Region As New DataTable
+    Private DT_Province As New DataTable
+    Private DT_Municipality As New DataTable
+    Private DT_Barangay As New DataTable
+
     Public secretary_id, isactive As Integer
     Private fname, mname, lname, mobileno, telno, email, houseno, street, uname, pword As String
     Private barangay, municipality, province, region_id As Integer
     Private email_checker As Boolean = True
     Private errormsg As String = ""
-    Private Sub View_Secretary_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+#Region "Methods"
+    Private Sub FillFields()
         Try
-            dsaddress.Tables.Add("regions")
-            dsaddress.Tables.Add("provinces")
-            dsaddress.Tables.Add("municipalities")
-            dsaddress.Tables.Add("barangays")
-            display_regions()
-            ds.Clear()
-            da = New SqlDataAdapter("SELECT s.`fname`, s.`mname`, s.`lname`, s.`username`, s.`password`, s.`address_house_no`, s.`address_street`, b.`id`, m.`id`, " +
-                                      "p.`id`, r.`id`, s.`cell_no`, s.`tel_no`, s.`email`, s.`photo`, s.`created_at`, s.`updated_at`, s.`deleted_at` FROM `secretaries`s " +
-                                      "inner join clinic_secretary cs on cs.secretary_id=s.id INNER join barangays b on b.id=s.barangay_id INNER JOIN municipalities m ON" +
-                                      " m.id=b.municipality_id INNER JOIN provinces p on p.id=m.province_id INNER JOIN regions r ON r.id=p.region_id WHERE s.id=" + secretary_id.ToString, conn)
-            da.Fill(ds)
-            If ds.Tables(0).Rows.Count > 0 Then
-                fname = ds.Tables(0).Rows(0).Item(0).ToString
-                mname = ds.Tables(0).Rows(0).Item(1).ToString
-                lname = ds.Tables(0).Rows(0).Item(2).ToString
-                uname = ds.Tables(0).Rows(0).Item(3).ToString
-                pword = ds.Tables(0).Rows(0).Item(4).ToString
-                houseno = ds.Tables(0).Rows(0).Item(5).ToString
-                street = ds.Tables(0).Rows(0).Item(6).ToString
-                barangay = ds.Tables(0).Rows(0).Item(7)
-                municipality = ds.Tables(0).Rows(0).Item(8)
-                province = ds.Tables(0).Rows(0).Item(9)
-                region_id = ds.Tables(0).Rows(0).Item(10)
-                mobileno = ds.Tables(0).Rows(0).Item(11).ToString
-                telno = ds.Tables(0).Rows(0).Item(12).ToString
-                email = ds.Tables(0).Rows(0).Item(13).ToString
+            Dim Param_Name As String() = {"@action_type", "@sub_action", "@id"}
+            Dim Param_Value As String() = {2, 2, secretary_id}
+            Dim MyAdapter As New Custom_Adapters
+            Dim DT As New DataTable
+            DT = MyAdapter.CUSTOM_RETRIEVE("SP_Secretary", Param_Name, Param_Value)
+            If DT.Rows.Count > 0 Then
+                fname = DT.Rows(0).Item(0).ToString
+                mname = DT.Rows(0).Item(1).ToString
+                lname = DT.Rows(0).Item(2).ToString
+                uname = DT.Rows(0).Item(3).ToString
+                pword = DT.Rows(0).Item(4).ToString
+                houseno = DT.Rows(0).Item(5).ToString
+                street = DT.Rows(0).Item(6).ToString
+                barangay = DT.Rows(0).Item(7)
+                municipality = DT.Rows(0).Item(8)
+                province = DT.Rows(0).Item(9)
+                region_id = DT.Rows(0).Item(10)
+                mobileno = DT.Rows(0).Item(11).ToString
+                telno = DT.Rows(0).Item(12).ToString
+                email = DT.Rows(0).Item(13).ToString
                 fill_fields()
                 If isactive = 1 Then
                     chk_isactive.Checked = True
@@ -44,10 +41,34 @@ Public Class View_Secretary
                     chk_isactive.Checked = False
                 End If
             End If
-
         Catch ex As Exception
 
         End Try
+    End Sub
+    Private Sub display_regions()
+        Try
+            DT_Region.Clear()
+            DT_Province.Clear()
+            DT_Municipality.Clear()
+            DT_Barangay.Clear()
+            Dim Param_Name As String() = {"@action_type"}
+            Dim Param_Value As String() = {0}
+            Dim MyAdapter As New Custom_Adapters
+            With cmb_region
+                .DataSource = MyAdapter.CUSTOM_RETRIEVE("SP_ADDRESS", Param_Name, Param_Value)
+                .DisplayMember = "name"
+                .ValueMember = "id"
+                .SelectedIndex = -1
+            End With
+        Catch ex As Exception
+
+        End Try
+        cmb_region.Text = "Select Region"
+    End Sub
+#End Region
+    Private Sub View_Secretary_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        display_regions()
+        FillFields()
     End Sub
     Private Sub btn_gedit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ts_edit.Click
         enable_fields()
@@ -251,40 +272,27 @@ Public Class View_Secretary
     End Sub
     Public Sub update_secretary_profile()
         Try
-            Dim cmd As New SqlCommand
-            cmd = New SqlCommand("UPDATE `secretaries` SET `username`=@uname,`password`=@pword," +
-                                   "`lname`=@lname,`mname`=@mname,`fname`=@fname," +
-                                   "`address_house_no`=@houseno,`address_street`=@street,`barangay_id`=@brgy," +
-                                   "`cell_no`=@celno,`tel_no`=@telno," +
-                                   "`email`=@email,`updated_at`=CURRENT_TIMESTAMP where id=@id", conn)
-            cmd.Parameters.AddWithValue("uname", txt_uname.Text)
-            cmd.Parameters.AddWithValue("pword", txt_pword.Text)
-            cmd.Parameters.AddWithValue("fname", txt_fname.Text)
-            cmd.Parameters.AddWithValue("mname", txt_mname.Text)
-            cmd.Parameters.AddWithValue("lname", txt_lname.Text)
-            cmd.Parameters.AddWithValue("houseno", txt_houseno.Text)
-            cmd.Parameters.AddWithValue("street", txt_street.Text)
-            cmd.Parameters.AddWithValue("brgy", cmb_barangay.SelectedValue.ToString)
-            cmd.Parameters.AddWithValue("celno", txt_mobileno.Text)
-            cmd.Parameters.AddWithValue("telno", txt_telno.Text)
-            cmd.Parameters.AddWithValue("email", txt_email.Text)
-            cmd.Parameters.AddWithValue("id", secretary_id.ToString)
-            cmd.ExecuteNonQuery()
+            Dim Param_Name As String() = {"@action_type", "@sub_action", "@id", "@username", "@password",
+                                          "@lname", "@mname", "@fname",
+                                          "@houseno", "@street", "@barangay_id",
+                                          "@mobile", "@tel", "@email"}
+            Dim Param_Value As String() = {1, 1, secretary_id, txt_uname.Text, txt_pword.Text,
+                                           txt_fname.Text, txt_mname.Text, txt_lname.Text,
+                                           txt_houseno.Text, txt_street.Text, cmb_barangay.SelectedValue,
+                                           txt_mobileno.Text, txt_telno.Text, txt_email.Text}
+            Dim MyAdapter As New Custom_Adapters
+            MyAdapter.CUSTOM_TRANSACT("SP_Secretary", Param_Name, Param_Value)
 
-
+            Dim checker_is_active As Integer = 0
             If chk_isactive.Checked = True And isactive = 0 Then
-                cmd = New SqlCommand("INSERT INTO `secretary_access`(`clinic_id`, `doctor_id`, `secretary_id`) VALUES (@clinic_id,@doctor_id,@sec_id)", conn)
-                cmd.Parameters.AddWithValue("sec_id", secretary_id.ToString)
-                cmd.Parameters.AddWithValue("doctor_id", UserId.ToString)
-                cmd.Parameters.AddWithValue("clinic_id", My.Settings.ClinicID.ToString)
-                cmd.ExecuteNonQuery()
-            ElseIf chk_isactive.Checked = False And isactive = 1 Then
-                cmd = New SqlCommand("DELETE FROM `secretary_access` WHERE clinic_id=@clinic_id AND doctor_id=@doctor_id AND secretary_id=@sec_id", conn)
-                    cmd.Parameters.AddWithValue("sec_id", secretary_id.ToString)
-                    cmd.Parameters.AddWithValue("doctor_id", UserId.ToString)
-                    cmd.Parameters.AddWithValue("clinic_id", My.Settings.ClinicID.ToString)
-                    cmd.ExecuteNonQuery()
+                checker_is_active = 1
             End If
+
+            Param_Name = {"@action_type", "@sub_action", "@id", "@clinic_id", "@doctor_id",
+                                          "@is_active"}
+            Param_Value = {1, 2, secretary_id, My.Settings.ClinicID, UserId,
+                                           checker_is_active}
+            MyAdapter.CUSTOM_TRANSACT("SP_Secretary", Param_Name, Param_Value)
 
             MsgBox("New Update Saved", MsgBoxStyle.OkOnly, "Clinic App")
             disable_fields()
@@ -302,11 +310,8 @@ Public Class View_Secretary
             region_id = cmb_region.SelectedValue
             uname = txt_uname.Text
             pword = txt_pword.Text
-            If (secretary.txt_search.Text = "Search Secretary Here") Then
-                secretary.DisplaySecretaries()
-            Else
-                secretary.DisplaySecretaries()
-            End If
+
+            secretary.DisplaySecretaries()
 
             If chk_isactive.Checked = True Then
                 isactive = 1
@@ -314,38 +319,22 @@ Public Class View_Secretary
                 isactive = 0
             End If
         Catch ex As Exception
-            MsgBox(ex.ToString)
+
         End Try
     End Sub
 
     Private Sub ts_close_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ts_close.Click
         Me.Dispose()
     End Sub
-    Private Sub display_regions()
-        Try
-            dsaddress.Clear()
-            da = New SqlDataAdapter("select id,name from regions", conn)
-            da.Fill(dsaddress, "regions")
-            With cmb_region
-                .DataSource = dsaddress.Tables("regions")
-                .DisplayMember = "name"
-                .ValueMember = "id"
-                .SelectedIndex = -1
-
-            End With
-        Catch ex As Exception
-
-        End Try
-        cmb_region.Text = "Select Region"
-    End Sub
 
     Private Sub cmb_region_SelectedValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmb_region.SelectedValueChanged
         Try
-            dsaddress.Tables("provinces").Clear()
-            da = New SqlDataAdapter("select id,name from provinces where region_id=" + cmb_region.SelectedValue.ToString, conn)
-            da.Fill(dsaddress, "provinces")
+            DT_Province.Clear()
+            Dim Param_Name As String() = {"@action_type", "@region_id"}
+            Dim Param_Value As String() = {1, cmb_region.SelectedValue}
+            Dim MyAdapter As New Custom_Adapters
             With cmb_province
-                .DataSource = dsaddress.Tables("provinces")
+                .DataSource = MyAdapter.CUSTOM_RETRIEVE("SP_ADDRESS", Param_Name, Param_Value)
                 .DisplayMember = "name"
                 .ValueMember = "id"
                 .SelectedIndex = -1
@@ -359,11 +348,12 @@ Public Class View_Secretary
 
     Private Sub cmb_province_SelectedValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmb_province.SelectedValueChanged
         Try
-            dsaddress.Tables("municipalities").Clear()
-            da = New SqlDataAdapter("select id,name from municipalities where province_id=" + cmb_province.SelectedValue.ToString, conn)
-            da.Fill(dsaddress, "municipalities")
+            DT_Municipality.Clear()
+            Dim Param_Name As String() = {"@action_type", "@province_id"}
+            Dim Param_Value As String() = {2, cmb_province.SelectedValue}
+            Dim MyAdapter As New Custom_Adapters
             With cmb_municipality
-                .DataSource = dsaddress.Tables("municipalities")
+                .DataSource = MyAdapter.CUSTOM_RETRIEVE("SP_ADDRESS", Param_Name, Param_Value)
                 .DisplayMember = "name"
                 .ValueMember = "id"
                 .SelectedIndex = -1
@@ -377,11 +367,12 @@ Public Class View_Secretary
 
     Private Sub cmb_municipality_SelectedValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmb_municipality.SelectedValueChanged
         Try
-            dsaddress.Tables("barangays").Clear()
-            da = New SqlDataAdapter("select id,name from barangays where municipality_id=" + cmb_municipality.SelectedValue.ToString, conn)
-            da.Fill(dsaddress, "barangays")
+            DT_Barangay.Clear()
+            Dim Param_Name As String() = {"@action_type", "@municipal_id"}
+            Dim Param_Value As String() = {3, cmb_municipality.SelectedValue}
+            Dim MyAdapter As New Custom_Adapters
             With cmb_barangay
-                .DataSource = dsaddress.Tables("barangays")
+                .DataSource = MyAdapter.CUSTOM_RETRIEVE("SP_ADDRESS", Param_Name, Param_Value)
                 .DisplayMember = "name"
                 .ValueMember = "id"
                 .SelectedIndex = -1

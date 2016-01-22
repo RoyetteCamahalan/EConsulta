@@ -609,11 +609,11 @@ Partial Class View_patient
         '
         Me.lbl_Diagnosis.AutoSize = True
         Me.lbl_Diagnosis.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.lbl_Diagnosis.Font = New System.Drawing.Font("News701 BT", 20.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl_Diagnosis.Font = New System.Drawing.Font("Microsoft Sans Serif", 20.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbl_Diagnosis.ForeColor = System.Drawing.Color.CornflowerBlue
         Me.lbl_Diagnosis.Location = New System.Drawing.Point(524, 257)
         Me.lbl_Diagnosis.Name = "lbl_Diagnosis"
-        Me.lbl_Diagnosis.Size = New System.Drawing.Size(151, 32)
+        Me.lbl_Diagnosis.Size = New System.Drawing.Size(143, 31)
         Me.lbl_Diagnosis.TabIndex = 24
         Me.lbl_Diagnosis.Text = "Diagnosis"
         '
@@ -621,11 +621,11 @@ Partial Class View_patient
         '
         Me.lbl_history.AutoSize = True
         Me.lbl_history.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.lbl_history.Font = New System.Drawing.Font("News701 BT", 20.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl_history.Font = New System.Drawing.Font("Microsoft Sans Serif", 20.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbl_history.ForeColor = System.Drawing.Color.Blue
         Me.lbl_history.Location = New System.Drawing.Point(108, 257)
         Me.lbl_history.Name = "lbl_history"
-        Me.lbl_history.Size = New System.Drawing.Size(158, 32)
+        Me.lbl_history.Size = New System.Drawing.Size(143, 31)
         Me.lbl_history.TabIndex = 23
         Me.lbl_history.Text = "HISTORY"
         '
@@ -633,11 +633,11 @@ Partial Class View_patient
         '
         Me.lbl_test_results.AutoSize = True
         Me.lbl_test_results.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.lbl_test_results.Font = New System.Drawing.Font("News701 BT", 20.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl_test_results.Font = New System.Drawing.Font("Microsoft Sans Serif", 20.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbl_test_results.ForeColor = System.Drawing.Color.CornflowerBlue
         Me.lbl_test_results.Location = New System.Drawing.Point(831, 260)
         Me.lbl_test_results.Name = "lbl_test_results"
-        Me.lbl_test_results.Size = New System.Drawing.Size(250, 32)
+        Me.lbl_test_results.Size = New System.Drawing.Size(229, 31)
         Me.lbl_test_results.TabIndex = 22
         Me.lbl_test_results.Text = "TEST RESULTS"
         '
@@ -781,6 +781,8 @@ Partial Class View_patient
         Me.Controls.Add(Me.ToolStrip1)
         Me.Controls.Add(Me.Panel1)
         Me.IsMdiContainer = True
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "View_patient"
         Me.ShowIcon = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen

@@ -77,7 +77,7 @@ Partial Class View_Secretary
         '
         'txt_fname
         '
-        Me.txt_fname.Location = New System.Drawing.Point(341, 55)
+        Me.txt_fname.Location = New System.Drawing.Point(353, 84)
         Me.txt_fname.Name = "txt_fname"
         Me.txt_fname.ReadOnly = True
         Me.txt_fname.Size = New System.Drawing.Size(209, 20)
@@ -85,7 +85,7 @@ Partial Class View_Secretary
         '
         'txt_mname
         '
-        Me.txt_mname.Location = New System.Drawing.Point(341, 81)
+        Me.txt_mname.Location = New System.Drawing.Point(353, 110)
         Me.txt_mname.Name = "txt_mname"
         Me.txt_mname.ReadOnly = True
         Me.txt_mname.Size = New System.Drawing.Size(209, 20)
@@ -93,7 +93,7 @@ Partial Class View_Secretary
         '
         'txt_lname
         '
-        Me.txt_lname.Location = New System.Drawing.Point(341, 107)
+        Me.txt_lname.Location = New System.Drawing.Point(353, 136)
         Me.txt_lname.Name = "txt_lname"
         Me.txt_lname.ReadOnly = True
         Me.txt_lname.Size = New System.Drawing.Size(209, 20)
@@ -102,7 +102,7 @@ Partial Class View_Secretary
         'Label13
         '
         Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(260, 110)
+        Me.Label13.Location = New System.Drawing.Point(258, 139)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(64, 13)
         Me.Label13.TabIndex = 43
@@ -111,7 +111,7 @@ Partial Class View_Secretary
         'Label12
         '
         Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(260, 84)
+        Me.Label12.Location = New System.Drawing.Point(258, 113)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(75, 13)
         Me.Label12.TabIndex = 42
@@ -120,7 +120,7 @@ Partial Class View_Secretary
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(260, 58)
+        Me.Label11.Location = New System.Drawing.Point(258, 87)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(63, 13)
         Me.Label11.TabIndex = 41
@@ -290,7 +290,7 @@ Partial Class View_Secretary
         Me.chk_isactive.AutoSize = True
         Me.chk_isactive.Enabled = False
         Me.chk_isactive.ForeColor = System.Drawing.Color.Red
-        Me.chk_isactive.Location = New System.Drawing.Point(261, 142)
+        Me.chk_isactive.Location = New System.Drawing.Point(264, 55)
         Me.chk_isactive.Name = "chk_isactive"
         Me.chk_isactive.Size = New System.Drawing.Size(140, 17)
         Me.chk_isactive.TabIndex = 116

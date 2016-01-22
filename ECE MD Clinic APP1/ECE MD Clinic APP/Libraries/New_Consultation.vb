@@ -24,7 +24,7 @@
                 Param_Value = {2, 1, UserId, ""}
                 cmb_doctors.Enabled = True
             Else
-                Param_Value = {2, 1, "", UserId}
+                Param_Value = {2, 2, "", UserId}
                 cmb_doctors.Enabled = False
             End If
             With cmb_doctors
@@ -93,25 +93,23 @@
                 Dim MyAdapter_Doctor_Patient As New Custom_Adapters
                 Dim MyAdapter_Patient_Consultation As New Custom_Adapters
                 If MyAdapter_Doctor_Patient.CUSTOM_TRANSACT_WITH_RETURN("SP_DoctorPatient", Param_Name, Param_Value) = 0 Then
-                    Param_Name = {"@action_type", "@sub_action", "@doctor_id", "@patient_id", "@clinic_id", "@username", "@password"}
-                    Param_Value = {2, 1, cmb_doctors.SelectedValue, cmb_patients.SelectedValue, My.Settings.ClinicID,
+                    Param_Name = {"@action_type", "@doctor_id", "@patient_id", "@clinic_id", "@username", "@password"}
+                    Param_Value = {0, cmb_doctors.SelectedValue, cmb_patients.SelectedValue, My.Settings.ClinicID,
                                         randomuname("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"),
                                         randomuname("ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890abcdefghijklmnopqrstuvwxyz")}
 
                     MyAdapter_Doctor_Patient.CUSTOM_TRANSACT("SP_DoctorPatient", Param_Name, Param_Value)
                 End If
-                Param_Name = {"@action_type", "@doctor_id", "@patient_id", "@clinic_id", "@consult_date", "@consult_time", "@is_done", "@comment_doctor"}
+                Param_Name = {"@action_type", "@doctor_id", "@patient_id", "@clinic_id", "@consult_date", "@consult_time", "@comment_doctor"}
                 Param_Value = {0, cmb_doctors.SelectedValue,
                                   cmb_patients.SelectedValue,
                                   My.Settings.ClinicID,
                                   Convert.ToDateTime(dtp_date.Value.ToString).ToString("yyyy-MM-dd hh:mm:ss"),
-                                  dtp_date.Value.ToLongTimeString, 0, txt_notes.Text}
+                                  dtp_date.Value.ToLongTimeString, txt_notes.Text}
 
                 If MyAdapter_Patient_Consultation.CUSTOM_TRANSACT("SP_Consultation", Param_Name, Param_Value) Then
                     MsgBox("Appointment Saved", , "APPOINTMENT NOTIFICATION")
-                    Consultation.DisplayAppointmentsAll()
-                    today.DisplayAppointmentToday()
-                    incoming.DisplayAppointmentIncoming()
+                    Appointments.DisplayAppointments()
                 Else
                     MsgBox("Failed")
                 End If
@@ -126,9 +124,7 @@
                                                consult_id}
                 If MyAdapter_Patient_Consultation.CUSTOM_TRANSACT("SP_Consultation", Param_Name, Param_Value) Then
                     MsgBox("Appointment Saved", , "APPOINTMENT NOTIFICATION")
-                    Consultation.DisplayAppointmentsAll()
-                    today.DisplayAppointmentToday()
-                    incoming.DisplayAppointmentIncoming()
+                    Appointments.DisplayAppointments()
                 Else
                     MsgBox("Failed")
                 End If

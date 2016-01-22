@@ -23,23 +23,12 @@ Partial Class Patients
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Patients))
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Me.txt_search = New System.Windows.Forms.TextBox()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.btn_add_patient = New System.Windows.Forms.Button()
         Me.dtgv_patients = New System.Windows.Forms.DataGridView()
+        Me.txt_search = New System.Windows.Forms.TextBox()
         CType(Me.dtgv_patients, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
-        '
-        'txt_search
-        '
-        Me.txt_search.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.txt_search.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txt_search.ForeColor = System.Drawing.SystemColors.GrayText
-        Me.txt_search.Location = New System.Drawing.Point(25, 76)
-        Me.txt_search.Name = "txt_search"
-        Me.txt_search.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.txt_search.Size = New System.Drawing.Size(274, 20)
-        Me.txt_search.TabIndex = 1
         '
         'btn_add_patient
         '
@@ -62,14 +51,14 @@ Partial Class Patients
         Me.dtgv_patients.AllowUserToOrderColumns = True
         Me.dtgv_patients.AllowUserToResizeRows = False
         Me.dtgv_patients.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dtgv_patients.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.5!)
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dtgv_patients.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.dtgv_patients.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dtgv_patients.Location = New System.Drawing.Point(25, 102)
         Me.dtgv_patients.MultiSelect = False
@@ -80,6 +69,17 @@ Partial Class Patients
         Me.dtgv_patients.Size = New System.Drawing.Size(1093, 485)
         Me.dtgv_patients.TabIndex = 2
         '
+        'txt_search
+        '
+        Me.txt_search.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.txt_search.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.5!)
+        Me.txt_search.ForeColor = System.Drawing.SystemColors.GrayText
+        Me.txt_search.Location = New System.Drawing.Point(25, 76)
+        Me.txt_search.Name = "txt_search"
+        Me.txt_search.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.txt_search.Size = New System.Drawing.Size(274, 20)
+        Me.txt_search.TabIndex = 1
+        '
         'Patients
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -89,6 +89,7 @@ Partial Class Patients
         Me.Controls.Add(Me.btn_add_patient)
         Me.Controls.Add(Me.txt_search)
         Me.Cursor = System.Windows.Forms.Cursors.Default
+        Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.5!)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "Patients"
         Me.ShowIcon = False
@@ -100,7 +101,7 @@ Partial Class Patients
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents txt_search As System.Windows.Forms.TextBox
     Friend WithEvents btn_add_patient As System.Windows.Forms.Button
     Friend WithEvents dtgv_patients As System.Windows.Forms.DataGridView
+    Friend WithEvents txt_search As System.Windows.Forms.TextBox
 End Class

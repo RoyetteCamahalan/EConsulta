@@ -33,13 +33,13 @@ Public Class main_menu
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
-        consult.MdiParent = Me
-        consult.Parent = Me.TabPage3
-        consult.Show()
+        Patient_Record.MdiParent = Me
+        Patient_Record.Parent = Me.TabPage3
+        Patient_Record.Show()
         Counter_Notification()
 
     End Sub
-    
+
     Private Sub reload_cached()
         Try
             If Directory.Exists("C:\ECE MD Clinic APP\TEST_RESULTS_CACHED") Then
@@ -54,24 +54,12 @@ Public Class main_menu
     Private Sub TabControl1_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TabControl1.SelectedIndexChanged
         Select Case TabControl1.SelectedIndex
             Case 0
-                consult.MdiParent = Me
-                consult.Parent = Me.TabPage3
-                consult.Show()
-                
+                Patient_Record.MdiParent = Me
+                Patient_Record.Parent = Me.TabPage3
+                Patient_Record.Show()
+
             Case 1
-                Consultation.MdiParent = Me
-                Consultation.Parent = Me.consultation_panel
-                today.MdiParent = Me
-                today.Parent = Me.consultation_panel
-                incoming.MdiParent = Me
-                incoming.Parent = Me.consultation_panel
-                If consultation_tag Then
-                    Consultation.Show()
-                ElseIf today_tag Then
-                    today.Show()
-                ElseIf incoming_tag Then
-                    incoming.Show()
-                End If
+
             Case 2
 
                 Patients.MdiParent = Me
@@ -104,10 +92,6 @@ Public Class main_menu
         today_bar.FillColor = Color.LightGray
         incoming_bar.FillColor = Color.LightGray
 
-        today.Hide()
-        incoming.Hide()
-        Consultation.Show()
-        Consultation.Timer1.Start()
     End Sub
 
     Private Sub lbl_today_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lbl_today.Click
@@ -122,10 +106,6 @@ Public Class main_menu
         consultation_bar.FillColor = Color.LightGray
         incoming_bar.FillColor = Color.LightGray
 
-        Consultation.Hide()
-        incoming.Hide()
-        today.Show()
-        today.Timer1.Start()
     End Sub
 
     Private Sub lbl_incoming_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lbl_incoming.Click
@@ -141,10 +121,6 @@ Public Class main_menu
         consultation_bar.FillColor = Color.LightGray
         today_bar.FillColor = Color.LightGray
 
-        Consultation.Hide()
-        today.Hide()
-        incoming.Show()
-        incoming.Timer1.Start()
     End Sub
 
     Private Sub lbl_today_MouseEnter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lbl_today.MouseEnter

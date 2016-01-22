@@ -1,12 +1,6 @@
-﻿Imports System.Data
-Imports System.Data.SqlClient
-Imports System.Text.StringBuilder
+﻿Imports System.Text.StringBuilder
 Imports System.IO
 Public Class View_patient
-    Private da As New SqlDataAdapter
-    Private ds As New DataSet
-    Private dsaddress As New DataSet
-    Private cmd As New SqlCommand
     Private selected_index As Integer = 0
     Public patient_id As Integer = 0
     Private historyinfo As New patient_history
@@ -18,6 +12,13 @@ Public Class View_patient
     Private profilename As String = ""
     Private temppath As String = Path.GetTempPath()
     Private tempprofilepic As String = ""
+#Region "Variables"
+    Private DT_Region As New DataTable
+    Private DT_Province As New DataTable
+    Private DT_Municipality As New DataTable
+    Private DT_Barangay As New DataTable
+    Private DT_PatientInfo As New DataTable
+#End Region
     Private Sub Patient_History_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         imagedialog.Filter = "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png"
 
@@ -28,63 +29,60 @@ Public Class View_patient
         historyinfo.Show()
         diagnosis.Hide()
         testresult.Hide()
-        dsaddress.Tables.Add("regions")
-        dsaddress.Tables.Add("provinces")
-        dsaddress.Tables.Add("municipalities")
-        dsaddress.Tables.Add("barangays")
         display_regions()
         display_patient_info(patient_id)
     End Sub
     Private Sub display_patient_info(ByRef id As Integer)
         Try
-            ds.Clear()
-            da = New SqlDataAdapter("SELECT pa.`id`,pa.`fname`, pa.`mname`, pa.`lname`, pa.`address_house_no`, pa.`address_street`, b.`id`, m.`id`, p.`id`, r.`id`, pa.`mobile_no`, pa.`tel_no`, pa.`email_address`, pa.`photo`, pa.`created_at`, pa.`updated_at`,pa.sex,pa.civil_status,pa.occupation,pa.height,pa.weight,pa.birthdate FROM `patients` pa INNER join barangays b on b.id=pa.barangay_id INNER JOIN municipalities m ON m.id=b.municipality_id INNER JOIN provinces p on p.id=m.province_id INNER JOIN regions r ON r.id=p.region_id where pa.id=" + id.ToString, conn)
-            da.Fill(ds)
+            Dim Param_Name As String() = {"@action_type", "@sub_action", "@id"}
+            Dim Param_Value As String() = {2, 3, patient_id}
+            Dim MyAdapter As New Custom_Adapters
+            DT_PatientInfo = MyAdapter.CUSTOM_RETRIEVE("SP_Patient", Param_Name, Param_Value)
             'profilepic
-            profilename = "C:\ECE MD Clinic APP\PROFILE_PICTURES\Patients\" + ds.Tables(0).Rows(0).Item(13).ToString
-            If Not (ds.Tables(0).Rows(0).Item(13).ToString = "") And File.Exists(profilename) Then
-                profile_pic.Image = Image.FromFile(profilename)
-                tempprofilepic = ds.Tables(0).Rows(0).Item(13).ToString
-                If Not File.Exists(temppath + tempprofilepic) Then
-                    My.Computer.FileSystem.CopyFile(profilename, temppath + tempprofilepic)
-                End If
+            'profilename = "C:\ECE MD Clinic APP\PROFILE_PICTURES\Patients\" + ds.Tables(0).Rows(0).Item(13).ToString
+            'If Not (ds.Tables(0).Rows(0).Item(13).ToString = "") And File.Exists(profilename) Then
+            '    profile_pic.Image = Image.FromFile(profilename)
+            '    tempprofilepic = ds.Tables(0).Rows(0).Item(13).ToString
+            '    If Not File.Exists(temppath + tempprofilepic) Then
+            '        My.Computer.FileSystem.CopyFile(profilename, temppath + tempprofilepic)
+            '    End If
 
-            Else
-                profilename = ""
-            End If
+            'Else
+            '    profilename = ""
+            'End If
 
             'General Info
-            txt_fname.Text = ds.Tables(0).Rows(0).Item(1).ToString
-            txt_mname.Text = ds.Tables(0).Rows(0).Item(2).ToString
-            txt_lname.Text = ds.Tables(0).Rows(0).Item(3).ToString
-            Me.Text = ds.Tables(0).Rows(0).Item(1).ToString + " " + ds.Tables(0).Rows(0).Item(2).ToString + " " + ds.Tables(0).Rows(0).Item(3).ToString + " - Patient Record"
-            If ds.Tables(0).Rows(0).Item(16).ToString = "Male" Then
+            txt_fname.Text = DT_PatientInfo.Rows(0).Item(1).ToString
+            txt_mname.Text = DT_PatientInfo.Rows(0).Item(2).ToString
+            txt_lname.Text = DT_PatientInfo.Rows(0).Item(3).ToString
+            Me.Text = DT_PatientInfo.Rows(0).Item(1).ToString + " " + DT_PatientInfo.Rows(0).Item(2).ToString + " " + DT_PatientInfo.Rows(0).Item(3).ToString + " - Patient Record"
+            If DT_PatientInfo.Rows(0).Item(16).ToString = "Male" Then
                 rdbtn_male.Checked = True
-            ElseIf ds.Tables(0).Rows(0).Item(16).ToString = "Female" Then
+            ElseIf DT_PatientInfo.Rows(0).Item(16).ToString = "Female" Then
                 rdbtn_female.Checked = True
             End If
-            If ds.Tables(0).Rows(0).Item(17).ToString = "Single" Then
+            If DT_PatientInfo.Rows(0).Item(17).ToString = "Single" Then
                 cmv_status.SelectedIndex = 0
-            ElseIf ds.Tables(0).Rows(0).Item(17).ToString = "Married" Then
+            ElseIf DT_PatientInfo.Rows(0).Item(17).ToString = "Married" Then
                 cmv_status.SelectedIndex = 1
-            ElseIf ds.Tables(0).Rows(0).Item(17).ToString = "Widow" Then
+            ElseIf DT_PatientInfo.Rows(0).Item(17).ToString = "Widow" Then
                 cmv_status.SelectedIndex = 2
             End If
-            txt_occupation.Text = ds.Tables(0).Rows(0).Item(18).ToString
-            txt_height.Text = ds.Tables(0).Rows(0).Item(19).ToString
-            txt_weight.Text = ds.Tables(0).Rows(0).Item(20).ToString
+            txt_occupation.Text = DT_PatientInfo.Rows(0).Item(18).ToString
+            txt_height.Text = DT_PatientInfo.Rows(0).Item(19).ToString
+            txt_weight.Text = DT_PatientInfo.Rows(0).Item(20).ToString
 
 
-            txt_mobileno.Text = ds.Tables(0).Rows(0).Item(10).ToString
-            txt_telno.Text = ds.Tables(0).Rows(0).Item(11).ToString
-            txt_email.Text = ds.Tables(0).Rows(0).Item(12).ToString
+            txt_mobileno.Text = DT_PatientInfo.Rows(0).Item(10).ToString
+            txt_telno.Text = DT_PatientInfo.Rows(0).Item(11).ToString
+            txt_email.Text = DT_PatientInfo.Rows(0).Item(12).ToString
 
-            txt_houseno.Text = ds.Tables(0).Rows(0).Item(4).ToString
-            cmb_region.SelectedValue = ds.Tables(0).Rows(0).Item(9)
-            cmb_province.SelectedValue = ds.Tables(0).Rows(0).Item(8)
-            cmb_municipality.SelectedValue = ds.Tables(0).Rows(0).Item(7)
-            cmb_barangay.SelectedValue = ds.Tables(0).Rows(0).Item(6)
-            birthdate_picker.Value = ds.Tables(0).Rows(0).Item(21).ToString
+            txt_houseno.Text = DT_PatientInfo.Rows(0).Item(4).ToString
+            cmb_region.SelectedValue = DT_PatientInfo.Rows(0).Item(9)
+            cmb_province.SelectedValue = DT_PatientInfo.Rows(0).Item(8)
+            cmb_municipality.SelectedValue = DT_PatientInfo.Rows(0).Item(7)
+            cmb_barangay.SelectedValue = DT_PatientInfo.Rows(0).Item(6)
+            birthdate_picker.Value = DT_PatientInfo.Rows(0).Item(21).ToString
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
@@ -197,38 +195,38 @@ Public Class View_patient
 
     Private Sub changeprofile_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles changeprofile.Click
         Try
-            If imagedialog.ShowDialog = DialogResult.OK Then
-                Dim filename As String = System.IO.Path.GetFileNameWithoutExtension(imagedialog.FileName)
-                Dim extention As String = System.IO.Path.GetExtension(imagedialog.FileName)
-                Dim filepath As String = imagedialog.FileName
-                Dim newfilename As String = randomstring(filename) + extention
-                While File.Exists("C:\ECE MD Clinic APP\PROFILE_PICTURES\Patients\" + newfilename)
-                    newfilename = randomstring(filename) + extention
-                End While
-                If Not profilename = "" Then
-                    profile_pic.Image.Dispose()
-                End If
-                profile_pic.Image = Image.FromFile(imagedialog.FileName)
-                Dim res As MsgBoxResult
-                res = MsgBox("Are you sure you want to SAVE this Profile Pic", MsgBoxStyle.YesNoCancel, "Warning!")
-                If res = MsgBoxResult.Yes Then
-                    cmd = New SqlCommand("update patients set photo=@param1 where id=" + patient_id.ToString, conn)
-                    cmd.Parameters.AddWithValue("param1", newfilename)
-                    cmd.ExecuteNonQuery()
-                    My.Computer.FileSystem.CopyFile(filepath, "C:\ECE MD Clinic APP\PROFILE_PICTURES\Patients\" + newfilename)
-                    My.Computer.FileSystem.CopyFile(filepath, temppath + newfilename)
-                    If File.Exists(profilename) And Not profilename = "" Then
-                        My.Computer.FileSystem.DeleteFile(profilename, FileIO.UIOption.OnlyErrorDialogs, FileIO.RecycleOption.DeletePermanently)
-                        My.Computer.FileSystem.DeleteFile(temppath + tempprofilepic, FileIO.UIOption.OnlyErrorDialogs, FileIO.RecycleOption.DeletePermanently)
+            'If imagedialog.ShowDialog = DialogResult.OK Then
+            '    Dim filename As String = System.IO.Path.GetFileNameWithoutExtension(imagedialog.FileName)
+            '    Dim extention As String = System.IO.Path.GetExtension(imagedialog.FileName)
+            '    Dim filepath As String = imagedialog.FileName
+            '    Dim newfilename As String = randomstring(filename) + extention
+            '    While File.Exists("C:\ECE MD Clinic APP\PROFILE_PICTURES\Patients\" + newfilename)
+            '        newfilename = randomstring(filename) + extention
+            '    End While
+            '    If Not profilename = "" Then
+            '        profile_pic.Image.Dispose()
+            '    End If
+            '    profile_pic.Image = Image.FromFile(imagedialog.FileName)
+            '    Dim res As MsgBoxResult
+            '    res = MsgBox("Are you sure you want to SAVE this Profile Pic", MsgBoxStyle.YesNoCancel, "Warning!")
+            '    If res = MsgBoxResult.Yes Then
+            '        cmd = New SqlCommand("update patients set photo=@param1 where id=" + patient_id.ToString, conn)
+            '        cmd.Parameters.AddWithValue("param1", newfilename)
+            '        cmd.ExecuteNonQuery()
+            '        My.Computer.FileSystem.CopyFile(filepath, "C:\ECE MD Clinic APP\PROFILE_PICTURES\Patients\" + newfilename)
+            '        My.Computer.FileSystem.CopyFile(filepath, temppath + newfilename)
+            '        If File.Exists(profilename) And Not profilename = "" Then
+            '            My.Computer.FileSystem.DeleteFile(profilename, FileIO.UIOption.OnlyErrorDialogs, FileIO.RecycleOption.DeletePermanently)
+            '            My.Computer.FileSystem.DeleteFile(temppath + tempprofilepic, FileIO.UIOption.OnlyErrorDialogs, FileIO.RecycleOption.DeletePermanently)
 
-                    End If
-                    profilename = "C:\ECE MD Clinic APP\PROFILE_PICTURES\Patients\" + newfilename
-                    tempprofilepic = newfilename
-                Else
-                    profile_pic.Image = Image.FromFile(profilename)
-                End If
+            '        End If
+            '        profilename = "C:\ECE MD Clinic APP\PROFILE_PICTURES\Patients\" + newfilename
+            '        tempprofilepic = newfilename
+            '    Else
+            '        profile_pic.Image = Image.FromFile(profilename)
+            '    End If
 
-            End If
+            'End If
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
@@ -245,36 +243,36 @@ Public Class View_patient
     End Function
 
     Private Sub RemoveProfilePictureToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RemoveProfilePictureToolStripMenuItem.Click
-        Try
-            Dim res As MsgBoxResult
-            res = MsgBox("Are you sure you want to REMOVE this Profile Picture", MsgBoxStyle.YesNo, "Warning!")
-            If res = MsgBoxResult.Yes Then
-                
-                profile_pic.Image.Dispose()
-                profile_pic.Image = Image.FromFile("C:\ECE MD Clinic APP\PROFILE_PICTURES\default_profile.png")
-                If File.Exists(profilename) Then
-                    My.Computer.FileSystem.DeleteFile(profilename, FileIO.UIOption.OnlyErrorDialogs, FileIO.RecycleOption.DeletePermanently)
-                End If
-                profilename = ""
-                cmd = New SqlCommand("update patients set photo='' where id=" + patient_id.ToString, conn)
-                cmd.ExecuteNonQuery()
-            End If
-        Catch ex As Exception
-            profile_pic.Image = Image.FromFile(profilename)
-        End Try
+        'Try
+        '    Dim res As MsgBoxResult
+        '    res = MsgBox("Are you sure you want to REMOVE this Profile Picture", MsgBoxStyle.YesNo, "Warning!")
+        '    If res = MsgBoxResult.Yes Then
+
+        '        profile_pic.Image.Dispose()
+        '        profile_pic.Image = Image.FromFile("C:\ECE MD Clinic APP\PROFILE_PICTURES\default_profile.png")
+        '        If File.Exists(profilename) Then
+        '            My.Computer.FileSystem.DeleteFile(profilename, FileIO.UIOption.OnlyErrorDialogs, FileIO.RecycleOption.DeletePermanently)
+        '        End If
+        '        profilename = ""
+        '        cmd = New SqlCommand("update patients set photo='' where id=" + patient_id.ToString, conn)
+        '        cmd.ExecuteNonQuery()
+        '    End If
+        'Catch ex As Exception
+        '    profile_pic.Image = Image.FromFile(profilename)
+        'End Try
 
     End Sub
 
     Private Sub profile_pic_MouseDoubleClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles profile_pic.MouseDoubleClick
-        If File.Exists(temppath + tempprofilepic) Then
-            Process.Start("C:\windows\system32\rundll32.exe", "C:\WINDOWS\System32\shimgvw.dll,ImageView_Fullscreen " & temppath + tempprofilepic)
-        Else
-            If Not profilename = "" Then
-                My.Computer.FileSystem.CopyFile(profilename, temppath + tempprofilepic)
-                Process.Start("C:\windows\system32\rundll32.exe", "C:\WINDOWS\System32\shimgvw.dll,ImageView_Fullscreen " & temppath + tempprofilepic)
-            End If
-            
-        End If
+        'If File.Exists(temppath + tempprofilepic) Then
+        '    Process.Start("C:\windows\system32\rundll32.exe", "C:\WINDOWS\System32\shimgvw.dll,ImageView_Fullscreen " & temppath + tempprofilepic)
+        'Else
+        '    If Not profilename = "" Then
+        '        My.Computer.FileSystem.CopyFile(profilename, temppath + tempprofilepic)
+        '        Process.Start("C:\windows\system32\rundll32.exe", "C:\WINDOWS\System32\shimgvw.dll,ImageView_Fullscreen " & temppath + tempprofilepic)
+        '    End If
+
+        'End If
     End Sub
 
     Private Sub View_patient_KeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles MyBase.KeyDown
@@ -353,47 +351,50 @@ Public Class View_patient
 
     Private Sub ts_save_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ts_save.Click
         Try
-            cmd = New SqlCommand("UPDATE `patients` SET `fname`=@fname,`mname`=@mname,`lname`=@lname,`occupation`=@occupation,`birthdate`=@bdate,`sex`=@sex,`civil_status`=@status,`height`=@height,`weight`=@weight,`email_address`=@email,`mobile_no`=@mobile,`tel_no`=@tel,`address_house_no`=@houseno,`barangay_id`=@barangay,updated_at=CURRENT_TIMESTAMP where id=@id", conn)
-            cmd.Parameters.AddWithValue("fname", txt_fname.Text)
-            cmd.Parameters.AddWithValue("mname", txt_mname.Text)
-            cmd.Parameters.AddWithValue("lname", txt_lname.Text)
-            cmd.Parameters.AddWithValue("occupation", txt_occupation.Text)
-            cmd.Parameters.AddWithValue("bdate", birthdate_picker.Value.ToString("yyyy-MM-dd"))
+            Dim MyAdapter As New Custom_Adapters
+            Dim Sex As String = ""
             If rdbtn_female.Checked = True Then
-                cmd.Parameters.AddWithValue("sex", "Female")
+                Sex = "Female"
             ElseIf rdbtn_male.Checked = True Then
-                cmd.Parameters.AddWithValue("sex", "Male")
+                Sex = "Male"
             End If
-            If cmv_status.SelectedIndex = -1 Then
-                cmd.Parameters.AddWithValue("status", "")
+            Dim Param_Name As String() = {"@action_type", "@sub_action", "@id",
+                                          "@fname", "@mname", "@lname",
+                                          "@occupation", "@birthdate", "@sex",
+                                          "@civil_status", "@height", "@weight",
+                                          "@email", "@mobile", "@tel",
+                                          "@houseno", "@barangay_id"}
+            Dim Param_Value As String() = {1, 1, patient_id,
+                                           txt_fname.Text, txt_mname.Text, txt_lname.Text,
+                                           txt_occupation.Text, birthdate_picker.Value.ToString("yyyy-MM-dd"), Sex,
+                                           cmv_status.SelectedText, txt_height.Text, txt_weight.Text,
+                                           txt_email.Text, txt_mobileno.Text, txt_telno.Text,
+                                           txt_houseno.Text, cmb_barangay.SelectedValue.ToString}
+
+            If MyAdapter.CUSTOM_TRANSACT("SP_Patient", Param_Name, Param_Value) Then
+                MsgBox("New Update Saved", MsgBoxStyle.OkOnly, "Clinic App")
             Else
-                cmd.Parameters.AddWithValue("status", cmv_status.SelectedItem.ToString)
+                MsgBox("Saving Failed", MsgBoxStyle.OkOnly, "Clinic App")
             End If
-            cmd.Parameters.AddWithValue("height", txt_height.Text)
-            cmd.Parameters.AddWithValue("weight", txt_weight.Text)
-            cmd.Parameters.AddWithValue("email", txt_email.Text)
-            cmd.Parameters.AddWithValue("mobile", txt_mobileno.Text)
-            cmd.Parameters.AddWithValue("tel", txt_telno.Text)
-            cmd.Parameters.AddWithValue("houseno", txt_houseno.Text)
-            cmd.Parameters.AddWithValue("barangay", cmb_barangay.SelectedValue.ToString)
-            cmd.Parameters.AddWithValue("id", patient_id)
-            cmd.ExecuteNonQuery()
-            MsgBox("New Update Saved", MsgBoxStyle.OkOnly, "Clinic App")
+
         Catch ex As Exception
         End Try
         disable_fields()
     End Sub
     Private Sub display_regions()
         Try
-            dsaddress.Clear()
-            da = New SqlDataAdapter("select id,name from regions", conn)
-            da.Fill(dsaddress, "regions")
+            DT_Region.Clear()
+            DT_Province.Clear()
+            DT_Municipality.Clear()
+            DT_Barangay.Clear()
+            Dim Param_Name As String() = {"@action_type"}
+            Dim Param_Value As String() = {0}
+            Dim MyAdapter As New Custom_Adapters
             With cmb_region
-                .DataSource = dsaddress.Tables("regions")
+                .DataSource = MyAdapter.CUSTOM_RETRIEVE("SP_ADDRESS", Param_Name, Param_Value)
                 .DisplayMember = "name"
                 .ValueMember = "id"
                 .SelectedIndex = -1
-
             End With
         Catch ex As Exception
 
@@ -402,11 +403,12 @@ Public Class View_patient
     End Sub
     Private Sub cmb_region_SelectedValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmb_region.SelectedValueChanged
         Try
-            dsaddress.Tables("provinces").Clear()
-            da = New SqlDataAdapter("select id,name from provinces where region_id=" + cmb_region.SelectedValue.ToString, conn)
-            da.Fill(dsaddress, "provinces")
+            DT_Province.Clear()
+            Dim Param_Name As String() = {"@action_type", "@region_id"}
+            Dim Param_Value As String() = {1, cmb_region.SelectedValue}
+            Dim MyAdapter As New Custom_Adapters
             With cmb_province
-                .DataSource = dsaddress.Tables("provinces")
+                .DataSource = MyAdapter.CUSTOM_RETRIEVE("SP_ADDRESS", Param_Name, Param_Value)
                 .DisplayMember = "name"
                 .ValueMember = "id"
                 .SelectedIndex = -1
@@ -420,11 +422,12 @@ Public Class View_patient
 
     Private Sub cmb_province_SelectedValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmb_province.SelectedValueChanged
         Try
-            dsaddress.Tables("municipalities").Clear()
-            da = New SqlDataAdapter("select id,name from municipalities where province_id=" + cmb_province.SelectedValue.ToString, conn)
-            da.Fill(dsaddress, "municipalities")
+            DT_Municipality.Clear()
+            Dim Param_Name As String() = {"@action_type", "@province_id"}
+            Dim Param_Value As String() = {2, cmb_province.SelectedValue}
+            Dim MyAdapter As New Custom_Adapters
             With cmb_municipality
-                .DataSource = dsaddress.Tables("municipalities")
+                .DataSource = MyAdapter.CUSTOM_RETRIEVE("SP_ADDRESS", Param_Name, Param_Value)
                 .DisplayMember = "name"
                 .ValueMember = "id"
                 .SelectedIndex = -1
@@ -438,11 +441,12 @@ Public Class View_patient
 
     Private Sub cmb_municipality_SelectedValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmb_municipality.SelectedValueChanged
         Try
-            dsaddress.Tables("barangays").Clear()
-            da = New SqlDataAdapter("select id,name from barangays where municipality_id=" + cmb_municipality.SelectedValue.ToString, conn)
-            da.Fill(dsaddress, "barangays")
+            DT_Barangay.Clear()
+            Dim Param_Name As String() = {"@action_type", "@municipal_id"}
+            Dim Param_Value As String() = {3, cmb_municipality.SelectedValue}
+            Dim MyAdapter As New Custom_Adapters
             With cmb_barangay
-                .DataSource = dsaddress.Tables("barangays")
+                .DataSource = MyAdapter.CUSTOM_RETRIEVE("SP_ADDRESS", Param_Name, Param_Value)
                 .DisplayMember = "name"
                 .ValueMember = "id"
                 .SelectedIndex = -1

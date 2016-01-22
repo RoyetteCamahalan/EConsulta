@@ -371,20 +371,20 @@ Public Class New_Patient
             Dim Param_Name As String() = {"@action_type",
                                           "@fname", "@mname", "@lname",
                                           "@email", "@mobile", "@tel",
-                                          "@photo", "@occupation",
-                                          "@reffered_by","@reffered_to",
-                                          "@birthdate","@sex","@civil_status",
-                                          "@height","@weight",
-                                          "@houseno","@street","@barangay_id"}
+                                           "@occupation",
+                                          "@reffered_by", "@reffered_to",
+                                          "@birthdate", "@sex", "@civil_status",
+                                          "@height", "@weight",
+                                          "@houseno", "@street", "@barangay_id", "@server_id"}
             Dim Param_Value As String() = {0,
                                            patient_info_arr(0), patient_info_arr(1), patient_info_arr(2),
                                            patient_info_arr(15), patient_info_arr(16), patient_info_arr(17),
-                                           filename, patient_info_arr(5),
+                                            patient_info_arr(5),
                                            patient_info_arr(6), "",
                                            patient_info_arr(7), patient_info_arr(8), patient_info_arr(9),
                                            patient_info_arr(10), patient_info_arr(11),
-                                           patient_info_arr(12), patient_info_arr(13), patient_info_arr(14)}
-            If MyAdapter.CUSTOM_TRANSACT("SP_Doctors", Param_Name, Param_Value) Then
+                                           patient_info_arr(12), patient_info_arr(13), patient_info_arr(14), 0}
+            If MyAdapter.CUSTOM_TRANSACT("SP_Patient", Param_Name, Param_Value) Then
                 Patients.DisplayPatients()
                 New_Consultation.DisplayPatient()
                 new_consult.DisplayPatient()
@@ -542,8 +542,8 @@ Public Class New_Patient
     Private Sub cmb_region_SelectedValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmb_region.SelectedValueChanged
         Try
             DT_Province.Clear()
-            Dim Param_Name As String() = {"@action_type"}
-            Dim Param_Value As String() = {1}
+            Dim Param_Name As String() = {"@action_type", "@region_id"}
+            Dim Param_Value As String() = {1, cmb_region.SelectedValue}
             Dim MyAdapter As New Custom_Adapters
             With cmb_province
                 .DataSource = MyAdapter.CUSTOM_RETRIEVE("SP_ADDRESS", Param_Name, Param_Value)
@@ -561,8 +561,8 @@ Public Class New_Patient
     Private Sub cmb_province_SelectedValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmb_province.SelectedValueChanged
         Try
             DT_Municipality.Clear()
-            Dim Param_Name As String() = {"@action_type"}
-            Dim Param_Value As String() = {2}
+            Dim Param_Name As String() = {"@action_type", "@province_id"}
+            Dim Param_Value As String() = {2, cmb_province.SelectedValue}
             Dim MyAdapter As New Custom_Adapters
             With cmb_municipality
                 .DataSource = MyAdapter.CUSTOM_RETRIEVE("SP_ADDRESS", Param_Name, Param_Value)
@@ -580,8 +580,8 @@ Public Class New_Patient
     Private Sub cmb_municipality_SelectedValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmb_municipality.SelectedValueChanged
         Try
             DT_Barangay.Clear 
-            Dim Param_Name As String() = {"@action_type"}
-            Dim Param_Value As String() = {3}
+            Dim Param_Name As String() = {"@action_type", "@municipal_id"}
+            Dim Param_Value As String() = {3, cmb_municipality.SelectedValue}
             Dim MyAdapter As New Custom_Adapters
             With cmb_barangay
                 .DataSource = MyAdapter.CUSTOM_RETRIEVE("SP_ADDRESS", Param_Name, Param_Value)

@@ -7,7 +7,7 @@
             Dim MyAdapter As New Custom_Adapters
             With (dtgv_secretaries)
                 .DataSource = MyAdapter.CUSTOM_RETRIEVE("SP_Secretary", Param_Name, Param_Value)
-                .Columns(7).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+                .Columns(ButtonColumn).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
                 .Columns(5).Visible = False
             End With
         Catch ex As Exception
@@ -21,7 +21,7 @@
     End Function
 #End Region
 #Region "Variables"
-    Private ButtonColumn As Integer = 5
+    Private ButtonColumn As Integer = 7
 #End Region
     Private Sub txt_search_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txt_search.Leave
         If txt_search.Text = "" Then
@@ -36,6 +36,8 @@
     End Sub
 
     Private Sub secretary_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        Me.SetStyle(ControlStyles.SupportsTransparentBackColor, True)
+        Me.BackColor = Color.Transparent
         dtgv_secretaries.DefaultCellStyle.SelectionBackColor = Color.LightBlue
         dtgv_secretaries.DefaultCellStyle.SelectionForeColor = Color.Black
         dtgv_secretaries.RowTemplate.Height = Default_Row_Height
