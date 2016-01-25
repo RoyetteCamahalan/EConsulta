@@ -273,12 +273,12 @@ Public Class New_Patient
     Private Sub validate_contact_info()
         If cmb_barangay.SelectedIndex < 0 Then
             btn_next_contact_info.Enabled = False
-        Else
-            If email_checker Then
-                btn_next_contact_info.Enabled = True
-            Else
-                btn_next_contact_info.Enabled = False
-            End If
+            'Else
+            '    If email_checker Then
+            '        btn_next_contact_info.Enabled = True
+            '    Else
+            '        btn_next_contact_info.Enabled = False
+            '    End If
         End If
     End Sub
     Private Sub txt_fname_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txt_fname.TextChanged

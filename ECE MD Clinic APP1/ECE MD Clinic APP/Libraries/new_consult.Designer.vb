@@ -23,8 +23,8 @@ Partial Class new_consult
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(new_consult))
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.btn_add_patient = New System.Windows.Forms.Button()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -35,15 +35,6 @@ Partial Class new_consult
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.dtgv_treatments = New System.Windows.Forms.DataGridView()
-        Me.Med_Id = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Medicine_Name = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.No_Generics = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.qty = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Route = New System.Windows.Forms.DataGridViewComboBoxColumn()
-        Me.Frequency = New System.Windows.Forms.DataGridViewComboBoxColumn()
-        Me.Refills = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Duration = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column1 = New System.Windows.Forms.DataGridViewButtonColumn()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.lbl_last_updated = New System.Windows.Forms.Label()
         Me.dtp_date = New System.Windows.Forms.DateTimePicker()
@@ -62,11 +53,22 @@ Partial Class new_consult
         Me.btn_addfromtemplate = New System.Windows.Forms.Button()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.txt_notes = New System.Windows.Forms.TextBox()
+        Me.Label7 = New System.Windows.Forms.Label()
         Me.ob_gyne = New System.Windows.Forms.TabPage()
         Me.pogs = New System.Windows.Forms.TabPage()
         Me.ob_pogs_table = New System.Windows.Forms.TabPage()
         Me.guardian_info = New System.Windows.Forms.TabPage()
         Me.PrintForm1 = New Microsoft.VisualBasic.PowerPacks.Printing.PrintForm(Me.components)
+        Me.Med_Id = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Medicine_Name = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.No_Generics = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.qty = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Route = New System.Windows.Forms.DataGridViewComboBoxColumn()
+        Me.Frequency = New System.Windows.Forms.DataGridViewComboBoxColumn()
+        Me.Refills = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Duration = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column1 = New System.Windows.Forms.DataGridViewButtonColumn()
         CType(Me.dtgv_treatments, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStrip1.SuspendLayout()
         Me.TabControl1.SuspendLayout()
@@ -75,7 +77,7 @@ Partial Class new_consult
         '
         'btn_add_patient
         '
-        Me.btn_add_patient.Font = New System.Drawing.Font("Modern No. 20", 8.999999!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn_add_patient.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!)
         Me.btn_add_patient.ForeColor = System.Drawing.Color.Black
         Me.btn_add_patient.Location = New System.Drawing.Point(178, 59)
         Me.btn_add_patient.Name = "btn_add_patient"
@@ -87,20 +89,20 @@ Partial Class new_consult
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Modern No. 20", 8.999999!, System.Drawing.FontStyle.Bold)
+        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!)
         Me.Label2.Location = New System.Drawing.Point(-1, 14)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(98, 15)
+        Me.Label2.Size = New System.Drawing.Size(88, 15)
         Me.Label2.TabIndex = 16
         Me.Label2.Text = "Select Patient :"
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Modern No. 20", 8.999999!, System.Drawing.FontStyle.Bold)
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!)
         Me.Label1.Location = New System.Drawing.Point(-1, 114)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(93, 15)
+        Me.Label1.Size = New System.Drawing.Size(86, 15)
         Me.Label1.TabIndex = 15
         Me.Label1.Text = "Select Doctor :"
         '
@@ -127,34 +129,34 @@ Partial Class new_consult
         Me.txt_complaints.Location = New System.Drawing.Point(380, 32)
         Me.txt_complaints.Multiline = True
         Me.txt_complaints.Name = "txt_complaints"
-        Me.txt_complaints.Size = New System.Drawing.Size(398, 66)
+        Me.txt_complaints.Size = New System.Drawing.Size(398, 55)
         Me.txt_complaints.TabIndex = 23
         '
         'txt_findings
         '
-        Me.txt_findings.Location = New System.Drawing.Point(380, 132)
+        Me.txt_findings.Location = New System.Drawing.Point(380, 112)
         Me.txt_findings.Multiline = True
         Me.txt_findings.Name = "txt_findings"
-        Me.txt_findings.Size = New System.Drawing.Size(398, 72)
+        Me.txt_findings.Size = New System.Drawing.Size(398, 60)
         Me.txt_findings.TabIndex = 24
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Modern No. 20", 8.999999!, System.Drawing.FontStyle.Bold)
+        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!)
         Me.Label3.Location = New System.Drawing.Point(377, 14)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(80, 15)
+        Me.Label3.Size = New System.Drawing.Size(75, 15)
         Me.Label3.TabIndex = 25
         Me.Label3.Text = "Complaints :"
         '
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Font = New System.Drawing.Font("Modern No. 20", 8.999999!, System.Drawing.FontStyle.Bold)
-        Me.Label4.Location = New System.Drawing.Point(377, 114)
+        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!)
+        Me.Label4.Location = New System.Drawing.Point(377, 94)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(65, 15)
+        Me.Label4.Size = New System.Drawing.Size(60, 15)
         Me.Label4.TabIndex = 26
         Me.Label4.Text = "Findings :"
         '
@@ -165,13 +167,286 @@ Partial Class new_consult
         Me.dtgv_treatments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dtgv_treatments.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Med_Id, Me.Medicine_Name, Me.No_Generics, Me.qty, Me.Route, Me.Frequency, Me.Refills, Me.Duration, Me.Column1})
         Me.dtgv_treatments.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter
-        Me.dtgv_treatments.Location = New System.Drawing.Point(8, 256)
+        Me.dtgv_treatments.Location = New System.Drawing.Point(8, 263)
         Me.dtgv_treatments.MultiSelect = False
         Me.dtgv_treatments.Name = "dtgv_treatments"
         Me.dtgv_treatments.RowHeadersVisible = False
         Me.dtgv_treatments.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dtgv_treatments.Size = New System.Drawing.Size(784, 128)
         Me.dtgv_treatments.TabIndex = 27
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!)
+        Me.Label5.Location = New System.Drawing.Point(5, 238)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(84, 15)
+        Me.Label5.TabIndex = 28
+        Me.Label5.Text = "Prescriptions :"
+        '
+        'lbl_last_updated
+        '
+        Me.lbl_last_updated.AutoSize = True
+        Me.lbl_last_updated.Font = New System.Drawing.Font("MS Reference Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl_last_updated.Location = New System.Drawing.Point(8, 394)
+        Me.lbl_last_updated.Name = "lbl_last_updated"
+        Me.lbl_last_updated.Size = New System.Drawing.Size(106, 16)
+        Me.lbl_last_updated.TabIndex = 30
+        Me.lbl_last_updated.Text = "last_updated"
+        Me.lbl_last_updated.Visible = False
+        '
+        'dtp_date
+        '
+        Me.dtp_date.CustomFormat = "MM-dd-yyyy hh:mm tt"
+        Me.dtp_date.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!)
+        Me.dtp_date.Format = System.Windows.Forms.DateTimePickerFormat.Custom
+        Me.dtp_date.Location = New System.Drawing.Point(101, 190)
+        Me.dtp_date.Name = "dtp_date"
+        Me.dtp_date.ShowUpDown = True
+        Me.dtp_date.Size = New System.Drawing.Size(192, 20)
+        Me.dtp_date.TabIndex = 31
+        Me.dtp_date.Visible = False
+        '
+        'lbl_date
+        '
+        Me.lbl_date.AutoSize = True
+        Me.lbl_date.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!)
+        Me.lbl_date.Location = New System.Drawing.Point(1, 190)
+        Me.lbl_date.Name = "lbl_date"
+        Me.lbl_date.Size = New System.Drawing.Size(94, 15)
+        Me.lbl_date.TabIndex = 32
+        Me.lbl_date.Text = "Date and Time :"
+        Me.lbl_date.Visible = False
+        '
+        'timer_last_update
+        '
+        Me.timer_last_update.Interval = 1000
+        '
+        'btn_print_presciption
+        '
+        Me.btn_print_presciption.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btn_print_presciption.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.btn_print_presciption.Location = New System.Drawing.Point(666, 228)
+        Me.btn_print_presciption.Name = "btn_print_presciption"
+        Me.btn_print_presciption.Size = New System.Drawing.Size(112, 32)
+        Me.btn_print_presciption.TabIndex = 33
+        Me.btn_print_presciption.Text = "Print Prescription"
+        Me.btn_print_presciption.UseVisualStyleBackColor = True
+        Me.btn_print_presciption.Visible = False
+        '
+        'btn_new_treatment
+        '
+        Me.btn_new_treatment.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btn_new_treatment.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.btn_new_treatment.Location = New System.Drawing.Point(666, 228)
+        Me.btn_new_treatment.Name = "btn_new_treatment"
+        Me.btn_new_treatment.Size = New System.Drawing.Size(112, 32)
+        Me.btn_new_treatment.TabIndex = 34
+        Me.btn_new_treatment.Text = "New Detail"
+        Me.btn_new_treatment.UseVisualStyleBackColor = True
+        Me.btn_new_treatment.Visible = False
+        '
+        'ToolStrip1
+        '
+        Me.ToolStrip1.ImageScalingSize = New System.Drawing.Size(30, 30)
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ts_save, Me.ts_cancel, Me.ts_edit, Me.ts_close})
+        Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
+        Me.ToolStrip1.Name = "ToolStrip1"
+        Me.ToolStrip1.Size = New System.Drawing.Size(804, 52)
+        Me.ToolStrip1.TabIndex = 35
+        Me.ToolStrip1.Text = "ToolStrip1"
+        '
+        'ts_save
+        '
+        Me.ts_save.Image = CType(resources.GetObject("ts_save.Image"), System.Drawing.Image)
+        Me.ts_save.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ts_save.Name = "ts_save"
+        Me.ts_save.Size = New System.Drawing.Size(35, 49)
+        Me.ts_save.Text = "Save"
+        Me.ts_save.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        '
+        'ts_cancel
+        '
+        Me.ts_cancel.Image = CType(resources.GetObject("ts_cancel.Image"), System.Drawing.Image)
+        Me.ts_cancel.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ts_cancel.Name = "ts_cancel"
+        Me.ts_cancel.Size = New System.Drawing.Size(47, 49)
+        Me.ts_cancel.Text = "Cancel"
+        Me.ts_cancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        '
+        'ts_edit
+        '
+        Me.ts_edit.Image = CType(resources.GetObject("ts_edit.Image"), System.Drawing.Image)
+        Me.ts_edit.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ts_edit.Name = "ts_edit"
+        Me.ts_edit.Size = New System.Drawing.Size(37, 49)
+        Me.ts_edit.Text = " Edit "
+        Me.ts_edit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        Me.ts_edit.Visible = False
+        '
+        'ts_close
+        '
+        Me.ts_close.Image = CType(resources.GetObject("ts_close.Image"), System.Drawing.Image)
+        Me.ts_close.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ts_close.Name = "ts_close"
+        Me.ts_close.Size = New System.Drawing.Size(40, 49)
+        Me.ts_close.Text = "Close"
+        Me.ts_close.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        Me.ts_close.Visible = False
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!)
+        Me.Label6.Location = New System.Drawing.Point(-1, 157)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(78, 15)
+        Me.Label6.TabIndex = 37
+        Me.Label6.Text = "Department :"
+        Me.Label6.Visible = False
+        '
+        'cmb_department
+        '
+        Me.cmb_department.FormattingEnabled = True
+        Me.cmb_department.Location = New System.Drawing.Point(83, 155)
+        Me.cmb_department.Name = "cmb_department"
+        Me.cmb_department.Size = New System.Drawing.Size(208, 21)
+        Me.cmb_department.TabIndex = 36
+        Me.cmb_department.Visible = False
+        '
+        'btn_saveastemplate
+        '
+        Me.btn_saveastemplate.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btn_saveastemplate.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.btn_saveastemplate.Location = New System.Drawing.Point(430, 228)
+        Me.btn_saveastemplate.Name = "btn_saveastemplate"
+        Me.btn_saveastemplate.Size = New System.Drawing.Size(112, 32)
+        Me.btn_saveastemplate.TabIndex = 38
+        Me.btn_saveastemplate.Text = "Save as Template"
+        Me.btn_saveastemplate.UseVisualStyleBackColor = True
+        Me.btn_saveastemplate.Visible = False
+        '
+        'btn_addfromtemplate
+        '
+        Me.btn_addfromtemplate.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btn_addfromtemplate.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.btn_addfromtemplate.Location = New System.Drawing.Point(548, 228)
+        Me.btn_addfromtemplate.Name = "btn_addfromtemplate"
+        Me.btn_addfromtemplate.Size = New System.Drawing.Size(112, 32)
+        Me.btn_addfromtemplate.TabIndex = 39
+        Me.btn_addfromtemplate.Text = "Add from Template"
+        Me.btn_addfromtemplate.UseVisualStyleBackColor = True
+        Me.btn_addfromtemplate.Visible = False
+        '
+        'TabControl1
+        '
+        Me.TabControl1.Controls.Add(Me.TabPage1)
+        Me.TabControl1.Controls.Add(Me.ob_gyne)
+        Me.TabControl1.Controls.Add(Me.pogs)
+        Me.TabControl1.Controls.Add(Me.ob_pogs_table)
+        Me.TabControl1.Controls.Add(Me.guardian_info)
+        Me.TabControl1.Location = New System.Drawing.Point(0, 55)
+        Me.TabControl1.Name = "TabControl1"
+        Me.TabControl1.SelectedIndex = 0
+        Me.TabControl1.Size = New System.Drawing.Size(808, 439)
+        Me.TabControl1.TabIndex = 40
+        '
+        'TabPage1
+        '
+        Me.TabPage1.Controls.Add(Me.txt_notes)
+        Me.TabPage1.Controls.Add(Me.Label7)
+        Me.TabPage1.Controls.Add(Me.cmb_patients)
+        Me.TabPage1.Controls.Add(Me.btn_addfromtemplate)
+        Me.TabPage1.Controls.Add(Me.cmb_doctors)
+        Me.TabPage1.Controls.Add(Me.btn_saveastemplate)
+        Me.TabPage1.Controls.Add(Me.Label1)
+        Me.TabPage1.Controls.Add(Me.Label6)
+        Me.TabPage1.Controls.Add(Me.Label2)
+        Me.TabPage1.Controls.Add(Me.cmb_department)
+        Me.TabPage1.Controls.Add(Me.btn_add_patient)
+        Me.TabPage1.Controls.Add(Me.txt_complaints)
+        Me.TabPage1.Controls.Add(Me.btn_new_treatment)
+        Me.TabPage1.Controls.Add(Me.txt_findings)
+        Me.TabPage1.Controls.Add(Me.btn_print_presciption)
+        Me.TabPage1.Controls.Add(Me.Label3)
+        Me.TabPage1.Controls.Add(Me.lbl_date)
+        Me.TabPage1.Controls.Add(Me.Label4)
+        Me.TabPage1.Controls.Add(Me.dtp_date)
+        Me.TabPage1.Controls.Add(Me.dtgv_treatments)
+        Me.TabPage1.Controls.Add(Me.lbl_last_updated)
+        Me.TabPage1.Controls.Add(Me.Label5)
+        Me.TabPage1.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage1.Name = "TabPage1"
+        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage1.Size = New System.Drawing.Size(800, 413)
+        Me.TabPage1.TabIndex = 0
+        Me.TabPage1.Text = "General Information"
+        Me.TabPage1.UseVisualStyleBackColor = True
+        '
+        'txt_notes
+        '
+        Me.txt_notes.Location = New System.Drawing.Point(380, 193)
+        Me.txt_notes.Multiline = True
+        Me.txt_notes.Name = "txt_notes"
+        Me.txt_notes.Size = New System.Drawing.Size(398, 29)
+        Me.txt_notes.TabIndex = 40
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!)
+        Me.Label7.Location = New System.Drawing.Point(377, 176)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(45, 15)
+        Me.Label7.TabIndex = 41
+        Me.Label7.Text = "Notes :"
+        '
+        'ob_gyne
+        '
+        Me.ob_gyne.Location = New System.Drawing.Point(4, 22)
+        Me.ob_gyne.Name = "ob_gyne"
+        Me.ob_gyne.Padding = New System.Windows.Forms.Padding(3)
+        Me.ob_gyne.Size = New System.Drawing.Size(800, 413)
+        Me.ob_gyne.TabIndex = 1
+        Me.ob_gyne.Text = "Ob-Gyne"
+        Me.ob_gyne.UseVisualStyleBackColor = True
+        '
+        'pogs
+        '
+        Me.pogs.Location = New System.Drawing.Point(4, 22)
+        Me.pogs.Name = "pogs"
+        Me.pogs.Size = New System.Drawing.Size(800, 413)
+        Me.pogs.TabIndex = 2
+        Me.pogs.Text = "Pogs Obstetrical Sheet"
+        Me.pogs.UseVisualStyleBackColor = True
+        '
+        'ob_pogs_table
+        '
+        Me.ob_pogs_table.Location = New System.Drawing.Point(4, 22)
+        Me.ob_pogs_table.Name = "ob_pogs_table"
+        Me.ob_pogs_table.Size = New System.Drawing.Size(800, 413)
+        Me.ob_pogs_table.TabIndex = 3
+        Me.ob_pogs_table.Text = "Ob-Gyne and Pods Table"
+        Me.ob_pogs_table.UseVisualStyleBackColor = True
+        '
+        'guardian_info
+        '
+        Me.guardian_info.Location = New System.Drawing.Point(4, 22)
+        Me.guardian_info.Name = "guardian_info"
+        Me.guardian_info.Padding = New System.Windows.Forms.Padding(3)
+        Me.guardian_info.Size = New System.Drawing.Size(800, 413)
+        Me.guardian_info.TabIndex = 4
+        Me.guardian_info.Text = "Guardian Information"
+        Me.guardian_info.UseVisualStyleBackColor = True
+        '
+        'PrintForm1
+        '
+        Me.PrintForm1.DocumentName = "document"
+        Me.PrintForm1.Form = Me
+        Me.PrintForm1.PrintAction = System.Drawing.Printing.PrintAction.PrintToPreview
+        Me.PrintForm1.PrinterSettings = CType(resources.GetObject("PrintForm1.PrinterSettings"), System.Drawing.Printing.PrinterSettings)
+        Me.PrintForm1.PrintFileName = Nothing
         '
         'Med_Id
         '
@@ -237,6 +512,7 @@ Partial Class new_consult
         Me.Duration.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
         Me.Duration.HeaderText = "Duration"
         Me.Duration.Name = "Duration"
+        Me.Duration.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         '
         'Column1
         '
@@ -247,259 +523,6 @@ Partial Class new_consult
         Me.Column1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
         Me.Column1.Visible = False
         Me.Column1.Width = 80
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Font = New System.Drawing.Font("Modern No. 20", 8.999999!, System.Drawing.FontStyle.Bold)
-        Me.Label5.Location = New System.Drawing.Point(5, 238)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(93, 15)
-        Me.Label5.TabIndex = 28
-        Me.Label5.Text = "Prescriptions :"
-        '
-        'lbl_last_updated
-        '
-        Me.lbl_last_updated.AutoSize = True
-        Me.lbl_last_updated.Font = New System.Drawing.Font("MS Reference Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl_last_updated.Location = New System.Drawing.Point(8, 394)
-        Me.lbl_last_updated.Name = "lbl_last_updated"
-        Me.lbl_last_updated.Size = New System.Drawing.Size(106, 16)
-        Me.lbl_last_updated.TabIndex = 30
-        Me.lbl_last_updated.Text = "last_updated"
-        Me.lbl_last_updated.Visible = False
-        '
-        'dtp_date
-        '
-        Me.dtp_date.CustomFormat = "MM-dd-yyyy hh:mm tt"
-        Me.dtp_date.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!)
-        Me.dtp_date.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.dtp_date.Location = New System.Drawing.Point(101, 190)
-        Me.dtp_date.Name = "dtp_date"
-        Me.dtp_date.ShowUpDown = True
-        Me.dtp_date.Size = New System.Drawing.Size(192, 20)
-        Me.dtp_date.TabIndex = 31
-        Me.dtp_date.Visible = False
-        '
-        'lbl_date
-        '
-        Me.lbl_date.AutoSize = True
-        Me.lbl_date.Font = New System.Drawing.Font("Modern No. 20", 8.999999!, System.Drawing.FontStyle.Bold)
-        Me.lbl_date.Location = New System.Drawing.Point(1, 190)
-        Me.lbl_date.Name = "lbl_date"
-        Me.lbl_date.Size = New System.Drawing.Size(101, 15)
-        Me.lbl_date.TabIndex = 32
-        Me.lbl_date.Text = "Date and Time :"
-        Me.lbl_date.Visible = False
-        '
-        'timer_last_update
-        '
-        Me.timer_last_update.Interval = 1000
-        '
-        'btn_print_presciption
-        '
-        Me.btn_print_presciption.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_print_presciption.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.btn_print_presciption.Location = New System.Drawing.Point(666, 221)
-        Me.btn_print_presciption.Name = "btn_print_presciption"
-        Me.btn_print_presciption.Size = New System.Drawing.Size(112, 32)
-        Me.btn_print_presciption.TabIndex = 33
-        Me.btn_print_presciption.Text = "Print Prescription"
-        Me.btn_print_presciption.UseVisualStyleBackColor = True
-        Me.btn_print_presciption.Visible = False
-        '
-        'btn_new_treatment
-        '
-        Me.btn_new_treatment.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_new_treatment.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.btn_new_treatment.Location = New System.Drawing.Point(666, 221)
-        Me.btn_new_treatment.Name = "btn_new_treatment"
-        Me.btn_new_treatment.Size = New System.Drawing.Size(112, 32)
-        Me.btn_new_treatment.TabIndex = 34
-        Me.btn_new_treatment.Text = "New Detail"
-        Me.btn_new_treatment.UseVisualStyleBackColor = True
-        Me.btn_new_treatment.Visible = False
-        '
-        'ToolStrip1
-        '
-        Me.ToolStrip1.ImageScalingSize = New System.Drawing.Size(30, 30)
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ts_save, Me.ts_cancel, Me.ts_edit, Me.ts_close})
-        Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
-        Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(804, 52)
-        Me.ToolStrip1.TabIndex = 35
-        Me.ToolStrip1.Text = "ToolStrip1"
-        '
-        'ts_save
-        '
-        Me.ts_save.Image = CType(resources.GetObject("ts_save.Image"), System.Drawing.Image)
-        Me.ts_save.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ts_save.Name = "ts_save"
-        Me.ts_save.Size = New System.Drawing.Size(35, 49)
-        Me.ts_save.Text = "Save"
-        Me.ts_save.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
-        '
-        'ts_cancel
-        '
-        Me.ts_cancel.Image = CType(resources.GetObject("ts_cancel.Image"), System.Drawing.Image)
-        Me.ts_cancel.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ts_cancel.Name = "ts_cancel"
-        Me.ts_cancel.Size = New System.Drawing.Size(47, 49)
-        Me.ts_cancel.Text = "Cancel"
-        Me.ts_cancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
-        '
-        'ts_edit
-        '
-        Me.ts_edit.Image = CType(resources.GetObject("ts_edit.Image"), System.Drawing.Image)
-        Me.ts_edit.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ts_edit.Name = "ts_edit"
-        Me.ts_edit.Size = New System.Drawing.Size(37, 49)
-        Me.ts_edit.Text = " Edit "
-        Me.ts_edit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
-        Me.ts_edit.Visible = False
-        '
-        'ts_close
-        '
-        Me.ts_close.Image = CType(resources.GetObject("ts_close.Image"), System.Drawing.Image)
-        Me.ts_close.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ts_close.Name = "ts_close"
-        Me.ts_close.Size = New System.Drawing.Size(40, 49)
-        Me.ts_close.Text = "Close"
-        Me.ts_close.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
-        Me.ts_close.Visible = False
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Font = New System.Drawing.Font("Modern No. 20", 8.999999!, System.Drawing.FontStyle.Bold)
-        Me.Label6.Location = New System.Drawing.Point(-1, 157)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(84, 15)
-        Me.Label6.TabIndex = 37
-        Me.Label6.Text = "Department :"
-        Me.Label6.Visible = False
-        '
-        'cmb_department
-        '
-        Me.cmb_department.FormattingEnabled = True
-        Me.cmb_department.Location = New System.Drawing.Point(83, 155)
-        Me.cmb_department.Name = "cmb_department"
-        Me.cmb_department.Size = New System.Drawing.Size(208, 21)
-        Me.cmb_department.TabIndex = 36
-        Me.cmb_department.Visible = False
-        '
-        'btn_saveastemplate
-        '
-        Me.btn_saveastemplate.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_saveastemplate.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.btn_saveastemplate.Location = New System.Drawing.Point(430, 221)
-        Me.btn_saveastemplate.Name = "btn_saveastemplate"
-        Me.btn_saveastemplate.Size = New System.Drawing.Size(112, 32)
-        Me.btn_saveastemplate.TabIndex = 38
-        Me.btn_saveastemplate.Text = "Save as Template"
-        Me.btn_saveastemplate.UseVisualStyleBackColor = True
-        Me.btn_saveastemplate.Visible = False
-        '
-        'btn_addfromtemplate
-        '
-        Me.btn_addfromtemplate.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_addfromtemplate.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.btn_addfromtemplate.Location = New System.Drawing.Point(548, 221)
-        Me.btn_addfromtemplate.Name = "btn_addfromtemplate"
-        Me.btn_addfromtemplate.Size = New System.Drawing.Size(112, 32)
-        Me.btn_addfromtemplate.TabIndex = 39
-        Me.btn_addfromtemplate.Text = "Add from Template"
-        Me.btn_addfromtemplate.UseVisualStyleBackColor = True
-        Me.btn_addfromtemplate.Visible = False
-        '
-        'TabControl1
-        '
-        Me.TabControl1.Controls.Add(Me.TabPage1)
-        Me.TabControl1.Controls.Add(Me.ob_gyne)
-        Me.TabControl1.Controls.Add(Me.pogs)
-        Me.TabControl1.Controls.Add(Me.ob_pogs_table)
-        Me.TabControl1.Controls.Add(Me.guardian_info)
-        Me.TabControl1.Location = New System.Drawing.Point(0, 55)
-        Me.TabControl1.Name = "TabControl1"
-        Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(808, 439)
-        Me.TabControl1.TabIndex = 40
-        '
-        'TabPage1
-        '
-        Me.TabPage1.Controls.Add(Me.cmb_patients)
-        Me.TabPage1.Controls.Add(Me.btn_addfromtemplate)
-        Me.TabPage1.Controls.Add(Me.cmb_doctors)
-        Me.TabPage1.Controls.Add(Me.btn_saveastemplate)
-        Me.TabPage1.Controls.Add(Me.Label1)
-        Me.TabPage1.Controls.Add(Me.Label6)
-        Me.TabPage1.Controls.Add(Me.Label2)
-        Me.TabPage1.Controls.Add(Me.cmb_department)
-        Me.TabPage1.Controls.Add(Me.btn_add_patient)
-        Me.TabPage1.Controls.Add(Me.txt_complaints)
-        Me.TabPage1.Controls.Add(Me.btn_new_treatment)
-        Me.TabPage1.Controls.Add(Me.txt_findings)
-        Me.TabPage1.Controls.Add(Me.btn_print_presciption)
-        Me.TabPage1.Controls.Add(Me.Label3)
-        Me.TabPage1.Controls.Add(Me.lbl_date)
-        Me.TabPage1.Controls.Add(Me.Label4)
-        Me.TabPage1.Controls.Add(Me.dtp_date)
-        Me.TabPage1.Controls.Add(Me.dtgv_treatments)
-        Me.TabPage1.Controls.Add(Me.lbl_last_updated)
-        Me.TabPage1.Controls.Add(Me.Label5)
-        Me.TabPage1.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage1.Name = "TabPage1"
-        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(800, 413)
-        Me.TabPage1.TabIndex = 0
-        Me.TabPage1.Text = "General Information"
-        Me.TabPage1.UseVisualStyleBackColor = True
-        '
-        'ob_gyne
-        '
-        Me.ob_gyne.Location = New System.Drawing.Point(4, 22)
-        Me.ob_gyne.Name = "ob_gyne"
-        Me.ob_gyne.Padding = New System.Windows.Forms.Padding(3)
-        Me.ob_gyne.Size = New System.Drawing.Size(800, 413)
-        Me.ob_gyne.TabIndex = 1
-        Me.ob_gyne.Text = "Ob-Gyne"
-        Me.ob_gyne.UseVisualStyleBackColor = True
-        '
-        'pogs
-        '
-        Me.pogs.Location = New System.Drawing.Point(4, 22)
-        Me.pogs.Name = "pogs"
-        Me.pogs.Size = New System.Drawing.Size(800, 413)
-        Me.pogs.TabIndex = 2
-        Me.pogs.Text = "Pogs Obstetrical Sheet"
-        Me.pogs.UseVisualStyleBackColor = True
-        '
-        'ob_pogs_table
-        '
-        Me.ob_pogs_table.Location = New System.Drawing.Point(4, 22)
-        Me.ob_pogs_table.Name = "ob_pogs_table"
-        Me.ob_pogs_table.Size = New System.Drawing.Size(800, 413)
-        Me.ob_pogs_table.TabIndex = 3
-        Me.ob_pogs_table.Text = "Ob-Gyne and Pods Table"
-        Me.ob_pogs_table.UseVisualStyleBackColor = True
-        '
-        'guardian_info
-        '
-        Me.guardian_info.Location = New System.Drawing.Point(4, 22)
-        Me.guardian_info.Name = "guardian_info"
-        Me.guardian_info.Padding = New System.Windows.Forms.Padding(3)
-        Me.guardian_info.Size = New System.Drawing.Size(800, 413)
-        Me.guardian_info.TabIndex = 4
-        Me.guardian_info.Text = "Guardian Information"
-        Me.guardian_info.UseVisualStyleBackColor = True
-        '
-        'PrintForm1
-        '
-        Me.PrintForm1.DocumentName = "document"
-        Me.PrintForm1.Form = Me
-        Me.PrintForm1.PrintAction = System.Drawing.Printing.PrintAction.PrintToPreview
-        Me.PrintForm1.PrinterSettings = CType(resources.GetObject("PrintForm1.PrinterSettings"), System.Drawing.Printing.PrinterSettings)
-        Me.PrintForm1.PrintFileName = Nothing
         '
         'new_consult
         '
@@ -542,15 +565,6 @@ Partial Class new_consult
     Friend WithEvents timer_last_update As System.Windows.Forms.Timer
     Friend WithEvents btn_print_presciption As System.Windows.Forms.Button
     Friend WithEvents btn_new_treatment As System.Windows.Forms.Button
-    Friend WithEvents Med_Id As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Medicine_Name As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents No_Generics As System.Windows.Forms.DataGridViewCheckBoxColumn
-    Friend WithEvents qty As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Route As System.Windows.Forms.DataGridViewComboBoxColumn
-    Friend WithEvents Frequency As System.Windows.Forms.DataGridViewComboBoxColumn
-    Friend WithEvents Refills As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Duration As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Column1 As System.Windows.Forms.DataGridViewButtonColumn
     Friend WithEvents ToolStrip1 As System.Windows.Forms.ToolStrip
     Friend WithEvents ts_save As System.Windows.Forms.ToolStripButton
     Friend WithEvents ts_cancel As System.Windows.Forms.ToolStripButton
@@ -567,4 +581,15 @@ Partial Class new_consult
     Friend WithEvents ob_pogs_table As System.Windows.Forms.TabPage
     Friend WithEvents guardian_info As System.Windows.Forms.TabPage
     Friend WithEvents PrintForm1 As Microsoft.VisualBasic.PowerPacks.Printing.PrintForm
+    Friend WithEvents txt_notes As System.Windows.Forms.TextBox
+    Friend WithEvents Label7 As System.Windows.Forms.Label
+    Friend WithEvents Med_Id As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Medicine_Name As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents No_Generics As System.Windows.Forms.DataGridViewCheckBoxColumn
+    Friend WithEvents qty As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Route As System.Windows.Forms.DataGridViewComboBoxColumn
+    Friend WithEvents Frequency As System.Windows.Forms.DataGridViewComboBoxColumn
+    Friend WithEvents Refills As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Duration As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Column1 As System.Windows.Forms.DataGridViewButtonColumn
 End Class

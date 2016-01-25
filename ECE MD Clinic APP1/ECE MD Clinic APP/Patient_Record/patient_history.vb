@@ -1,50 +1,69 @@
-﻿Imports System.Data
-Imports System.Data.SqlClient
-Public Class patient_history
-    Private da As New SqlDataAdapter
-    Private ds As New DataSet
-    Public patient_id As Integer
-    Private Sub patient_history_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        dtgv_record.DefaultCellStyle.SelectionBackColor = Color.LightBlue
-        dtgv_record.DefaultCellStyle.SelectionForeColor = Color.Black
-        dtgv_record.RowTemplate.Height = 35
-        display_patient_record()
-    End Sub
-    Public Sub display_patient_record()
+﻿Public Class patient_history
+
+#Region "Variables"
+    Private ButtonColumn As Integer = 9
+    Public patient_id As Integer = 0
+#End Region
+#Region "Methods"
+    Public Sub DisplayRecords()
         Try
-            ds.Clear()
-            Dim strquery As String
-            If UserType = 1 Then 'doctor
-                strquery = "SELECT pr.id,p.id as 'Patient_Id',concat(p.fname,' ',p.mname,' ',p.lname) as 'Patient Name',d.id AS 'Doctor_Id',concat(d.fname,' ',d.mname,' ',d.lname) as 'Doctor Name',pr.created_at as 'Date',pr.updated_at,pr.complaints as Complaints,pr.findings as Findings,'View More' as Action from doctors d INNER JOIN patient_records pr on pr.doctor_id=d.id INNER JOIN patients p on p.id=pr.patient_id where p.id=" + patient_id.ToString + " and d.id=" + UserId.ToString + " ORDER BY pr.created_at desc"
-            Else 'secretary
-                strquery = "SELECT pr.id,p.id as 'Patient_Id',concat(p.fname,' ',p.mname,' ',p.lname) as 'Patient Name',d.id AS 'Doctor_Id',concat(d.fname,' ',d.mname,' ',d.lname) as 'Doctor Name',pr.created_at as 'Date',pr.updated_at,pr.complaints as Complaints,pr.findings as Findings,'View More' as Action from doctors d INNER JOIN patient_records pr on pr.doctor_id=d.id INNER JOIN patients p on p.id=pr.patient_id INNER JOIN secretary_access sc on sc.doctor_id=d.id where p.id=" + patient_id.ToString + " and sc.secretary_id=" + UserId.ToString + " AND sc.doctor_id=d.id ORDER BY pr.created_at desc"
+            Dim Param_Name As String() = {"@action_type", "@sub_action", "@search", "@secretary_id", "@doctor_id", "@patient_id"}
+            Dim Param_Value As String()
+            Dim MyAdapter As New Custom_Adapters
+            If UserType = 0 Then 'secretary
+                Param_Value = {2, 6, GetSearchString(), UserId, "", patient_id}
+            Else 'doctor
+                Param_Value = {2, 7, GetSearchString(), "", UserId, patient_id}
             End If
-            da = New SqlDataAdapter(strquery, conn)
-            da.Fill(ds, "consult")
-            With dtgv_record
-                .DataSource = ds.Tables("consult")
+            With dtgv_consult
+                .DataSource = MyAdapter.CUSTOM_RETRIEVE("SP_PatientRecord", Param_Name, Param_Value)
                 .Columns(0).Visible = False
                 .Columns(1).Visible = False
-                .Columns(3).Visible = False
-                .Columns(6).Visible = False 'updated_at
                 .Columns(2).Visible = False
-                '.Columns(9).Visible = False
-                .Columns(9).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+                .Columns(5).Visible = False
+                .Columns(ButtonColumn).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
             End With
         Catch ex As Exception
 
         End Try
     End Sub
-    Private Sub dtgv_record_CellMouseEnter(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dtgv_record.CellMouseEnter
+    Private Function GetSearchString() As String
+        If txt_search.Text = Search_Hint Or txt_search.Text.Length = 0 Then
+            Return ""
+        End If
+        Return txt_search.Text
+    End Function
+#End Region
+    Private Sub consult_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        dtgv_consult.DefaultCellStyle.SelectionBackColor = Color.LightBlue
+        dtgv_consult.DefaultCellStyle.SelectionForeColor = Color.Black
+        dtgv_consult.RowTemplate.Height = Default_Row_Height
+        txt_search.Text = Search_Hint
+        DisplayRecords()
+    End Sub
+
+    Private Sub txt_search_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txt_search.Enter
+        If txt_search.Text = Search_Hint Then
+            txt_search.Text = ""
+            txt_search.ForeColor = Color.Black
+        End If
+    End Sub
+
+    Private Sub txt_search_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txt_search.Leave
+        If txt_search.Text = "" Then
+            txt_search.Text = Search_Hint
+        End If
+    End Sub
+    Private Sub dtgv_consult_CellMouseEnter(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dtgv_consult.CellMouseEnter
         Try
             Dim myRow As Integer = e.RowIndex
             Dim myCol As Integer = e.ColumnIndex
-            If myCol = 9 And myRow <> -1 Then
-                dtgv_record.Rows(myRow).Cells(myCol).Style.ForeColor = Color.Red
-                Dim f = New Font("Hoefler Text Black", 8.25, FontStyle.Underline)
-                dtgv_record.Rows(myRow).Cells(myCol).Style.Font = f
-                dtgv_record.Cursor = Cursors.Hand
-                dtgv_record.Rows(myRow).DefaultCellStyle.BackColor = Color.LightBlue
+            If myCol = ButtonColumn And myRow <> -1 Then
+                dtgv_consult.Rows(myRow).Cells(myCol).Style.ForeColor = Color.Red
+                Dim f = New Font("Microsoft Sans Serif", 9, FontStyle.Underline)
+                dtgv_consult.Rows(myRow).Cells(myCol).Style.Font = f
+                dtgv_consult.Cursor = Cursors.Hand
+                dtgv_consult.Rows(myRow).DefaultCellStyle.BackColor = Color.LightBlue
                 'MsgBox("underline")
             End If
         Catch ex As Exception
@@ -52,16 +71,16 @@ Public Class patient_history
         End Try
 
     End Sub
-    Private Sub dtgv_record_CellMouseLeave(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dtgv_record.CellMouseLeave
+    Private Sub dtgv_consult_CellMouseLeave(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dtgv_consult.CellMouseLeave
         Try
             Dim myRow As Integer = e.RowIndex
             Dim myCol As Integer = e.ColumnIndex
-            If myCol = 9 And myRow <> -1 Then
-                dtgv_record.Rows(myRow).Cells(myCol).Style.ForeColor = Color.Black
-                Dim f = New Font("Modern No. 20", 12, FontStyle.Regular)
-                dtgv_record.Rows(myRow).Cells(myCol).Style.Font = f
-                dtgv_record.Cursor = Cursors.Arrow
-                dtgv_record.Rows(myRow).DefaultCellStyle.BackColor = Color.White
+            If myCol = ButtonColumn And myRow <> -1 Then
+                dtgv_consult.Rows(myRow).Cells(myCol).Style.ForeColor = Color.Black
+                Dim f = New Font("Microsoft Sans Serif", 8.5, FontStyle.Regular)
+                dtgv_consult.Rows(myRow).Cells(myCol).Style.Font = f
+                dtgv_consult.Cursor = Cursors.Arrow
+                dtgv_consult.Rows(myRow).DefaultCellStyle.BackColor = Color.White
                 'MsgBox("underline")
             End If
         Catch ex As Exception
@@ -69,14 +88,36 @@ Public Class patient_history
         End Try
 
     End Sub
-    Private Sub dtgv_record_MouseMove(ByVal sender As System.Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles dtgv_record.MouseMove
+    Private Sub dtgv_consult_MouseMove(ByVal sender As System.Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles dtgv_consult.MouseMove
         Try
-            Dim hit As DataGridView.HitTestInfo = dtgv_record.HitTest(e.X, e.Y)
+            Dim hit As DataGridView.HitTestInfo = dtgv_consult.HitTest(e.X, e.Y)
             If hit.Type = DataGridViewHitTestType.Cell Then
                 Dim myRow As Integer = hit.RowIndex
                 Dim myCol As Integer = hit.ColumnIndex
-                If myCol <> 9 And myRow <> -1 And Not dtgv_record.Rows(myRow).Cells(6).Value.ToString = "" Then
-                    dtgv_record.Rows(myRow).Cells(myCol).ToolTipText = "Last updated " + dtgv_record.Rows(myRow).Cells(6).Value.ToString
+                If myCol <> ButtonColumn And myRow <> -1 And Not dtgv_consult.Rows(myRow).Cells(7).Value.ToString = "" Then
+                    Dim tempdate As Date = dtgv_consult.Rows(myRow).Cells(5).Value
+                    Dim msg As String = ""
+                    Dim duration As TimeSpan = Now() - tempdate
+                    Dim days As Integer = DateDiff(DateInterval.Day, tempdate.Date, Now.Date())
+                    If tempdate.Date = Now.Date() Then
+                        If duration.Hours > 0 Then
+                            If duration.Hours = 1 Then
+                                msg = "Updated " + duration.Hours.ToString + " hr ago"
+                            Else
+                                msg = "Updated " + duration.Hours.ToString + " hrs ago"
+                            End If
+                        Else
+                            msg = "Updated " + duration.Minutes.ToString + " mins ago"
+                        End If
+                    ElseIf tempdate.Date < Now.Date() Then
+                        If days = 1 Then
+                            msg = "Updated Yesterday, " + tempdate.ToString("t")
+                        Else
+                            msg = "Updated " + days.ToString + " days ago"
+                        End If
+
+                    End If
+                    dtgv_consult.Rows(myRow).Cells(myCol).ToolTipText = msg
                 End If
             End If
 
@@ -84,26 +125,31 @@ Public Class patient_history
 
         End Try
     End Sub
-    Private Sub dtgv_consult_CellClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dtgv_record.CellClick
+    Private Sub dtgv_consult_CellClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dtgv_consult.CellClick
         Try
-            Dim myRow As Integer = dtgv_record.CurrentRow.Index
-            Dim myCol As Integer = dtgv_record.CurrentCell.ColumnIndex
-            If myCol = 9 And myRow <> -1 Then
-                Dim newconsult As New new_consult
-                newconsult.what_to_do = 1
-                newconsult.title_text = "View Consultation"
-                newconsult.doctor_id = Me.dtgv_record.CurrentRow.Cells(3).Value
-                newconsult.patient_id = Me.dtgv_record.CurrentRow.Cells(1).Value
-                newconsult.complaints = Me.dtgv_record.CurrentRow.Cells(7).Value.ToString
-                newconsult.findings = Me.dtgv_record.CurrentRow.Cells(8).Value.ToString
-                newconsult.dateandtime = Me.dtgv_record.CurrentRow.Cells(5).Value.ToString
-                newconsult.last_update = Me.dtgv_record.CurrentRow.Cells(6).Value.ToString
-                newconsult.consult_id = Me.dtgv_record.CurrentRow.Cells(0).Value.ToString
-                newconsult.ShowDialog()
-                display_patient_record()
+            Dim myRow As Integer = dtgv_consult.CurrentRow.Index
+            Dim myCol As Integer = dtgv_consult.CurrentCell.ColumnIndex
+            If myCol = ButtonColumn And myRow <> -1 Then
+                new_consult.what_to_do = 1
+                new_consult.title_text = "View Consultation"
+                new_consult.doctor_id = Me.dtgv_consult.CurrentRow.Cells(2).Value
+                new_consult.patient_id = Me.dtgv_consult.CurrentRow.Cells(1).Value
+                new_consult.complaints = Me.dtgv_consult.CurrentRow.Cells(6).Value.ToString
+                new_consult.findings = Me.dtgv_consult.CurrentRow.Cells(7).Value.ToString
+                new_consult.dateandtime = Me.dtgv_consult.CurrentRow.Cells(4).Value.ToString
+                new_consult.last_update = Me.dtgv_consult.CurrentRow.Cells(5).Value.ToString
+                new_consult.notes = Me.dtgv_consult.CurrentRow.Cells(8).Value.ToString
+                new_consult.consult_id = Me.dtgv_consult.CurrentRow.Cells(0).Value.ToString
+                new_consult.ShowDialog()
             End If
         Catch ex As Exception
 
         End Try
+    End Sub
+
+    Private Sub txt_search_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txt_search.TextChanged
+        If Not (txt_search.Text = Search_Hint) Then
+            DisplayRecords()
+        End If
     End Sub
 End Class

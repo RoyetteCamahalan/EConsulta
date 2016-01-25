@@ -77,228 +77,254 @@ Partial Class View_Secretary
         '
         'txt_fname
         '
+        Me.txt_fname.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txt_fname.Location = New System.Drawing.Point(353, 84)
         Me.txt_fname.Name = "txt_fname"
         Me.txt_fname.ReadOnly = True
-        Me.txt_fname.Size = New System.Drawing.Size(209, 20)
+        Me.txt_fname.Size = New System.Drawing.Size(209, 21)
         Me.txt_fname.TabIndex = 36
         '
         'txt_mname
         '
+        Me.txt_mname.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txt_mname.Location = New System.Drawing.Point(353, 110)
         Me.txt_mname.Name = "txt_mname"
         Me.txt_mname.ReadOnly = True
-        Me.txt_mname.Size = New System.Drawing.Size(209, 20)
+        Me.txt_mname.Size = New System.Drawing.Size(209, 21)
         Me.txt_mname.TabIndex = 37
         '
         'txt_lname
         '
+        Me.txt_lname.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txt_lname.Location = New System.Drawing.Point(353, 136)
         Me.txt_lname.Name = "txt_lname"
         Me.txt_lname.ReadOnly = True
-        Me.txt_lname.Size = New System.Drawing.Size(209, 20)
+        Me.txt_lname.Size = New System.Drawing.Size(209, 21)
         Me.txt_lname.TabIndex = 38
         '
         'Label13
         '
         Me.Label13.AutoSize = True
+        Me.Label13.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label13.Location = New System.Drawing.Point(258, 139)
         Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(64, 13)
+        Me.Label13.Size = New System.Drawing.Size(73, 15)
         Me.Label13.TabIndex = 43
         Me.Label13.Text = "Last Name :"
         '
         'Label12
         '
         Me.Label12.AutoSize = True
+        Me.Label12.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label12.Location = New System.Drawing.Point(258, 113)
         Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(75, 13)
+        Me.Label12.Size = New System.Drawing.Size(88, 15)
         Me.Label12.TabIndex = 42
         Me.Label12.Text = "Middle Name :"
         '
         'Label11
         '
         Me.Label11.AutoSize = True
+        Me.Label11.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label11.Location = New System.Drawing.Point(258, 87)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(63, 13)
+        Me.Label11.Size = New System.Drawing.Size(73, 15)
         Me.Label11.TabIndex = 41
         Me.Label11.Text = "First Name :"
         '
         'Label2
         '
         Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.Location = New System.Drawing.Point(3, 270)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(59, 13)
+        Me.Label2.Size = New System.Drawing.Size(67, 15)
         Me.Label2.TabIndex = 74
         Me.Label2.Text = "Password :"
         '
         'Label3
         '
         Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.Location = New System.Drawing.Point(3, 238)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(63, 13)
+        Me.Label3.Size = New System.Drawing.Size(73, 15)
         Me.Label3.TabIndex = 73
         Me.Label3.Text = "User Name:"
         '
         'txt_uname
         '
-        Me.txt_uname.Location = New System.Drawing.Point(81, 235)
+        Me.txt_uname.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txt_uname.Location = New System.Drawing.Point(99, 235)
         Me.txt_uname.Name = "txt_uname"
         Me.txt_uname.ReadOnly = True
-        Me.txt_uname.Size = New System.Drawing.Size(152, 20)
+        Me.txt_uname.Size = New System.Drawing.Size(134, 21)
         Me.txt_uname.TabIndex = 71
         '
         'txt_pword
         '
-        Me.txt_pword.Location = New System.Drawing.Point(81, 267)
+        Me.txt_pword.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txt_pword.Location = New System.Drawing.Point(99, 267)
         Me.txt_pword.Name = "txt_pword"
         Me.txt_pword.ReadOnly = True
-        Me.txt_pword.Size = New System.Drawing.Size(152, 20)
+        Me.txt_pword.Size = New System.Drawing.Size(134, 21)
         Me.txt_pword.TabIndex = 72
         Me.txt_pword.UseSystemPasswordChar = True
         '
         'lbl_invalid_email
         '
         Me.lbl_invalid_email.AutoSize = True
+        Me.lbl_invalid_email.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbl_invalid_email.ForeColor = System.Drawing.Color.Red
         Me.lbl_invalid_email.Location = New System.Drawing.Point(78, 379)
         Me.lbl_invalid_email.Name = "lbl_invalid_email"
-        Me.lbl_invalid_email.Size = New System.Drawing.Size(66, 13)
+        Me.lbl_invalid_email.Size = New System.Drawing.Size(77, 15)
         Me.lbl_invalid_email.TabIndex = 98
         Me.lbl_invalid_email.Text = "Invalid Email"
         Me.lbl_invalid_email.Visible = False
         '
         'txt_email
         '
-        Me.txt_email.Location = New System.Drawing.Point(81, 356)
+        Me.txt_email.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txt_email.Location = New System.Drawing.Point(99, 356)
         Me.txt_email.Name = "txt_email"
         Me.txt_email.ReadOnly = True
-        Me.txt_email.Size = New System.Drawing.Size(152, 20)
+        Me.txt_email.Size = New System.Drawing.Size(134, 21)
         Me.txt_email.TabIndex = 94
         '
         'txt_telno
         '
-        Me.txt_telno.Location = New System.Drawing.Point(81, 327)
+        Me.txt_telno.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txt_telno.Location = New System.Drawing.Point(99, 327)
         Me.txt_telno.Name = "txt_telno"
         Me.txt_telno.ReadOnly = True
-        Me.txt_telno.Size = New System.Drawing.Size(152, 20)
+        Me.txt_telno.Size = New System.Drawing.Size(134, 21)
         Me.txt_telno.TabIndex = 93
         '
         'txt_mobileno
         '
-        Me.txt_mobileno.Location = New System.Drawing.Point(81, 298)
+        Me.txt_mobileno.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txt_mobileno.Location = New System.Drawing.Point(99, 298)
         Me.txt_mobileno.Name = "txt_mobileno"
         Me.txt_mobileno.ReadOnly = True
-        Me.txt_mobileno.Size = New System.Drawing.Size(152, 20)
+        Me.txt_mobileno.Size = New System.Drawing.Size(134, 21)
         Me.txt_mobileno.TabIndex = 92
         '
         'Label10
         '
         Me.Label10.AutoSize = True
+        Me.Label10.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label10.Location = New System.Drawing.Point(3, 298)
         Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(64, 13)
+        Me.Label10.Size = New System.Drawing.Size(73, 15)
         Me.Label10.TabIndex = 95
         Me.Label10.Text = "Mobile No. :"
         '
         'Label14
         '
         Me.Label14.AutoSize = True
+        Me.Label14.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label14.Location = New System.Drawing.Point(1, 330)
         Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(51, 13)
+        Me.Label14.Size = New System.Drawing.Size(55, 15)
         Me.Label14.TabIndex = 96
         Me.Label14.Text = "Tel. No. :"
         '
         'Label17
         '
         Me.Label17.AutoSize = True
+        Me.Label17.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label17.Location = New System.Drawing.Point(1, 359)
         Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(79, 13)
+        Me.Label17.Size = New System.Drawing.Size(92, 15)
         Me.Label17.TabIndex = 97
         Me.Label17.Text = "Email Address :"
         '
         'Label4
         '
         Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.Location = New System.Drawing.Point(258, 210)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(41, 13)
+        Me.Label4.Size = New System.Drawing.Size(45, 15)
         Me.Label4.TabIndex = 107
         Me.Label4.Text = "Street :"
         '
         'Label5
         '
         Me.Label5.AutoSize = True
+        Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.Location = New System.Drawing.Point(260, 300)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(93, 13)
+        Me.Label5.Size = New System.Drawing.Size(97, 15)
         Me.Label5.TabIndex = 109
-        Me.Label5.Text = "City/ Municipality :"
+        Me.Label5.Text = "City/Municipality:"
         '
         'Label6
         '
         Me.Label6.AutoSize = True
+        Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label6.Location = New System.Drawing.Point(260, 270)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(58, 13)
+        Me.Label6.Size = New System.Drawing.Size(63, 15)
         Me.Label6.TabIndex = 110
         Me.Label6.Text = "Province  :"
         '
         'Label7
         '
         Me.Label7.AutoSize = True
+        Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label7.Location = New System.Drawing.Point(260, 242)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(47, 13)
+        Me.Label7.Size = New System.Drawing.Size(53, 15)
         Me.Label7.TabIndex = 111
         Me.Label7.Text = "Region :"
         '
         'Label8
         '
         Me.Label8.AutoSize = True
+        Me.Label8.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label8.Location = New System.Drawing.Point(260, 327)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(58, 13)
+        Me.Label8.Size = New System.Drawing.Size(65, 15)
         Me.Label8.TabIndex = 108
         Me.Label8.Text = "Barangay :"
         '
         'Label19
         '
         Me.Label19.AutoSize = True
+        Me.Label19.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label19.Location = New System.Drawing.Point(258, 178)
         Me.Label19.Name = "Label19"
-        Me.Label19.Size = New System.Drawing.Size(64, 13)
+        Me.Label19.Size = New System.Drawing.Size(71, 15)
         Me.Label19.TabIndex = 106
         Me.Label19.Text = "House No. :"
         '
         'txt_houseno
         '
+        Me.txt_houseno.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txt_houseno.Location = New System.Drawing.Point(353, 175)
         Me.txt_houseno.Name = "txt_houseno"
         Me.txt_houseno.ReadOnly = True
-        Me.txt_houseno.Size = New System.Drawing.Size(212, 20)
+        Me.txt_houseno.Size = New System.Drawing.Size(212, 21)
         Me.txt_houseno.TabIndex = 99
         '
         'chk_isactive
         '
         Me.chk_isactive.AutoSize = True
         Me.chk_isactive.Enabled = False
+        Me.chk_isactive.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.chk_isactive.ForeColor = System.Drawing.Color.Red
         Me.chk_isactive.Location = New System.Drawing.Point(264, 55)
         Me.chk_isactive.Name = "chk_isactive"
-        Me.chk_isactive.Size = New System.Drawing.Size(140, 17)
+        Me.chk_isactive.Size = New System.Drawing.Size(57, 19)
         Me.chk_isactive.TabIndex = 116
-        Me.chk_isactive.Text = "Allow access to my Files"
+        Me.chk_isactive.Text = "Active"
         Me.chk_isactive.UseVisualStyleBackColor = True
         '
         'ToolStrip1
         '
+        Me.ToolStrip1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ToolStrip1.ImageScalingSize = New System.Drawing.Size(30, 30)
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ts_save, Me.ts_cancel, Me.ts_edit, Me.ts_close})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
@@ -309,87 +335,96 @@ Partial Class View_Secretary
         '
         'ts_save
         '
+        Me.ts_save.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ts_save.Image = CType(resources.GetObject("ts_save.Image"), System.Drawing.Image)
         Me.ts_save.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ts_save.Name = "ts_save"
-        Me.ts_save.Size = New System.Drawing.Size(35, 49)
+        Me.ts_save.Size = New System.Drawing.Size(38, 49)
         Me.ts_save.Text = "Save"
         Me.ts_save.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
         Me.ts_save.Visible = False
         '
         'ts_cancel
         '
+        Me.ts_cancel.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ts_cancel.Image = CType(resources.GetObject("ts_cancel.Image"), System.Drawing.Image)
         Me.ts_cancel.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ts_cancel.Name = "ts_cancel"
-        Me.ts_cancel.Size = New System.Drawing.Size(47, 49)
+        Me.ts_cancel.Size = New System.Drawing.Size(49, 49)
         Me.ts_cancel.Text = "Cancel"
         Me.ts_cancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
         Me.ts_cancel.Visible = False
         '
         'ts_edit
         '
+        Me.ts_edit.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ts_edit.Image = CType(resources.GetObject("ts_edit.Image"), System.Drawing.Image)
         Me.ts_edit.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ts_edit.Name = "ts_edit"
-        Me.ts_edit.Size = New System.Drawing.Size(37, 49)
+        Me.ts_edit.Size = New System.Drawing.Size(38, 49)
         Me.ts_edit.Text = " Edit "
         Me.ts_edit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
         '
         'ts_close
         '
+        Me.ts_close.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ts_close.Image = CType(resources.GetObject("ts_close.Image"), System.Drawing.Image)
         Me.ts_close.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ts_close.Name = "ts_close"
-        Me.ts_close.Size = New System.Drawing.Size(40, 49)
+        Me.ts_close.Size = New System.Drawing.Size(42, 49)
         Me.ts_close.Text = "Close"
         Me.ts_close.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
         '
         'txt_street
         '
+        Me.txt_street.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txt_street.Location = New System.Drawing.Point(353, 207)
         Me.txt_street.Name = "txt_street"
         Me.txt_street.ReadOnly = True
-        Me.txt_street.Size = New System.Drawing.Size(212, 20)
+        Me.txt_street.Size = New System.Drawing.Size(212, 21)
         Me.txt_street.TabIndex = 100
         '
         'cmb_barangay
         '
         Me.cmb_barangay.Enabled = False
+        Me.cmb_barangay.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmb_barangay.FormattingEnabled = True
         Me.cmb_barangay.Location = New System.Drawing.Point(353, 324)
         Me.cmb_barangay.Name = "cmb_barangay"
-        Me.cmb_barangay.Size = New System.Drawing.Size(212, 21)
+        Me.cmb_barangay.Size = New System.Drawing.Size(212, 23)
         Me.cmb_barangay.TabIndex = 125
         Me.cmb_barangay.Text = "Select Barangay"
         '
         'cmb_municipality
         '
         Me.cmb_municipality.Enabled = False
+        Me.cmb_municipality.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmb_municipality.FormattingEnabled = True
         Me.cmb_municipality.Location = New System.Drawing.Point(353, 297)
         Me.cmb_municipality.Name = "cmb_municipality"
-        Me.cmb_municipality.Size = New System.Drawing.Size(212, 21)
+        Me.cmb_municipality.Size = New System.Drawing.Size(212, 23)
         Me.cmb_municipality.TabIndex = 124
         Me.cmb_municipality.Text = "Select Municipality"
         '
         'cmb_province
         '
         Me.cmb_province.Enabled = False
+        Me.cmb_province.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmb_province.FormattingEnabled = True
         Me.cmb_province.Location = New System.Drawing.Point(353, 267)
         Me.cmb_province.Name = "cmb_province"
-        Me.cmb_province.Size = New System.Drawing.Size(212, 21)
+        Me.cmb_province.Size = New System.Drawing.Size(212, 23)
         Me.cmb_province.TabIndex = 123
         Me.cmb_province.Text = "Select Province"
         '
         'cmb_region
         '
         Me.cmb_region.Enabled = False
+        Me.cmb_region.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmb_region.FormattingEnabled = True
         Me.cmb_region.Location = New System.Drawing.Point(353, 239)
         Me.cmb_region.Name = "cmb_region"
-        Me.cmb_region.Size = New System.Drawing.Size(212, 21)
+        Me.cmb_region.Size = New System.Drawing.Size(212, 23)
         Me.cmb_region.TabIndex = 122
         Me.cmb_region.Text = "Select Region"
         '

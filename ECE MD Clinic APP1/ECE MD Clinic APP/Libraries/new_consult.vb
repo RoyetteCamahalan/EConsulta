@@ -7,7 +7,7 @@ Public Class new_consult
     Public consult_id As Integer
     Public what_to_do As Integer
     Public doctor_id, patient_id As Integer
-    Public complaints, findings, dateandtime, last_update As String
+    Public complaints, findings, notes, dateandtime, last_update As String
     Private from_update As Integer = 0
     Private from_update_ctr As Integer = 0
     Public title_text As String
@@ -130,12 +130,14 @@ Public Class new_consult
         cmb_doctors.SelectedValue = doctor_id
         txt_complaints.Text = complaints
         txt_findings.Text = findings
+        txt_notes.Text = notes
     End Sub
     Private Sub disable_fields()
         cmb_doctors.Enabled = False
         cmb_patients.Enabled = False
         txt_complaints.ReadOnly = True
         txt_findings.ReadOnly = True
+        txt_notes.ReadOnly = True
         dtp_date.Enabled = False
         dtgv_treatments.ReadOnly = True
     End Sub
@@ -153,7 +155,7 @@ Public Class new_consult
                                              DT.Rows(i).Item(2).ToString,
                                              DT.Rows(i).Item(3).ToString,
                                              DT.Rows(i).Item(4).ToString, "", "",
-                                             DT.Rows(i).Item(7).ToString, "", "Remove")
+                                             DT.Rows(i).Item(7).ToString, DT.Rows(i).Item(8).ToString, "Remove")
                     Dim lastrow As Integer = dtgv_treatments.Rows.Count - 1
                     Dim chknogen As DataGridViewCheckBoxCell = dtgv_treatments.Rows(lastrow).Cells(2)
                     chknogen.Value = DT.Rows(i).Item(3)
@@ -255,12 +257,12 @@ Public Class new_consult
                         MyAdapter_Doctor_Patient.CUSTOM_TRANSACT("SP_DoctorPatient", Param_Name, Param_Value)
                     End If
                     'insert new patient record
-                    Param_Name = {"@action_type", "@sub_action", "@doctor_id", "@patient_id", "@complaints", "@findings", "@record_date"}
+                    Param_Name = {"@action_type", "@sub_action", "@doctor_id", "@patient_id", "@complaints", "@findings", "@notes", "@record_date"}
                     Param_Value = {0, 1, cmb_doctors.SelectedValue,
                                       cmb_patients.SelectedValue,
                                       txt_complaints.Text,
-                                      txt_findings.Text,
-                                      dtp_date.Value.ToLongTimeString}
+                                      txt_findings.Text, txt_notes.Text,
+                                      dtp_date.Value.ToShortDateString}
                     Dim newID As Integer = MyAdapter_Patient_Record.CUSTOM_TRANSACT_WITH_RETURN("SP_PatientRecord", Param_Name, Param_Value)
                     If newID > 0 Then
                         If dtgv_treatments.Rows.Count > 0 And check_row(0) Then
@@ -280,10 +282,10 @@ Public Class new_consult
                                     Dim cellroutes As DataGridViewComboBoxCell = dtgv_treatments.Rows(i).Cells(4)
                                     Param_Name = {"@action_type", "@sub_action", "@id", "@medicine_id",
                                                   "@no_generics", "@quantity", "@route", "@frequency",
-                                                  "@refills", "@duration", "@duration_type"}
+                                                  "@refills", "@duration"}
                                     Param_Value = {0, 2, newID, dtgv_treatments.Rows(i).Cells(0).Value,
                                                       CheckNoGen_value, dtgv_treatments.Rows(i).Cells(3).Value.ToString, cellroutes.EditedFormattedValue.ToString, cellfrequency.EditedFormattedValue.ToString,
-                                                      dtgv_treatments.Rows(i).Cells(6).Value.ToString, "2", "1"}
+                                                      dtgv_treatments.Rows(i).Cells(6).Value.ToString, dtgv_treatments.Rows(i).Cells(7).Value.ToString}
                                     MyAdapter_Patient_Record.CUSTOM_TRANSACT("SP_PatientRecord", Param_Name, Param_Value)
                                 End If
                             Next
@@ -310,10 +312,10 @@ Public Class new_consult
             ElseIf what_to_do = 1 Then
                 Try
                     Dim Param_Name As String() = {"@action_type", "@sub_action", "@doctor_id",
-                                                  "@patient_id", "@complaints", "@findings", "@record_date", "@id"}
+                                                  "@patient_id", "@complaints", "@findings", "@notes", "@record_date", "@id"}
                     Dim Param_Value As String() = {1, 1, cmb_doctors.SelectedValue,
                                                    cmb_patients.SelectedValue, Me.txt_complaints.Text,
-                                                   Me.txt_findings.Text, dtp_date.Value.ToLongTimeString, consult_id.ToString}
+                                                   Me.txt_findings.Text, txt_notes.Text, dtp_date.Value.ToShortDateString, consult_id.ToString}
                     Dim MyAdapter_Patient_Record As New Custom_Adapters
                     If MyAdapter_Patient_Record.CUSTOM_TRANSACT("SP_PatientRecord", Param_Name, Param_Value) Then
                         Param_Name = {"@action_type", "@sub_action", "@id"}
@@ -333,10 +335,10 @@ Public Class new_consult
                                     Dim cellroutes As DataGridViewComboBoxCell = dtgv_treatments.Rows(i).Cells(4)
                                     Param_Name = {"@action_type", "@sub_action", "@id", "@medicine_id",
                                                   "@no_generics", "@quantity", "@route", "@frequency",
-                                                  "@refills", "@duration", "@duration_type"}
+                                                  "@refills", "@duration"}
                                     Param_Value = {0, 2, consult_id, dtgv_treatments.Rows(i).Cells(0).Value,
                                                       CheckNoGen_value, dtgv_treatments.Rows(i).Cells(3).Value.ToString, cellroutes.EditedFormattedValue.ToString, cellfrequency.EditedFormattedValue.ToString,
-                                                      dtgv_treatments.Rows(i).Cells(6).Value.ToString, "2", "1"}
+                                                      dtgv_treatments.Rows(i).Cells(6).Value.ToString, dtgv_treatments.Rows(i).Cells(7).Value.ToString}
                                     MyAdapter_Patient_Record.CUSTOM_TRANSACT("SP_PatientRecord", Param_Name, Param_Value)
                                 End If
 
@@ -362,7 +364,7 @@ Public Class new_consult
     End Sub
     Private Function check_row(ByRef rowid As Integer) As Boolean
         If dtgv_treatments.Rows.Count > 0 Then
-            If dtgv_treatments.Rows(rowid).Cells(3).Value.ToString = "0" Or dtgv_treatments.Rows(rowid).Cells(4).Value.ToString = "" Or dtgv_treatments.Rows(rowid).Cells(5).Value.ToString = "" Then
+            If dtgv_treatments.Rows(rowid).Cells(3).Value.ToString = "0" Or dtgv_treatments.Rows(rowid).Cells(4).Value.ToString = "" Or dtgv_treatments.Rows(rowid).Cells(5).Value.ToString = "" Or dtgv_treatments.Rows(rowid).Cells(7).Value.ToString = "" Then
                 Return False
             End If
         End If
@@ -406,6 +408,7 @@ Public Class new_consult
         cmb_patients.Enabled = True
         txt_complaints.ReadOnly = False
         txt_findings.ReadOnly = False
+        txt_notes.ReadOnly = False
         dtp_date.Enabled = True
         dtgv_treatments.ReadOnly = False
     End Sub
@@ -450,16 +453,23 @@ Public Class new_consult
     End Sub
 
     Private Sub dtgv_treatments_EditingControlShowing(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewEditingControlShowingEventArgs) Handles dtgv_treatments.EditingControlShowing
-        If dtgv_treatments.CurrentCellAddress.X = 5 Or dtgv_treatments.CurrentCellAddress.X = 4 Then
-            Dim cb As ComboBox = e.Control
-            If Not cb Is Nothing Then
-                cb.DropDownStyle = ComboBoxStyle.DropDown
-            End If
+        Try
+            If dtgv_treatments.CurrentCellAddress.X = 5 Or dtgv_treatments.CurrentCellAddress.X = 4 Then
+                Dim cb As ComboBox = e.Control
+                If Not cb Is Nothing Then
+                    cb.DropDownStyle = ComboBoxStyle.DropDown
+                End If
 
-        End If
-        If dtgv_treatments.CurrentCellAddress.X = 3 Or dtgv_treatments.CurrentCellAddress.X = 6 Then
-            AddHandler CType(e.Control, TextBox).KeyPress, AddressOf TextBox_keyPress
-        End If
+            End If
+            If dtgv_treatments.CurrentCellAddress.X = 3 Or dtgv_treatments.CurrentCellAddress.X = 6 Then
+                AddHandler CType(e.Control, TextBox).KeyPress, AddressOf TextBox_keyPress
+            Else
+                RemoveHandler CType(e.Control, TextBox).KeyPress, AddressOf TextBox_keyPress
+            End If
+        Catch ex As Exception
+
+        End Try
+
 
     End Sub
     Private Sub TextBox_keyPress(ByVal sender As Object, ByVal e As KeyPressEventArgs)
@@ -471,6 +481,7 @@ Public Class new_consult
 
     End Sub
     Public Sub add_med(ByVal medname As String, ByVal med_id As Integer)
+
         dtgv_treatments.Rows.Add(med_id, medname, False, "1", "", "", "0", "", "Remove")
         Dim lastrow As Integer = dtgv_treatments.Rows.Count - 1
         Dim chknogen As DataGridViewCheckBoxCell = dtgv_treatments.Rows(lastrow).Cells(2)
@@ -607,6 +618,9 @@ Public Class new_consult
     End Function
 
     Private Sub btn_print_presciption_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_print_presciption.Click
-        prescription.ShowDialog()
+        Dim reportview As New Report_Viewer
+        Dim crptprescription As New crptPrescription
+        reportview.crptViewer.ReportSource = crptprescription
+        reportview.Show()
     End Sub
 End Class

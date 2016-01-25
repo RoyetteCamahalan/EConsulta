@@ -134,6 +134,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationEvents.vb" />
+    <Compile Include="Getter_Setters\appointment_item.vb" />
+    <Compile Include="Getter_Setters\Appointment_Object.vb" />
+    <Compile Include="Getter_Setters\GS_Patient.vb" />
+    <Compile Include="Getter_Setters\user_item.vb" />
+    <Compile Include="Libraries\Patient_Credentials.Designer.vb">
+      <DependentUpon>Patient_Credentials.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Libraries\Patient_Credentials.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\crptPrescription.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>crptPrescription.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Tools\Custom_Adapters.vb" />
     <Compile Include="Tools\db_connection.vb" />
     <Compile Include="Form_Main.Designer.vb">
@@ -286,16 +302,22 @@
     <Compile Include="Tools\Notification.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Patient_Record\patient_diagnosis.Designer.vb">
-      <DependentUpon>patient_diagnosis.vb</DependentUpon>
+    <Compile Include="Patient_Record\patient_history.Designer.vb">
+      <DependentUpon>patient_history.vb</DependentUpon>
     </Compile>
-    <Compile Include="Patient_Record\patient_diagnosis.vb">
+    <Compile Include="Patient_Record\patient_history.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Patient_Record\test_result.Designer.vb">
       <DependentUpon>test_result.vb</DependentUpon>
     </Compile>
     <Compile Include="Patient_Record\test_result.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tools\Report_Viewer.Designer.vb">
+      <DependentUpon>Report_Viewer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Tools\Report_Viewer.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Tools\select_time.Designer.vb">
@@ -328,12 +350,6 @@
     <Compile Include="View_patient.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Patient_Record\patient_history.Designer.vb">
-      <DependentUpon>patient_history.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Patient_Record\patient_history.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="View_Secretary.Designer.vb">
       <DependentUpon>View_Secretary.vb</DependentUpon>
     </Compile>
@@ -344,6 +360,13 @@
   <ItemGroup>
     <EmbeddedResource Include="Form_Main.resx">
       <DependentUpon>Form_Main.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Libraries\Patient_Credentials.resx">
+      <DependentUpon>Patient_Credentials.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\crptPrescription.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>crptPrescription.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Tools\frm_login.resx">
       <DependentUpon>frm_login.vb</DependentUpon>
@@ -414,11 +437,14 @@
     <EmbeddedResource Include="Tools\Notification.resx">
       <DependentUpon>Notification.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Patient_Record\patient_diagnosis.resx">
-      <DependentUpon>patient_diagnosis.vb</DependentUpon>
+    <EmbeddedResource Include="Patient_Record\patient_history.resx">
+      <DependentUpon>patient_history.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Patient_Record\test_result.resx">
       <DependentUpon>test_result.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tools\Report_Viewer.resx">
+      <DependentUpon>Report_Viewer.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Tools\select_time.resx">
       <DependentUpon>select_time.vb</DependentUpon>
@@ -434,9 +460,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View_patient.resx">
       <DependentUpon>View_patient.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Patient_Record\patient_history.resx">
-      <DependentUpon>patient_history.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View_Secretary.resx">
       <DependentUpon>View_Secretary.vb</DependentUpon>
@@ -587,6 +610,7 @@
       <FileType>Assembly</FileType>
     </PublishFile>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

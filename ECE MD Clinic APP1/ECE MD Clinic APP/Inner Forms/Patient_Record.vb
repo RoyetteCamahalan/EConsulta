@@ -2,7 +2,7 @@
 #Region "Methods"
     Public Sub DisplayRecords()
         Try
-            Dim Param_Name As String() = {"@action_type", "@sub_action", "@search", "@secretaty_id", "@doctor_id"}
+            Dim Param_Name As String() = {"@action_type", "@sub_action", "@search", "@secretary_id", "@doctor_id"}
             Dim Param_Value As String()
             Dim MyAdapter As New Custom_Adapters
             If UserType = 0 Then 'secretary
@@ -16,6 +16,7 @@
                 .Columns(1).Visible = False
                 .Columns(3).Visible = False
                 .Columns(9).Visible = False
+                .Columns(10).Visible = False
                 .Columns(ButtonColumn).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
             End With
         Catch ex As Exception
@@ -143,8 +144,9 @@
                 new_consult.patient_id = Me.dtgv_consult.CurrentRow.Cells(1).Value
                 new_consult.complaints = Me.dtgv_consult.CurrentRow.Cells(6).Value.ToString
                 new_consult.findings = Me.dtgv_consult.CurrentRow.Cells(7).Value.ToString
-                new_consult.dateandtime = Me.dtgv_consult.CurrentRow.Cells(5).Value.ToString
+                new_consult.dateandtime = Me.dtgv_consult.CurrentRow.Cells(4).Value.ToString
                 new_consult.last_update = Me.dtgv_consult.CurrentRow.Cells(9).Value.ToString
+                new_consult.notes = Me.dtgv_consult.CurrentRow.Cells(10).Value.ToString
                 new_consult.consult_id = Me.dtgv_consult.CurrentRow.Cells(0).Value.ToString
                 new_consult.ShowDialog()
             End If

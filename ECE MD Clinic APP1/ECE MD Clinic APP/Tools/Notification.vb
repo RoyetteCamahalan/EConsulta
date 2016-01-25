@@ -126,7 +126,7 @@
     Public Sub decline(ByRef rowindex As Integer, ByRef comment As String)
         Try
             Dim Param_Name As String() = {"@action_type", "@sub_action", "@comment_doctor", "@is_approved_doctor", "@server_id"}
-            Dim Param_Value As String() = {1, 4, comment, 1, dtgcv_notifs.Rows(rowindex).Cells(0).Value}
+            Dim Param_Value As String() = {1, 4, comment, 2, dtgcv_notifs.Rows(rowindex).Cells(0).Value}
             Dim MyAdapter As New Custom_Adapters
             If MyAdapter.CUSTOM_TRANSACT("SP_Consultation", Param_Name, Param_Value) Then
                 MsgBox("Saved")

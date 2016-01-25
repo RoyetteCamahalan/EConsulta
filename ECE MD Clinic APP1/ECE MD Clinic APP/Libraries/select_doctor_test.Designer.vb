@@ -33,12 +33,12 @@ Partial Class select_doctor_test
         Me.cmb_doctors.FormattingEnabled = True
         Me.cmb_doctors.Location = New System.Drawing.Point(32, 59)
         Me.cmb_doctors.Name = "cmb_doctors"
-        Me.cmb_doctors.Size = New System.Drawing.Size(361, 138)
+        Me.cmb_doctors.Size = New System.Drawing.Size(361, 99)
         Me.cmb_doctors.TabIndex = 0
         '
         'btn_ok
         '
-        Me.btn_ok.Location = New System.Drawing.Point(89, 203)
+        Me.btn_ok.Location = New System.Drawing.Point(112, 164)
         Me.btn_ok.Name = "btn_ok"
         Me.btn_ok.Size = New System.Drawing.Size(97, 31)
         Me.btn_ok.TabIndex = 1
@@ -47,7 +47,7 @@ Partial Class select_doctor_test
         '
         'btn_cancel
         '
-        Me.btn_cancel.Location = New System.Drawing.Point(205, 203)
+        Me.btn_cancel.Location = New System.Drawing.Point(228, 164)
         Me.btn_cancel.Name = "btn_cancel"
         Me.btn_cancel.Size = New System.Drawing.Size(97, 31)
         Me.btn_cancel.TabIndex = 2
@@ -58,7 +58,7 @@ Partial Class select_doctor_test
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(420, 265)
+        Me.ClientSize = New System.Drawing.Size(420, 218)
         Me.Controls.Add(Me.btn_cancel)
         Me.Controls.Add(Me.btn_ok)
         Me.Controls.Add(Me.cmb_doctors)

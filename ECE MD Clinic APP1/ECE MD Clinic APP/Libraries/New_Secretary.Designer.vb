@@ -95,20 +95,20 @@ Partial Class New_Secretary
         '
         'btn_remove
         '
-        Me.btn_remove.Location = New System.Drawing.Point(244, 141)
+        Me.btn_remove.Location = New System.Drawing.Point(241, 141)
         Me.btn_remove.Name = "btn_remove"
-        Me.btn_remove.Size = New System.Drawing.Size(60, 27)
+        Me.btn_remove.Size = New System.Drawing.Size(70, 27)
         Me.btn_remove.TabIndex = 36
         Me.btn_remove.Text = "Remove"
         Me.btn_remove.UseVisualStyleBackColor = True
         '
         'btn_browse
         '
-        Me.btn_browse.Location = New System.Drawing.Point(314, 141)
+        Me.btn_browse.Location = New System.Drawing.Point(311, 141)
         Me.btn_browse.Name = "btn_browse"
-        Me.btn_browse.Size = New System.Drawing.Size(59, 27)
+        Me.btn_browse.Size = New System.Drawing.Size(68, 27)
         Me.btn_browse.TabIndex = 35
-        Me.btn_browse.Text = "Browse..."
+        Me.btn_browse.Text = "Browse"
         Me.btn_browse.UseVisualStyleBackColor = True
         '
         'lbl_invalid_email
@@ -117,7 +117,7 @@ Partial Class New_Secretary
         Me.lbl_invalid_email.ForeColor = System.Drawing.Color.Red
         Me.lbl_invalid_email.Location = New System.Drawing.Point(307, 331)
         Me.lbl_invalid_email.Name = "lbl_invalid_email"
-        Me.lbl_invalid_email.Size = New System.Drawing.Size(66, 13)
+        Me.lbl_invalid_email.Size = New System.Drawing.Size(77, 15)
         Me.lbl_invalid_email.TabIndex = 47
         Me.lbl_invalid_email.Text = "Invalid Email"
         Me.lbl_invalid_email.Visible = False
@@ -272,7 +272,7 @@ Partial Class New_Secretary
         Me.chk_isactive.ForeColor = System.Drawing.Color.Red
         Me.chk_isactive.Location = New System.Drawing.Point(26, 12)
         Me.chk_isactive.Name = "chk_isactive"
-        Me.chk_isactive.Size = New System.Drawing.Size(140, 17)
+        Me.chk_isactive.Size = New System.Drawing.Size(157, 19)
         Me.chk_isactive.TabIndex = 117
         Me.chk_isactive.Text = "Allow access to my Files"
         Me.chk_isactive.UseVisualStyleBackColor = True
@@ -304,6 +304,7 @@ Partial Class New_Secretary
         Me.Controls.Add(Me.txt_mname)
         Me.Controls.Add(Me.txt_fname)
         Me.Controls.Add(Me.profile_pic)
+        Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.5!)
         Me.Name = "New_Secretary"
         Me.ShowIcon = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen

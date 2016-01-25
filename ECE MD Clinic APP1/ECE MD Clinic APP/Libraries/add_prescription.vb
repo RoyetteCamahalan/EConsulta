@@ -89,7 +89,7 @@ Public Class add_prescription
                 End If
             End If
         Catch ex As Exception
-            MsgBox(ex.ToString)
+            MsgBox("Adding Medicines Failed.")
         End Try
     End Sub
 

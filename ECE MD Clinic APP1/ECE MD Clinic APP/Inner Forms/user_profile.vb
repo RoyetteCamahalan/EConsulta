@@ -1,13 +1,84 @@
 ﻿Public Class user_profile
-    'Private ds As New DataSet
-    'Private dsaddress As New DataSet
-    'Private fname, mname, lname, bdate, sex, civil_status, specialty, sub_specialty, prcno As String
-    'Private mobileno, telno, email, houseno, street As String
-    'Private barangay, municipality, province, region_id As Integer
-    'Private email_checker As Boolean = True
-    'Private errormsgcon As String = ""
-    'Private errormsgbasic As String = ""
 
+    '#Region "Variables"
+    '    Private fname, mname, lname, bdate, sex, civil_status, specialty, sub_specialty, prcno As String
+    '    Private mobileno, telno, email, houseno, street As String
+    '    Private barangay, municipality, province, region_id As Integer
+    '    Private email_checker As Boolean = True
+    '    Private errormsgcon As String = ""
+    '    Private errormsgbasic As String = ""
+
+    '    Private DT_Region As New DataTable
+    '    Private DT_Province As New DataTable
+    '    Private DT_Municipality As New DataTable
+    '    Private DT_Barangay As New DataTable
+    '#End Region
+    '#Region "Methods"
+    '    Private Sub display_regions()
+    '        Try
+    '            DT_Region.Clear()
+    '            DT_Province.Clear()
+    '            DT_Municipality.Clear()
+    '            DT_Barangay.Clear()
+    '            Dim Param_Name As String() = {"@action_type"}
+    '            Dim Param_Value As String() = {0}
+    '            Dim MyAdapter As New Custom_Adapters
+    '            With cmb_region
+    '                .DataSource = MyAdapter.CUSTOM_RETRIEVE("SP_ADDRESS", Param_Name, Param_Value)
+    '                .DisplayMember = "name"
+    '                .ValueMember = "id"
+    '                .SelectedIndex = -1
+    '            End With
+    '        Catch ex As Exception
+
+    '        End Try
+    '        cmb_region.Text = "Select Region"
+    '    End Sub
+    '#End Region
+    '    Private Sub user_profile_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+    '        Try
+    '            display_regions()
+    '            If UserType = 0 Then
+    '                da = New MySqlDataAdapter("SELECT s.`id`,s.`fname`, s.`mname`, s.`lname`, s.`address_house_no`, s.`address_street`," +
+    '                                          " b.`id`, m.`id`, p.`id`, r.`id`, s.`cell_no`, s.`tel_no`, s.`email`, s.`photo`, s.`created_at`, " +
+    '                                          "s.`updated_at`,'' as secretary_id,'' as prc_no,'' as specialty,'' as sub_specialty,'' as clinic_sched,'' " +
+    '                                          "as affiliation FROM `secretaries`s inner join clinic_secretary cs on cs.secretary_id=s.id INNER join barangays" +
+    '                                          " b on b.id=s.barangay_id INNER JOIN municipalities m ON m.id=b.municipality_id INNER JOIN provinces p on p.id=m.province_id " +
+    '                                          "INNER JOIN regions r ON r.id=p.region_id WHERE s.id=" + UserId.ToString, conn)
+    '                Panel1.Visible = False
+    '            Else
+    '                da = New MySqlDataAdapter("SELECT d.`id`,d.`fname`, d.`mname`, d.`lname`, d.`address_house_no`, d.`address_street`, b.`id`, m.`id`, p.`id`, r.`id`, d.`cell_no`, d.`tel_no`, d.`email`, d.`photo`, d.`created_at`, d.`updated_at`,'' as secretary_id,'' as prc_no,'' as specialty,'' as sub_specialty,'' as clinic_sched,'' " +
+    '                                          "as affiliation FROM `doctors` d inner join clinic_doctor cs on cs.doctor_id=d.id INNER join barangays b on b.id=d.barangay_id INNER JOIN municipalities m ON m.id=b.municipality_id INNER JOIN provinces p on p.id=m.province_id INNER JOIN regions r ON r.id=p.region_id WHERE d.id=" + UserId.ToString, conn)
+    '                Panel1.Visible = True
+    '            End If
+    '            da.Fill(ds)
+    '            fname = ds.Tables(0).Rows(0).Item(1).ToString
+    '            mname = ds.Tables(0).Rows(0).Item(2).ToString
+    '            lname = ds.Tables(0).Rows(0).Item(3).ToString
+
+    '            mobileno = ds.Tables(0).Rows(0).Item(10).ToString
+    '            telno = ds.Tables(0).Rows(0).Item(11).ToString
+    '            email = ds.Tables(0).Rows(0).Item(12).ToString
+    '            houseno = ds.Tables(0).Rows(0).Item(4).ToString
+    '            street = ds.Tables(0).Rows(0).Item(5).ToString
+    '            barangay = ds.Tables(0).Rows(0).Item(6)
+    '            municipality = ds.Tables(0).Rows(0).Item(7)
+    '            province = ds.Tables(0).Rows(0).Item(8)
+    '            region_id = ds.Tables(0).Rows(0).Item(9)
+
+    '            specialty = ds.Tables(0).Rows(0).Item(18).ToString
+    '            sub_specialty = ds.Tables(0).Rows(0).Item(19).ToString
+    '            prcno = ds.Tables(0).Rows(0).Item(17).ToString
+    '            txt_prc.Text = ds.Tables(0).Rows(0).Item(18).ToString
+    '            disablebasic()
+    '            disablecontact()
+    '            disableaccount()
+    '            fillfields()
+    '            Me.Text = fname + " " + mname + " " + lname
+    '        Catch ex As Exception
+    '            MsgBox(ex.ToString)
+    '        End Try
+    '    End Sub
     'Private Sub btn_gcancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_gcancel.Click
     '    disableaccount()
     '    txt_uname.Text = UserName
@@ -384,55 +455,7 @@
     '    enableaccount()
     'End Sub
 
-    'Private Sub user_profile_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-    '    Try
-    '        dsaddress.Tables.Add("regions")
-    '        dsaddress.Tables.Add("provinces")
-    '        dsaddress.Tables.Add("municipalities")
-    '        dsaddress.Tables.Add("barangays")
-    '        display_regions()
-    '        ds.Clear()
-    '        If UserType = 0 Then
-    '            da = New MySqlDataAdapter("SELECT s.`id`,s.`fname`, s.`mname`, s.`lname`, s.`address_house_no`, s.`address_street`," +
-    '                                      " b.`id`, m.`id`, p.`id`, r.`id`, s.`cell_no`, s.`tel_no`, s.`email`, s.`photo`, s.`created_at`, " +
-    '                                      "s.`updated_at`,'' as secretary_id,'' as prc_no,'' as specialty,'' as sub_specialty,'' as clinic_sched,'' " +
-    '                                      "as affiliation FROM `secretaries`s inner join clinic_secretary cs on cs.secretary_id=s.id INNER join barangays" +
-    '                                      " b on b.id=s.barangay_id INNER JOIN municipalities m ON m.id=b.municipality_id INNER JOIN provinces p on p.id=m.province_id " +
-    '                                      "INNER JOIN regions r ON r.id=p.region_id WHERE s.id=" + UserId.ToString, conn)
-    '            Panel1.Visible = False
-    '        Else
-    '            da = New MySqlDataAdapter("SELECT d.`id`,d.`fname`, d.`mname`, d.`lname`, d.`address_house_no`, d.`address_street`, b.`id`, m.`id`, p.`id`, r.`id`, d.`cell_no`, d.`tel_no`, d.`email`, d.`photo`, d.`created_at`, d.`updated_at`,'' as secretary_id,'' as prc_no,'' as specialty,'' as sub_specialty,'' as clinic_sched,'' " +
-    '                                      "as affiliation FROM `doctors` d inner join clinic_doctor cs on cs.doctor_id=d.id INNER join barangays b on b.id=d.barangay_id INNER JOIN municipalities m ON m.id=b.municipality_id INNER JOIN provinces p on p.id=m.province_id INNER JOIN regions r ON r.id=p.region_id WHERE d.id=" + UserId.ToString, conn)
-    '            Panel1.Visible = True
-    '        End If
-    '        da.Fill(ds)
-    '        fname = ds.Tables(0).Rows(0).Item(1).ToString
-    '        mname = ds.Tables(0).Rows(0).Item(2).ToString
-    '        lname = ds.Tables(0).Rows(0).Item(3).ToString
-
-    '        mobileno = ds.Tables(0).Rows(0).Item(10).ToString
-    '        telno = ds.Tables(0).Rows(0).Item(11).ToString
-    '        email = ds.Tables(0).Rows(0).Item(12).ToString
-    '        houseno = ds.Tables(0).Rows(0).Item(4).ToString
-    '        street = ds.Tables(0).Rows(0).Item(5).ToString
-    '        barangay = ds.Tables(0).Rows(0).Item(6)
-    '        municipality = ds.Tables(0).Rows(0).Item(7)
-    '        province = ds.Tables(0).Rows(0).Item(8)
-    '        region_id = ds.Tables(0).Rows(0).Item(9)
-
-    '        specialty = ds.Tables(0).Rows(0).Item(18).ToString
-    '        sub_specialty = ds.Tables(0).Rows(0).Item(19).ToString
-    '        prcno = ds.Tables(0).Rows(0).Item(17).ToString
-    '        txt_prc.Text = ds.Tables(0).Rows(0).Item(18).ToString
-    '        disablebasic()
-    '        disablecontact()
-    '        disableaccount()
-    '        fillfields()
-    '        Me.Text = fname + " " + mname + " " + lname
-    '    Catch ex As Exception
-    '        MsgBox(ex.ToString)
-    '    End Try
-    'End Sub
+    
     'Private Sub display_regions()
     '    Try
     '        dsaddress.Clear()

@@ -6,9 +6,9 @@
             Dim Param_Value As String()
             Dim MyAdapter As New Custom_Adapters
             If UserType = 0 Then 'secretary
-                Param_Value = {2, 5, "", UserId, ""}
+                Param_Value = {2, 12, "", UserId, ""}
             Else 'doctor
-                Param_Value = {2, 6, "", "", UserId}
+                Param_Value = {2, 13, "", "", UserId}
             End If
             NotificationCount = MyAdapter.CUSTOM_RETRIEVE("SP_Consultation", Param_Name, Param_Value).Rows.Count
             If NotificationCount > 0 Then

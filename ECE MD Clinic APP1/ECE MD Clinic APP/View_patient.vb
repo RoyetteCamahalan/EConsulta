@@ -3,12 +3,10 @@ Imports System.IO
 Public Class View_patient
     Private selected_index As Integer = 0
     Public patient_id As Integer = 0
-    Private historyinfo As New patient_history
-    Private diagnosis As New patient_diagnosis
+    Private history As New patient_history
     Private testresult As New test_result
     Private testresult_tag As Boolean = False
-    Private history_tag As Boolean = False
-    Private personal_tag As Boolean = True
+    Private history_tag As Boolean = True
     Private profilename As String = ""
     Private temppath As String = Path.GetTempPath()
     Private tempprofilepic As String = ""
@@ -22,12 +20,12 @@ Public Class View_patient
     Private Sub Patient_History_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         imagedialog.Filter = "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png"
 
-        historyinfo.patient_id = Me.patient_id
+
         testresult.patient_id = Me.patient_id
-        historyinfo.MdiParent = Me
-        historyinfo.Parent = Me.patient_info_container
-        historyinfo.Show()
-        diagnosis.Hide()
+        history.patient_id = Me.patient_id
+        history.MdiParent = Me
+        history.Parent = Me.patient_info_container
+        history.Show()
         testresult.Hide()
         display_regions()
         display_patient_info(patient_id)
@@ -88,16 +86,6 @@ Public Class View_patient
         End Try
     End Sub
 
-    Private Sub lbl_personal_MouseEnter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lbl_Diagnosis.MouseEnter
-        lbl_Diagnosis.ForeColor = Color.Blue
-    End Sub
-
-    Private Sub lbl_personal_MouseLeave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lbl_Diagnosis.MouseLeave
-        If Not personal_tag Then
-            lbl_Diagnosis.ForeColor = Color.CornflowerBlue
-        End If
-    End Sub
-
     Private Sub lbl_history_MouseEnter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lbl_history.MouseEnter
         lbl_history.ForeColor = Color.Blue
     End Sub
@@ -120,37 +108,14 @@ Public Class View_patient
         End If
     End Sub
 
-    Private Sub lbl_Diagnosis_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lbl_Diagnosis.Click
-        diagnosis.MdiParent = Me
-        diagnosis.Parent = Me.patient_info_container
-        diagnosis.Show()
-        historyinfo.Hide()
-        testresult.Hide()
-        personal_tag = True
-        history_tag = False
-        testresult_tag = False
-        lbl_history.ForeColor = Color.CornflowerBlue
-        lbl_test_results.ForeColor = Color.CornflowerBlue
-        lbl_Diagnosis.ForeColor = Color.Blue
-        history_bar.FillColor = Color.LightGray
-        diagnosis_bar.FillColor = Color.Cyan
-        results_bar.FillColor = Color.LightGray
-    End Sub
 
     Private Sub lbl_history_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lbl_history.Click
-        historyinfo.MdiParent = Me
-        historyinfo.Parent = Me.patient_info_container
-        historyinfo.Show()
-        diagnosis.Hide()
         testresult.Hide()
-        personal_tag = False
         history_tag = False
         testresult_tag = True
         lbl_history.ForeColor = Color.Blue
         lbl_test_results.ForeColor = Color.CornflowerBlue
-        lbl_Diagnosis.ForeColor = Color.CornflowerBlue
         history_bar.FillColor = Color.Cyan
-        diagnosis_bar.FillColor = Color.LightGray
         results_bar.FillColor = Color.LightGray
     End Sub
 
@@ -158,22 +123,17 @@ Public Class View_patient
         testresult.MdiParent = Me
         testresult.Parent = Me.patient_info_container
         testresult.Show()
-        diagnosis.Hide()
-        historyinfo.Hide()
-        personal_tag = False
+        history.Hide()
         history_tag = True
         testresult_tag = False
         lbl_history.ForeColor = Color.CornflowerBlue
         lbl_test_results.ForeColor = Color.Blue
-        lbl_Diagnosis.ForeColor = Color.CornflowerBlue
         history_bar.FillColor = Color.LightGray
-        diagnosis_bar.FillColor = Color.LightGray
         results_bar.FillColor = Color.Cyan
     End Sub
 
     Private Sub View_patient_FormClosing(ByVal sender As System.Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles MyBase.FormClosing
-        diagnosis.Close()
-        historyinfo.Close()
+        history.Close()
         testresult.Close()
     End Sub
 
@@ -456,5 +416,14 @@ Public Class View_patient
 
         End Try
         cmb_barangay.Text = "Select Barangay"
+    End Sub
+
+    Private Sub ts_credentials_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ts_credentials.Click
+        If UserType = 0 Then
+            MsgBox("Access Denied For Now!")
+        Else
+            Patient_Credentials.Patient_ID = Me.patient_id
+            Patient_Credentials.ShowDialog()
+        End If
     End Sub
 End Class

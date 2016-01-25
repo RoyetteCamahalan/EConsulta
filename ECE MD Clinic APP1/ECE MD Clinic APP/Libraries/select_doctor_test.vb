@@ -1,36 +1,27 @@
-﻿Imports System.Data
-Imports System.Data.SqlClient
-Public Class select_doctor_test
-    Private da As New SqlDataAdapter
-    Private ds As New DataSet
+﻿Public Class select_doctor_test
     Public testresult As test_result
     Private Sub select_doctor_test_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         btn_ok.ForeColor = Color.Gray
-        display_doctors()
+        DisplayDoctors()
     End Sub
-    Private Sub display_doctors()
+    Private Sub DisplayDoctors()
         Try
-            Dim strquery As String
+            Dim Param_Name As String() = {"@action_type", "@sub_action", "@secretary_id", "@id"}
+            Dim Param_Value As String()
+            Dim MyAdapter As New Custom_Adapters
             If UserType = 0 Then
-                strquery = "select d.id,concat(d.`fname`,' ',d.`mname`,' ',d.`lname`)as doctors_name from doctors d INNER JOIN secretary_access sc on sc.doctor_id=d.id WHERE sc.secretary_id=" + UserId.ToString
+                Param_Value = {2, 1, UserId, ""}
                 cmb_doctors.Enabled = True
             Else
-                strquery = "select id,concat(`fname`,' ',`mname`,' ',`lname`)as doctors_name from doctors where id=" + UserId.ToString
+                Param_Value = {2, 2, "", UserId}
                 cmb_doctors.Enabled = False
             End If
-            da = New SqlDataAdapter(strquery, conn)
-            da.Fill(ds, "doctors")
-
             With cmb_doctors
-                .DataSource = ds.Tables("doctors")
+                .DataSource = MyAdapter.CUSTOM_RETRIEVE("SP_Doctors", Param_Name, Param_Value)
                 .ValueMember = "id"
                 .DisplayMember = "doctors_name"
                 .SelectedIndex = -1
             End With
-            If UserType = 1 Then
-                cmb_doctors.SelectedValue = UserId
-            End If
-
         Catch ex As Exception
 
         End Try
@@ -46,7 +37,7 @@ Public Class select_doctor_test
         If btn_ok.ForeColor = Color.Gray Then
             MsgBox("Please select doctor")
         Else
-            testresult.addfromsecretary(cmb_doctors.SelectedValue)
+            testresult.InsertTestResult(cmb_doctors.SelectedValue)
             Me.Dispose()
         End If
     End Sub

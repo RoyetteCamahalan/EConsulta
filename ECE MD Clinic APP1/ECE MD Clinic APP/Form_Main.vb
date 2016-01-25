@@ -328,7 +328,13 @@
     End Sub
 
     Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
-        Call Helper_Upload.UPLOAD_PATIENT()
+        'Call Helper_Upload.UPLOAD_PATIENT()
         Call Helper_Upload.UPLOAD_APPOINTMENTS()
+        'Call Helper_Upload.UPLOAD_MEDICINES()
+        'Call Helper_Upload.UPLOAD_PATIENT_RECORDS()
+    End Sub
+
+    Private Sub MyProfileToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyProfileToolStripMenuItem.Click
+        user_profile.ShowDialog()
     End Sub
 End Class

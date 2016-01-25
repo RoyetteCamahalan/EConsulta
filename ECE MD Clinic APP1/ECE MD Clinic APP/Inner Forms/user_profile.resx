@@ -980,54 +980,6 @@
   <data name="&gt;&gt;txt_sub_specialty.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="&gt;&gt;Label21.Name" xml:space="preserve">
-    <value>Label21</value>
-  </data>
-  <data name="&gt;&gt;Label21.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;Label21.Parent" xml:space="preserve">
-    <value>Panel1</value>
-  </data>
-  <data name="&gt;&gt;Label21.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;txt_prc.Name" xml:space="preserve">
-    <value>txt_prc</value>
-  </data>
-  <data name="&gt;&gt;txt_prc.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txt_prc.Parent" xml:space="preserve">
-    <value>Panel1</value>
-  </data>
-  <data name="&gt;&gt;txt_prc.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="Panel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 92</value>
-  </data>
-  <data name="Panel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>634, 47</value>
-  </data>
-  <data name="Panel1.TabIndex" type="System.Int32, mscorlib">
-    <value>96</value>
-  </data>
-  <data name="Panel1.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;Panel1.Name" xml:space="preserve">
-    <value>Panel1</value>
-  </data>
-  <data name="&gt;&gt;Panel1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;Panel1.Parent" xml:space="preserve">
-    <value>Panel2</value>
-  </data>
-  <data name="&gt;&gt;Panel1.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
   <data name="Label21.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -1076,104 +1028,29 @@
   <data name="&gt;&gt;txt_prc.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="&gt;&gt;Panel2.Name" xml:space="preserve">
-    <value>Panel2</value>
+  <data name="Panel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 92</value>
   </data>
-  <data name="&gt;&gt;Panel2.Type" xml:space="preserve">
+  <data name="Panel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>634, 47</value>
+  </data>
+  <data name="Panel1.TabIndex" type="System.Int32, mscorlib">
+    <value>96</value>
+  </data>
+  <data name="Panel1.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;Panel1.Name" xml:space="preserve">
+    <value>Panel1</value>
+  </data>
+  <data name="&gt;&gt;Panel1.Type" xml:space="preserve">
     <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;Panel2.Parent" xml:space="preserve">
-    <value>GroupBox1</value>
-  </data>
-  <data name="&gt;&gt;Panel2.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="GroupBox1.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 9pt, style=Bold</value>
-  </data>
-  <data name="GroupBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 15</value>
-  </data>
-  <data name="GroupBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>642, 195</value>
-  </data>
-  <data name="GroupBox1.TabIndex" type="System.Int32, mscorlib">
-    <value>98</value>
-  </data>
-  <data name="GroupBox1.Text" xml:space="preserve">
-    <value>Basic Information</value>
-  </data>
-  <data name="&gt;&gt;GroupBox1.Name" xml:space="preserve">
-    <value>GroupBox1</value>
-  </data>
-  <data name="&gt;&gt;GroupBox1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;GroupBox1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;GroupBox1.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;btnbedit.Name" xml:space="preserve">
-    <value>btnbedit</value>
-  </data>
-  <data name="&gt;&gt;btnbedit.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnbedit.Parent" xml:space="preserve">
+  <data name="&gt;&gt;Panel1.Parent" xml:space="preserve">
     <value>Panel2</value>
   </data>
-  <data name="&gt;&gt;btnbedit.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;btnbcancel.Name" xml:space="preserve">
-    <value>btnbcancel</value>
-  </data>
-  <data name="&gt;&gt;btnbcancel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnbcancel.Parent" xml:space="preserve">
-    <value>Panel2</value>
-  </data>
-  <data name="&gt;&gt;btnbcancel.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;btnbsave.Name" xml:space="preserve">
-    <value>btnbsave</value>
-  </data>
-  <data name="&gt;&gt;btnbsave.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnbsave.Parent" xml:space="preserve">
-    <value>Panel2</value>
-  </data>
-  <data name="&gt;&gt;btnbsave.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="Panel2.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 8pt</value>
-  </data>
-  <data name="Panel2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 20</value>
-  </data>
-  <data name="Panel2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>636, 169</value>
-  </data>
-  <data name="Panel2.TabIndex" type="System.Int32, mscorlib">
-    <value>101</value>
-  </data>
-  <data name="&gt;&gt;Panel2.Name" xml:space="preserve">
-    <value>Panel2</value>
-  </data>
-  <data name="&gt;&gt;Panel2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;Panel2.Parent" xml:space="preserve">
-    <value>GroupBox1</value>
-  </data>
-  <data name="&gt;&gt;Panel2.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="&gt;&gt;Panel1.ZOrder" xml:space="preserve">
+    <value>8</value>
   </data>
   <data name="btnbedit.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 8.25pt, style=Bold</value>
@@ -1272,200 +1149,56 @@
   <data name="&gt;&gt;btnbsave.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="&gt;&gt;Panel3.Name" xml:space="preserve">
-    <value>Panel3</value>
-  </data>
-  <data name="&gt;&gt;Panel3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;Panel3.Parent" xml:space="preserve">
-    <value>GroupBox2</value>
-  </data>
-  <data name="&gt;&gt;Panel3.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="GroupBox2.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 9pt, style=Bold</value>
-  </data>
-  <data name="GroupBox2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 242</value>
-  </data>
-  <data name="GroupBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>642, 203</value>
-  </data>
-  <data name="GroupBox2.TabIndex" type="System.Int32, mscorlib">
-    <value>99</value>
-  </data>
-  <data name="GroupBox2.Text" xml:space="preserve">
-    <value>Contact Information</value>
-  </data>
-  <data name="&gt;&gt;GroupBox2.Name" xml:space="preserve">
-    <value>GroupBox2</value>
-  </data>
-  <data name="&gt;&gt;GroupBox2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;GroupBox2.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;GroupBox2.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;cmb_barangay.Name" xml:space="preserve">
-    <value>cmb_barangay</value>
-  </data>
-  <data name="&gt;&gt;cmb_barangay.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cmb_barangay.Parent" xml:space="preserve">
-    <value>Panel3</value>
-  </data>
-  <data name="&gt;&gt;cmb_barangay.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;cmb_municipality.Name" xml:space="preserve">
-    <value>cmb_municipality</value>
-  </data>
-  <data name="&gt;&gt;cmb_municipality.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cmb_municipality.Parent" xml:space="preserve">
-    <value>Panel3</value>
-  </data>
-  <data name="&gt;&gt;cmb_municipality.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;cmb_province.Name" xml:space="preserve">
-    <value>cmb_province</value>
-  </data>
-  <data name="&gt;&gt;cmb_province.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cmb_province.Parent" xml:space="preserve">
-    <value>Panel3</value>
-  </data>
-  <data name="&gt;&gt;cmb_province.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;cmb_region.Name" xml:space="preserve">
-    <value>cmb_region</value>
-  </data>
-  <data name="&gt;&gt;cmb_region.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cmb_region.Parent" xml:space="preserve">
-    <value>Panel3</value>
-  </data>
-  <data name="&gt;&gt;cmb_region.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;Label5.Name" xml:space="preserve">
-    <value>Label5</value>
-  </data>
-  <data name="&gt;&gt;Label5.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;Label5.Parent" xml:space="preserve">
-    <value>Panel3</value>
-  </data>
-  <data name="&gt;&gt;Label5.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;Label6.Name" xml:space="preserve">
-    <value>Label6</value>
-  </data>
-  <data name="&gt;&gt;Label6.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;Label6.Parent" xml:space="preserve">
-    <value>Panel3</value>
-  </data>
-  <data name="&gt;&gt;Label6.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;Label7.Name" xml:space="preserve">
-    <value>Label7</value>
-  </data>
-  <data name="&gt;&gt;Label7.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;Label7.Parent" xml:space="preserve">
-    <value>Panel3</value>
-  </data>
-  <data name="&gt;&gt;Label7.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;Label8.Name" xml:space="preserve">
-    <value>Label8</value>
-  </data>
-  <data name="&gt;&gt;Label8.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;Label8.Parent" xml:space="preserve">
-    <value>Panel3</value>
-  </data>
-  <data name="&gt;&gt;Label8.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;btnconedit.Name" xml:space="preserve">
-    <value>btnconedit</value>
-  </data>
-  <data name="&gt;&gt;btnconedit.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnconedit.Parent" xml:space="preserve">
-    <value>Panel3</value>
-  </data>
-  <data name="&gt;&gt;btnconedit.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="&gt;&gt;btnconcancel.Name" xml:space="preserve">
-    <value>btnconcancel</value>
-  </data>
-  <data name="&gt;&gt;btnconcancel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnconcancel.Parent" xml:space="preserve">
-    <value>Panel3</value>
-  </data>
-  <data name="&gt;&gt;btnconcancel.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="&gt;&gt;btnconsave.Name" xml:space="preserve">
-    <value>btnconsave</value>
-  </data>
-  <data name="&gt;&gt;btnconsave.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnconsave.Parent" xml:space="preserve">
-    <value>Panel3</value>
-  </data>
-  <data name="&gt;&gt;btnconsave.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="Panel3.Font" type="System.Drawing.Font, System.Drawing">
+  <data name="Panel2.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 8pt</value>
   </data>
-  <data name="Panel3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>2, 19</value>
+  <data name="Panel2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 20</value>
   </data>
-  <data name="Panel3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>634, 178</value>
+  <data name="Panel2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>636, 169</value>
   </data>
-  <data name="Panel3.TabIndex" type="System.Int32, mscorlib">
+  <data name="Panel2.TabIndex" type="System.Int32, mscorlib">
     <value>101</value>
   </data>
-  <data name="&gt;&gt;Panel3.Name" xml:space="preserve">
-    <value>Panel3</value>
+  <data name="&gt;&gt;Panel2.Name" xml:space="preserve">
+    <value>Panel2</value>
   </data>
-  <data name="&gt;&gt;Panel3.Type" xml:space="preserve">
+  <data name="&gt;&gt;Panel2.Type" xml:space="preserve">
     <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;Panel3.Parent" xml:space="preserve">
-    <value>GroupBox2</value>
+  <data name="&gt;&gt;Panel2.Parent" xml:space="preserve">
+    <value>GroupBox1</value>
   </data>
-  <data name="&gt;&gt;Panel3.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;Panel2.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="GroupBox1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9pt, style=Bold</value>
+  </data>
+  <data name="GroupBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 15</value>
+  </data>
+  <data name="GroupBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>642, 195</value>
+  </data>
+  <data name="GroupBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>98</value>
+  </data>
+  <data name="GroupBox1.Text" xml:space="preserve">
+    <value>Basic Information</value>
+  </data>
+  <data name="&gt;&gt;GroupBox1.Name" xml:space="preserve">
+    <value>GroupBox1</value>
+  </data>
+  <data name="&gt;&gt;GroupBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;GroupBox1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;GroupBox1.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <data name="cmb_barangay.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -1779,6 +1512,69 @@
   <data name="&gt;&gt;btnconsave.ZOrder" xml:space="preserve">
     <value>10</value>
   </data>
+  <data name="Panel3.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8pt</value>
+  </data>
+  <data name="Panel3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>2, 19</value>
+  </data>
+  <data name="Panel3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>634, 178</value>
+  </data>
+  <data name="Panel3.TabIndex" type="System.Int32, mscorlib">
+    <value>101</value>
+  </data>
+  <data name="&gt;&gt;Panel3.Name" xml:space="preserve">
+    <value>Panel3</value>
+  </data>
+  <data name="&gt;&gt;Panel3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Panel3.Parent" xml:space="preserve">
+    <value>GroupBox2</value>
+  </data>
+  <data name="&gt;&gt;Panel3.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="GroupBox2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9pt, style=Bold</value>
+  </data>
+  <data name="GroupBox2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 242</value>
+  </data>
+  <data name="GroupBox2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>642, 203</value>
+  </data>
+  <data name="GroupBox2.TabIndex" type="System.Int32, mscorlib">
+    <value>99</value>
+  </data>
+  <data name="GroupBox2.Text" xml:space="preserve">
+    <value>Contact Information</value>
+  </data>
+  <data name="&gt;&gt;GroupBox2.Name" xml:space="preserve">
+    <value>GroupBox2</value>
+  </data>
+  <data name="&gt;&gt;GroupBox2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;GroupBox2.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;GroupBox2.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="Panel4.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8pt</value>
+  </data>
+  <data name="Panel4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 28</value>
+  </data>
+  <data name="Panel4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>635, 70</value>
+  </data>
+  <data name="Panel4.TabIndex" type="System.Int32, mscorlib">
+    <value>101</value>
+  </data>
   <data name="&gt;&gt;Panel4.Name" xml:space="preserve">
     <value>Panel4</value>
   </data>
@@ -1816,30 +1612,6 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;GroupBox3.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="Panel4.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 8pt</value>
-  </data>
-  <data name="Panel4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 28</value>
-  </data>
-  <data name="Panel4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>635, 70</value>
-  </data>
-  <data name="Panel4.TabIndex" type="System.Int32, mscorlib">
-    <value>101</value>
-  </data>
-  <data name="&gt;&gt;Panel4.Name" xml:space="preserve">
-    <value>Panel4</value>
-  </data>
-  <data name="&gt;&gt;Panel4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;Panel4.Parent" xml:space="preserve">
-    <value>GroupBox3</value>
-  </data>
-  <data name="&gt;&gt;Panel4.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">

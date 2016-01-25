@@ -74,14 +74,12 @@ Partial Class View_patient
         Me.Label11 = New System.Windows.Forms.Label()
         Me.Label12 = New System.Windows.Forms.Label()
         Me.Label13 = New System.Windows.Forms.Label()
-        Me.lbl_Diagnosis = New System.Windows.Forms.Label()
         Me.lbl_history = New System.Windows.Forms.Label()
         Me.lbl_test_results = New System.Windows.Forms.Label()
         Me.patient_info_container = New System.Windows.Forms.Panel()
         Me.profile_pic = New System.Windows.Forms.PictureBox()
         Me.ShapeContainer1 = New Microsoft.VisualBasic.PowerPacks.ShapeContainer()
         Me.results_bar = New Microsoft.VisualBasic.PowerPacks.RectangleShape()
-        Me.diagnosis_bar = New Microsoft.VisualBasic.PowerPacks.RectangleShape()
         Me.history_bar = New Microsoft.VisualBasic.PowerPacks.RectangleShape()
         Me.context_replace = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.changeprofile = New System.Windows.Forms.ToolStripMenuItem()
@@ -149,7 +147,6 @@ Partial Class View_patient
         Me.Panel1.Controls.Add(Me.Label11)
         Me.Panel1.Controls.Add(Me.Label12)
         Me.Panel1.Controls.Add(Me.Label13)
-        Me.Panel1.Controls.Add(Me.lbl_Diagnosis)
         Me.Panel1.Controls.Add(Me.lbl_history)
         Me.Panel1.Controls.Add(Me.lbl_test_results)
         Me.Panel1.Controls.Add(Me.patient_info_container)
@@ -605,27 +602,15 @@ Partial Class View_patient
         Me.Label13.TabIndex = 38
         Me.Label13.Text = "Last Name :"
         '
-        'lbl_Diagnosis
-        '
-        Me.lbl_Diagnosis.AutoSize = True
-        Me.lbl_Diagnosis.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.lbl_Diagnosis.Font = New System.Drawing.Font("Microsoft Sans Serif", 20.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl_Diagnosis.ForeColor = System.Drawing.Color.CornflowerBlue
-        Me.lbl_Diagnosis.Location = New System.Drawing.Point(524, 257)
-        Me.lbl_Diagnosis.Name = "lbl_Diagnosis"
-        Me.lbl_Diagnosis.Size = New System.Drawing.Size(143, 31)
-        Me.lbl_Diagnosis.TabIndex = 24
-        Me.lbl_Diagnosis.Text = "Diagnosis"
-        '
         'lbl_history
         '
         Me.lbl_history.AutoSize = True
         Me.lbl_history.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.lbl_history.Font = New System.Drawing.Font("Microsoft Sans Serif", 20.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl_history.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbl_history.ForeColor = System.Drawing.Color.Blue
-        Me.lbl_history.Location = New System.Drawing.Point(108, 257)
+        Me.lbl_history.Location = New System.Drawing.Point(212, 260)
         Me.lbl_history.Name = "lbl_history"
-        Me.lbl_history.Size = New System.Drawing.Size(143, 31)
+        Me.lbl_history.Size = New System.Drawing.Size(127, 29)
         Me.lbl_history.TabIndex = 23
         Me.lbl_history.Text = "HISTORY"
         '
@@ -633,11 +618,11 @@ Partial Class View_patient
         '
         Me.lbl_test_results.AutoSize = True
         Me.lbl_test_results.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.lbl_test_results.Font = New System.Drawing.Font("Microsoft Sans Serif", 20.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl_test_results.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbl_test_results.ForeColor = System.Drawing.Color.CornflowerBlue
-        Me.lbl_test_results.Location = New System.Drawing.Point(831, 260)
+        Me.lbl_test_results.Location = New System.Drawing.Point(736, 260)
         Me.lbl_test_results.Name = "lbl_test_results"
-        Me.lbl_test_results.Size = New System.Drawing.Size(229, 31)
+        Me.lbl_test_results.Size = New System.Drawing.Size(206, 29)
         Me.lbl_test_results.TabIndex = 22
         Me.lbl_test_results.Text = "TEST RESULTS"
         '
@@ -666,7 +651,7 @@ Partial Class View_patient
         Me.ShapeContainer1.Location = New System.Drawing.Point(0, 0)
         Me.ShapeContainer1.Margin = New System.Windows.Forms.Padding(0)
         Me.ShapeContainer1.Name = "ShapeContainer1"
-        Me.ShapeContainer1.Shapes.AddRange(New Microsoft.VisualBasic.PowerPacks.Shape() {Me.results_bar, Me.diagnosis_bar, Me.history_bar})
+        Me.ShapeContainer1.Shapes.AddRange(New Microsoft.VisualBasic.PowerPacks.Shape() {Me.results_bar, Me.history_bar})
         Me.ShapeContainer1.Size = New System.Drawing.Size(1121, 695)
         Me.ShapeContainer1.TabIndex = 8
         Me.ShapeContainer1.TabStop = False
@@ -677,19 +662,9 @@ Partial Class View_patient
         Me.results_bar.Enabled = False
         Me.results_bar.FillColor = System.Drawing.Color.LightGray
         Me.results_bar.FillStyle = Microsoft.VisualBasic.PowerPacks.FillStyle.Solid
-        Me.results_bar.Location = New System.Drawing.Point(770, 291)
+        Me.results_bar.Location = New System.Drawing.Point(561, 291)
         Me.results_bar.Name = "results_bar"
-        Me.results_bar.Size = New System.Drawing.Size(337, 12)
-        '
-        'diagnosis_bar
-        '
-        Me.diagnosis_bar.BorderColor = System.Drawing.SystemColors.ButtonFace
-        Me.diagnosis_bar.Enabled = False
-        Me.diagnosis_bar.FillColor = System.Drawing.Color.LightGray
-        Me.diagnosis_bar.FillStyle = Microsoft.VisualBasic.PowerPacks.FillStyle.Solid
-        Me.diagnosis_bar.Location = New System.Drawing.Point(384, 291)
-        Me.diagnosis_bar.Name = "diagnosis_bar"
-        Me.diagnosis_bar.Size = New System.Drawing.Size(385, 12)
+        Me.results_bar.Size = New System.Drawing.Size(546, 12)
         '
         'history_bar
         '
@@ -700,7 +675,7 @@ Partial Class View_patient
         Me.history_bar.FillStyle = Microsoft.VisualBasic.PowerPacks.FillStyle.Solid
         Me.history_bar.Location = New System.Drawing.Point(13, 291)
         Me.history_bar.Name = "history_bar"
-        Me.history_bar.Size = New System.Drawing.Size(370, 12)
+        Me.history_bar.Size = New System.Drawing.Size(547, 12)
         '
         'context_replace
         '
@@ -803,9 +778,7 @@ Partial Class View_patient
     Friend WithEvents patient_info_container As System.Windows.Forms.Panel
     Friend WithEvents ShapeContainer1 As Microsoft.VisualBasic.PowerPacks.ShapeContainer
     Friend WithEvents results_bar As Microsoft.VisualBasic.PowerPacks.RectangleShape
-    Friend WithEvents diagnosis_bar As Microsoft.VisualBasic.PowerPacks.RectangleShape
     Friend WithEvents history_bar As Microsoft.VisualBasic.PowerPacks.RectangleShape
-    Friend WithEvents lbl_Diagnosis As System.Windows.Forms.Label
     Friend WithEvents lbl_history As System.Windows.Forms.Label
     Friend WithEvents lbl_test_results As System.Windows.Forms.Label
     Friend WithEvents context_replace As System.Windows.Forms.ContextMenuStrip

@@ -14,14 +14,14 @@
     <framework targetVersion="4.0" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="ECE MD Clinic APP.exe.manifest" size="6941">
+    <dependentAssembly dependencyType="install" codebase="ECE MD Clinic APP.exe.manifest" size="13182">
       <assemblyIdentity name="ECE MD Clinic APP.exe" version="1.0.0.6" publicKeyToken="0000000000000000" language="en-PH" processorArchitecture="x86" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>U25t6Pg60ZYHAfweENdw7cAaJ1Y=</dsig:DigestValue>
+        <dsig:DigestValue>3XhDAw+KIhdzlVR16oQsYg/e2Gg=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

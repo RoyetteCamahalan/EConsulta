@@ -44,6 +44,7 @@ Partial Class frm_login
         Me.UsernameTextBox.Name = "UsernameTextBox"
         Me.UsernameTextBox.Size = New System.Drawing.Size(258, 22)
         Me.UsernameTextBox.TabIndex = 1
+        Me.UsernameTextBox.Text = "rara"
         '
         'PasswordTextBox
         '
@@ -55,6 +56,7 @@ Partial Class frm_login
         Me.PasswordTextBox.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.PasswordTextBox.Size = New System.Drawing.Size(258, 22)
         Me.PasswordTextBox.TabIndex = 3
+        Me.PasswordTextBox.Text = "rara"
         Me.PasswordTextBox.UseSystemPasswordChar = True
         '
         'OK

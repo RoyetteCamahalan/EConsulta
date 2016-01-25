@@ -158,14 +158,16 @@ Partial Class New_Patient
         'Label1
         '
         Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.5!)
         Me.Label1.Location = New System.Drawing.Point(170, 276)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(66, 13)
+        Me.Label1.Size = New System.Drawing.Size(73, 15)
         Me.Label1.TabIndex = 31
         Me.Label1.Text = "Reffered By:"
         '
         'txt_reffered_by
         '
+        Me.txt_reffered_by.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.5!)
         Me.txt_reffered_by.Location = New System.Drawing.Point(172, 292)
         Me.txt_reffered_by.Multiline = True
         Me.txt_reffered_by.Name = "txt_reffered_by"
@@ -186,6 +188,7 @@ Partial Class New_Patient
         'txt_weight
         '
         Me.txt_weight.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.txt_weight.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.5!)
         Me.txt_weight.ForeColor = System.Drawing.SystemColors.GrayText
         Me.txt_weight.Location = New System.Drawing.Point(75, 304)
         Me.txt_weight.Name = "txt_weight"
@@ -197,6 +200,7 @@ Partial Class New_Patient
         'txt_height
         '
         Me.txt_height.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.txt_height.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.5!)
         Me.txt_height.ForeColor = System.Drawing.SystemColors.GrayText
         Me.txt_height.Location = New System.Drawing.Point(75, 278)
         Me.txt_height.Name = "txt_height"
@@ -209,7 +213,7 @@ Partial Class New_Patient
         '
         Me.GroupBox1.Controls.Add(Me.rdbtn_female)
         Me.GroupBox1.Controls.Add(Me.rbtn_male)
-        Me.GroupBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.5!)
         Me.GroupBox1.Location = New System.Drawing.Point(73, 189)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(255, 53)
@@ -220,9 +224,10 @@ Partial Class New_Patient
         'rdbtn_female
         '
         Me.rdbtn_female.AutoSize = True
+        Me.rdbtn_female.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.5!)
         Me.rdbtn_female.Location = New System.Drawing.Point(117, 20)
         Me.rdbtn_female.Name = "rdbtn_female"
-        Me.rdbtn_female.Size = New System.Drawing.Size(73, 17)
+        Me.rdbtn_female.Size = New System.Drawing.Size(73, 19)
         Me.rdbtn_female.TabIndex = 1
         Me.rdbtn_female.TabStop = True
         Me.rdbtn_female.Text = "FEMALE"
@@ -231,9 +236,10 @@ Partial Class New_Patient
         'rbtn_male
         '
         Me.rbtn_male.AutoSize = True
+        Me.rbtn_male.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.5!)
         Me.rbtn_male.Location = New System.Drawing.Point(33, 20)
         Me.rbtn_male.Name = "rbtn_male"
-        Me.rbtn_male.Size = New System.Drawing.Size(58, 17)
+        Me.rbtn_male.Size = New System.Drawing.Size(58, 19)
         Me.rbtn_male.TabIndex = 0
         Me.rbtn_male.TabStop = True
         Me.rbtn_male.Text = "MALE"
@@ -241,6 +247,7 @@ Partial Class New_Patient
         '
         'birthdate_picker
         '
+        Me.birthdate_picker.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.5!)
         Me.birthdate_picker.Format = System.Windows.Forms.DateTimePickerFormat.Custom
         Me.birthdate_picker.Location = New System.Drawing.Point(73, 162)
         Me.birthdate_picker.Name = "birthdate_picker"
@@ -250,6 +257,7 @@ Partial Class New_Patient
         'txt_occupation
         '
         Me.txt_occupation.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.txt_occupation.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.5!)
         Me.txt_occupation.ForeColor = System.Drawing.SystemColors.GrayText
         Me.txt_occupation.Location = New System.Drawing.Point(74, 125)
         Me.txt_occupation.Name = "txt_occupation"
@@ -261,6 +269,7 @@ Partial Class New_Patient
         'txt_lname
         '
         Me.txt_lname.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.txt_lname.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.5!)
         Me.txt_lname.ForeColor = System.Drawing.SystemColors.GrayText
         Me.txt_lname.Location = New System.Drawing.Point(74, 74)
         Me.txt_lname.Name = "txt_lname"
@@ -272,6 +281,7 @@ Partial Class New_Patient
         'txt_mname
         '
         Me.txt_mname.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.txt_mname.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.5!)
         Me.txt_mname.ForeColor = System.Drawing.SystemColors.GrayText
         Me.txt_mname.Location = New System.Drawing.Point(74, 48)
         Me.txt_mname.Name = "txt_mname"
@@ -283,6 +293,7 @@ Partial Class New_Patient
         'txt_fname
         '
         Me.txt_fname.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.txt_fname.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.5!)
         Me.txt_fname.ForeColor = System.Drawing.SystemColors.GrayText
         Me.txt_fname.Location = New System.Drawing.Point(74, 19)
         Me.txt_fname.Name = "txt_fname"
@@ -294,10 +305,10 @@ Partial Class New_Patient
         'Label15
         '
         Me.Label15.AutoSize = True
-        Me.Label15.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label15.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.5!)
         Me.Label15.Location = New System.Drawing.Point(72, 146)
         Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(66, 13)
+        Me.Label15.Size = New System.Drawing.Size(62, 15)
         Me.Label15.TabIndex = 17
         Me.Label15.Text = "Birthdate :"
         '
@@ -366,7 +377,7 @@ Partial Class New_Patient
         Me.lbl_invalid_email.ForeColor = System.Drawing.Color.Red
         Me.lbl_invalid_email.Location = New System.Drawing.Point(80, 308)
         Me.lbl_invalid_email.Name = "lbl_invalid_email"
-        Me.lbl_invalid_email.Size = New System.Drawing.Size(66, 13)
+        Me.lbl_invalid_email.Size = New System.Drawing.Size(77, 15)
         Me.lbl_invalid_email.TabIndex = 18
         Me.lbl_invalid_email.Text = "Invalid Email"
         Me.lbl_invalid_email.Visible = False
@@ -474,6 +485,7 @@ Partial Class New_Patient
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(417, 386)
         Me.Controls.Add(Me.TabControl1)
+        Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.5!)
         Me.Name = "New_Patient"
         Me.ShowIcon = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen

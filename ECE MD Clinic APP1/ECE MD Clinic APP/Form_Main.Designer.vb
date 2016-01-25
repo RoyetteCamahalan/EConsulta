@@ -26,20 +26,21 @@ Partial Class Form_Main
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form_Main))
         Me.Panel_Header = New System.Windows.Forms.Panel()
         Me.lbl_notif_context = New System.Windows.Forms.Label()
+        Me.consultation_header = New System.Windows.Forms.Panel()
+        Me.Menu_Consultations = New System.Windows.Forms.Label()
+        Me.Appointments_Header = New System.Windows.Forms.Panel()
+        Me.Menu_Appoinments = New System.Windows.Forms.Label()
+        Me.patients_header = New System.Windows.Forms.Panel()
+        Me.Menu_Patients = New System.Windows.Forms.Label()
+        Me.doctors_header = New System.Windows.Forms.Panel()
+        Me.Menu_Doctors = New System.Windows.Forms.Label()
+        Me.secretaries_header = New System.Windows.Forms.Panel()
+        Me.Menu_Secretaries = New System.Windows.Forms.Label()
+        Me.Panel4 = New System.Windows.Forms.Panel()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.ShapeContainer2 = New Microsoft.VisualBasic.PowerPacks.ShapeContainer()
         Me.lbl_notification_counter = New System.Windows.Forms.Label()
         Me.Notification_counter_container = New Microsoft.VisualBasic.PowerPacks.OvalShape()
-        Me.secretaries_header = New System.Windows.Forms.Panel()
-        Me.Menu_Secretaries = New System.Windows.Forms.Label()
-        Me.patients_header = New System.Windows.Forms.Panel()
-        Me.Menu_Patients = New System.Windows.Forms.Label()
-        Me.Appointments_Header = New System.Windows.Forms.Panel()
-        Me.Menu_Appoinments = New System.Windows.Forms.Label()
-        Me.consultation_header = New System.Windows.Forms.Panel()
-        Me.Menu_Consultations = New System.Windows.Forms.Label()
-        Me.doctors_header = New System.Windows.Forms.Panel()
-        Me.Menu_Doctors = New System.Windows.Forms.Label()
         Me.Panel_Container1 = New System.Windows.Forms.Panel()
         Me.Panel_Container2 = New System.Windows.Forms.Panel()
         Me.lbl_user_name = New System.Windows.Forms.Label()
@@ -56,20 +57,19 @@ Partial Class Form_Main
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.Timer_Transition1 = New System.Windows.Forms.Timer(Me.components)
         Me.Timer_Transition2 = New System.Windows.Forms.Timer(Me.components)
-        Me.Panel4 = New System.Windows.Forms.Panel()
         Me.Panel_Header.SuspendLayout()
+        Me.consultation_header.SuspendLayout()
+        Me.Appointments_Header.SuspendLayout()
+        Me.patients_header.SuspendLayout()
+        Me.doctors_header.SuspendLayout()
+        Me.secretaries_header.SuspendLayout()
+        Me.Panel4.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.ShapeContainer2.SuspendLayout()
-        Me.secretaries_header.SuspendLayout()
-        Me.patients_header.SuspendLayout()
-        Me.Appointments_Header.SuspendLayout()
-        Me.consultation_header.SuspendLayout()
-        Me.doctors_header.SuspendLayout()
         Me.Panel_Footer.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.Panel3.SuspendLayout()
-        Me.Panel4.SuspendLayout()
         Me.SuspendLayout()
         '
         'Panel_Header
@@ -98,6 +98,117 @@ Partial Class Form_Main
         Me.lbl_notif_context.TabIndex = 0
         Me.lbl_notif_context.Text = "You have no notification request!"
         Me.lbl_notif_context.Visible = False
+        '
+        'consultation_header
+        '
+        Me.consultation_header.BackColor = System.Drawing.Color.Gray
+        Me.consultation_header.Controls.Add(Me.Menu_Consultations)
+        Me.consultation_header.Dock = System.Windows.Forms.DockStyle.Right
+        Me.consultation_header.Location = New System.Drawing.Point(620, 0)
+        Me.consultation_header.Name = "consultation_header"
+        Me.consultation_header.Size = New System.Drawing.Size(115, 51)
+        Me.consultation_header.TabIndex = 1
+        '
+        'Menu_Consultations
+        '
+        Me.Menu_Consultations.AutoSize = True
+        Me.Menu_Consultations.Font = New System.Drawing.Font("Lucida Sans Unicode", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Menu_Consultations.ForeColor = System.Drawing.Color.White
+        Me.Menu_Consultations.Location = New System.Drawing.Point(4, 17)
+        Me.Menu_Consultations.Name = "Menu_Consultations"
+        Me.Menu_Consultations.Size = New System.Drawing.Size(109, 16)
+        Me.Menu_Consultations.TabIndex = 4
+        Me.Menu_Consultations.Text = "Consultations"
+        '
+        'Appointments_Header
+        '
+        Me.Appointments_Header.BackColor = System.Drawing.Color.DimGray
+        Me.Appointments_Header.Controls.Add(Me.Menu_Appoinments)
+        Me.Appointments_Header.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Appointments_Header.Location = New System.Drawing.Point(735, 0)
+        Me.Appointments_Header.Name = "Appointments_Header"
+        Me.Appointments_Header.Size = New System.Drawing.Size(115, 51)
+        Me.Appointments_Header.TabIndex = 5
+        '
+        'Menu_Appoinments
+        '
+        Me.Menu_Appoinments.AutoSize = True
+        Me.Menu_Appoinments.Font = New System.Drawing.Font("Lucida Sans Unicode", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Menu_Appoinments.ForeColor = System.Drawing.Color.Silver
+        Me.Menu_Appoinments.Location = New System.Drawing.Point(4, 17)
+        Me.Menu_Appoinments.Name = "Menu_Appoinments"
+        Me.Menu_Appoinments.Size = New System.Drawing.Size(109, 16)
+        Me.Menu_Appoinments.TabIndex = 4
+        Me.Menu_Appoinments.Text = "Appointments"
+        '
+        'patients_header
+        '
+        Me.patients_header.Controls.Add(Me.Menu_Patients)
+        Me.patients_header.Dock = System.Windows.Forms.DockStyle.Right
+        Me.patients_header.Location = New System.Drawing.Point(850, 0)
+        Me.patients_header.Name = "patients_header"
+        Me.patients_header.Size = New System.Drawing.Size(73, 51)
+        Me.patients_header.TabIndex = 6
+        '
+        'Menu_Patients
+        '
+        Me.Menu_Patients.AutoSize = True
+        Me.Menu_Patients.Font = New System.Drawing.Font("Lucida Sans Unicode", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Menu_Patients.ForeColor = System.Drawing.Color.Silver
+        Me.Menu_Patients.Location = New System.Drawing.Point(4, 17)
+        Me.Menu_Patients.Name = "Menu_Patients"
+        Me.Menu_Patients.Size = New System.Drawing.Size(66, 16)
+        Me.Menu_Patients.TabIndex = 4
+        Me.Menu_Patients.Text = "Patients"
+        '
+        'doctors_header
+        '
+        Me.doctors_header.Controls.Add(Me.Menu_Doctors)
+        Me.doctors_header.Dock = System.Windows.Forms.DockStyle.Right
+        Me.doctors_header.Location = New System.Drawing.Point(923, 0)
+        Me.doctors_header.Name = "doctors_header"
+        Me.doctors_header.Size = New System.Drawing.Size(72, 51)
+        Me.doctors_header.TabIndex = 8
+        '
+        'Menu_Doctors
+        '
+        Me.Menu_Doctors.AutoSize = True
+        Me.Menu_Doctors.Font = New System.Drawing.Font("Lucida Sans Unicode", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Menu_Doctors.ForeColor = System.Drawing.Color.Silver
+        Me.Menu_Doctors.Location = New System.Drawing.Point(4, 17)
+        Me.Menu_Doctors.Name = "Menu_Doctors"
+        Me.Menu_Doctors.Size = New System.Drawing.Size(65, 16)
+        Me.Menu_Doctors.TabIndex = 4
+        Me.Menu_Doctors.Text = "Doctors"
+        '
+        'secretaries_header
+        '
+        Me.secretaries_header.Controls.Add(Me.Menu_Secretaries)
+        Me.secretaries_header.Dock = System.Windows.Forms.DockStyle.Right
+        Me.secretaries_header.Location = New System.Drawing.Point(995, 0)
+        Me.secretaries_header.Name = "secretaries_header"
+        Me.secretaries_header.Size = New System.Drawing.Size(96, 51)
+        Me.secretaries_header.TabIndex = 7
+        '
+        'Menu_Secretaries
+        '
+        Me.Menu_Secretaries.AutoSize = True
+        Me.Menu_Secretaries.Font = New System.Drawing.Font("Lucida Sans Unicode", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Menu_Secretaries.ForeColor = System.Drawing.Color.Silver
+        Me.Menu_Secretaries.Location = New System.Drawing.Point(5, 17)
+        Me.Menu_Secretaries.Name = "Menu_Secretaries"
+        Me.Menu_Secretaries.Size = New System.Drawing.Size(87, 16)
+        Me.Menu_Secretaries.TabIndex = 4
+        Me.Menu_Secretaries.Text = "Secretaries"
+        '
+        'Panel4
+        '
+        Me.Panel4.Controls.Add(Me.Panel2)
+        Me.Panel4.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Panel4.Location = New System.Drawing.Point(1091, 0)
+        Me.Panel4.Name = "Panel4"
+        Me.Panel4.Size = New System.Drawing.Size(52, 51)
+        Me.Panel4.TabIndex = 9
         '
         'Panel2
         '
@@ -143,108 +254,6 @@ Partial Class Form_Main
         Me.Notification_counter_container.Name = "Notification_counter_container"
         Me.Notification_counter_container.SelectionColor = System.Drawing.Color.Transparent
         Me.Notification_counter_container.Size = New System.Drawing.Size(22, 21)
-        '
-        'secretaries_header
-        '
-        Me.secretaries_header.Controls.Add(Me.Menu_Secretaries)
-        Me.secretaries_header.Dock = System.Windows.Forms.DockStyle.Right
-        Me.secretaries_header.Location = New System.Drawing.Point(995, 0)
-        Me.secretaries_header.Name = "secretaries_header"
-        Me.secretaries_header.Size = New System.Drawing.Size(96, 51)
-        Me.secretaries_header.TabIndex = 7
-        '
-        'Menu_Secretaries
-        '
-        Me.Menu_Secretaries.AutoSize = True
-        Me.Menu_Secretaries.Font = New System.Drawing.Font("Lucida Sans Unicode", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Menu_Secretaries.ForeColor = System.Drawing.Color.Silver
-        Me.Menu_Secretaries.Location = New System.Drawing.Point(5, 17)
-        Me.Menu_Secretaries.Name = "Menu_Secretaries"
-        Me.Menu_Secretaries.Size = New System.Drawing.Size(87, 16)
-        Me.Menu_Secretaries.TabIndex = 4
-        Me.Menu_Secretaries.Text = "Secretaries"
-        '
-        'patients_header
-        '
-        Me.patients_header.Controls.Add(Me.Menu_Patients)
-        Me.patients_header.Dock = System.Windows.Forms.DockStyle.Right
-        Me.patients_header.Location = New System.Drawing.Point(850, 0)
-        Me.patients_header.Name = "patients_header"
-        Me.patients_header.Size = New System.Drawing.Size(73, 51)
-        Me.patients_header.TabIndex = 6
-        '
-        'Menu_Patients
-        '
-        Me.Menu_Patients.AutoSize = True
-        Me.Menu_Patients.Font = New System.Drawing.Font("Lucida Sans Unicode", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Menu_Patients.ForeColor = System.Drawing.Color.Silver
-        Me.Menu_Patients.Location = New System.Drawing.Point(4, 17)
-        Me.Menu_Patients.Name = "Menu_Patients"
-        Me.Menu_Patients.Size = New System.Drawing.Size(66, 16)
-        Me.Menu_Patients.TabIndex = 4
-        Me.Menu_Patients.Text = "Patients"
-        '
-        'Appointments_Header
-        '
-        Me.Appointments_Header.BackColor = System.Drawing.Color.DimGray
-        Me.Appointments_Header.Controls.Add(Me.Menu_Appoinments)
-        Me.Appointments_Header.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Appointments_Header.Location = New System.Drawing.Point(735, 0)
-        Me.Appointments_Header.Name = "Appointments_Header"
-        Me.Appointments_Header.Size = New System.Drawing.Size(115, 51)
-        Me.Appointments_Header.TabIndex = 5
-        '
-        'Menu_Appoinments
-        '
-        Me.Menu_Appoinments.AutoSize = True
-        Me.Menu_Appoinments.Font = New System.Drawing.Font("Lucida Sans Unicode", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Menu_Appoinments.ForeColor = System.Drawing.Color.Silver
-        Me.Menu_Appoinments.Location = New System.Drawing.Point(4, 17)
-        Me.Menu_Appoinments.Name = "Menu_Appoinments"
-        Me.Menu_Appoinments.Size = New System.Drawing.Size(109, 16)
-        Me.Menu_Appoinments.TabIndex = 4
-        Me.Menu_Appoinments.Text = "Appointments"
-        '
-        'consultation_header
-        '
-        Me.consultation_header.BackColor = System.Drawing.Color.Gray
-        Me.consultation_header.Controls.Add(Me.Menu_Consultations)
-        Me.consultation_header.Dock = System.Windows.Forms.DockStyle.Right
-        Me.consultation_header.Location = New System.Drawing.Point(620, 0)
-        Me.consultation_header.Name = "consultation_header"
-        Me.consultation_header.Size = New System.Drawing.Size(115, 51)
-        Me.consultation_header.TabIndex = 1
-        '
-        'Menu_Consultations
-        '
-        Me.Menu_Consultations.AutoSize = True
-        Me.Menu_Consultations.Font = New System.Drawing.Font("Lucida Sans Unicode", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Menu_Consultations.ForeColor = System.Drawing.Color.White
-        Me.Menu_Consultations.Location = New System.Drawing.Point(4, 17)
-        Me.Menu_Consultations.Name = "Menu_Consultations"
-        Me.Menu_Consultations.Size = New System.Drawing.Size(109, 16)
-        Me.Menu_Consultations.TabIndex = 4
-        Me.Menu_Consultations.Text = "Consultations"
-        '
-        'doctors_header
-        '
-        Me.doctors_header.Controls.Add(Me.Menu_Doctors)
-        Me.doctors_header.Dock = System.Windows.Forms.DockStyle.Right
-        Me.doctors_header.Location = New System.Drawing.Point(923, 0)
-        Me.doctors_header.Name = "doctors_header"
-        Me.doctors_header.Size = New System.Drawing.Size(72, 51)
-        Me.doctors_header.TabIndex = 8
-        '
-        'Menu_Doctors
-        '
-        Me.Menu_Doctors.AutoSize = True
-        Me.Menu_Doctors.Font = New System.Drawing.Font("Lucida Sans Unicode", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Menu_Doctors.ForeColor = System.Drawing.Color.Silver
-        Me.Menu_Doctors.Location = New System.Drawing.Point(4, 17)
-        Me.Menu_Doctors.Name = "Menu_Doctors"
-        Me.Menu_Doctors.Size = New System.Drawing.Size(65, 16)
-        Me.Menu_Doctors.TabIndex = 4
-        Me.Menu_Doctors.Text = "Doctors"
         '
         'Panel_Container1
         '
@@ -395,15 +404,6 @@ Partial Class Form_Main
         '
         Me.Timer_Transition2.Interval = 10
         '
-        'Panel4
-        '
-        Me.Panel4.Controls.Add(Me.Panel2)
-        Me.Panel4.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel4.Location = New System.Drawing.Point(1091, 0)
-        Me.Panel4.Name = "Panel4"
-        Me.Panel4.Size = New System.Drawing.Size(52, 51)
-        Me.Panel4.TabIndex = 9
-        '
         'Form_Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -423,19 +423,20 @@ Partial Class Form_Main
         Me.Text = "E-Consulta Version 1.0.0"
         Me.Panel_Header.ResumeLayout(False)
         Me.Panel_Header.PerformLayout()
+        Me.consultation_header.ResumeLayout(False)
+        Me.consultation_header.PerformLayout()
+        Me.Appointments_Header.ResumeLayout(False)
+        Me.Appointments_Header.PerformLayout()
+        Me.patients_header.ResumeLayout(False)
+        Me.patients_header.PerformLayout()
+        Me.doctors_header.ResumeLayout(False)
+        Me.doctors_header.PerformLayout()
+        Me.secretaries_header.ResumeLayout(False)
+        Me.secretaries_header.PerformLayout()
+        Me.Panel4.ResumeLayout(False)
         Me.Panel2.ResumeLayout(False)
         Me.ShapeContainer2.ResumeLayout(False)
         Me.ShapeContainer2.PerformLayout()
-        Me.secretaries_header.ResumeLayout(False)
-        Me.secretaries_header.PerformLayout()
-        Me.patients_header.ResumeLayout(False)
-        Me.patients_header.PerformLayout()
-        Me.Appointments_Header.ResumeLayout(False)
-        Me.Appointments_Header.PerformLayout()
-        Me.consultation_header.ResumeLayout(False)
-        Me.consultation_header.PerformLayout()
-        Me.doctors_header.ResumeLayout(False)
-        Me.doctors_header.PerformLayout()
         Me.Panel_Footer.ResumeLayout(False)
         Me.Panel_Footer.PerformLayout()
         Me.Panel1.ResumeLayout(False)
@@ -443,7 +444,6 @@ Partial Class Form_Main
         Me.MenuStrip1.PerformLayout()
         Me.Panel3.ResumeLayout(False)
         Me.Panel3.PerformLayout()
-        Me.Panel4.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub

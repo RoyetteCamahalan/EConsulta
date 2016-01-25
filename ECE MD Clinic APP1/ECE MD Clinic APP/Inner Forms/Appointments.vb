@@ -65,7 +65,7 @@
         dtgv_Appointments.DefaultCellStyle.SelectionForeColor = Color.Black
         dtgv_Appointments.RowTemplate.Height = Default_Row_Height
         txt_search.Text = Search_Hint
-        cmn_filter_by.SelectedIndex = 0
+        cmn_filter_by.SelectedIndex = 1
     End Sub
 
     Private Sub cmn_filter_by_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmn_filter_by.SelectedIndexChanged
@@ -185,14 +185,13 @@
         End Try
     End Sub
     Private Sub Consult_now_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Consult_now.Click
-        Dim consult_now As New new_consult
-        consult_now.what_to_do = 2
-        consult_now.appointment_id = dtgv_Appointments.CurrentRow.Cells(0).Value
-        consult_now.Show()
-        consult_now.cmb_patients.SelectedValue = dtgv_Appointments.CurrentRow.Cells(1).Value
-        consult_now.cmb_doctors.SelectedValue = dtgv_Appointments.CurrentRow.Cells(4).Value
-        consult_now.cmb_doctors.Enabled = False
-        consult_now.cmb_patients.Enabled = False
+        new_consult.what_to_do = 2
+        new_consult.appointment_id = dtgv_Appointments.CurrentRow.Cells(0).Value
+        new_consult.Show()
+        new_consult.cmb_patients.SelectedValue = dtgv_Appointments.CurrentRow.Cells(1).Value
+        new_consult.cmb_doctors.SelectedValue = dtgv_Appointments.CurrentRow.Cells(4).Value
+        new_consult.cmb_doctors.Enabled = False
+        new_consult.cmb_patients.Enabled = False
     End Sub
 
     Private Sub edit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles edit.Click

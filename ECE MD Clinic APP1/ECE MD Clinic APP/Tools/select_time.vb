@@ -2,6 +2,7 @@
     Public rowindex As Integer
     Public action_type As Integer
     Private Sub select_time_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        txt_comment.Text = write_message_to_patient
         If action_type = 2 Then
             DateTimePicker1.Enabled = False
         Else
@@ -11,7 +12,7 @@
 
     Private Sub btn_ok_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_ok.Click
         Dim comment As String = ""
-        If Not txt_comment.Text = "Write Comment/Message to Patient" Then
+        If Not txt_comment.Text = write_message_to_patient Then
             comment = txt_comment.Text
         End If
         If action_type = 1 Then
@@ -37,7 +38,7 @@
     Private Sub txt_comment_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txt_comment.Leave
         With txt_comment
             If .Text = "" Then
-                .Text = "Write Comment/Message to Patient"
+                .Text = write_message_to_patient
                 .ForeColor = Color.Gray
             End If
         End With

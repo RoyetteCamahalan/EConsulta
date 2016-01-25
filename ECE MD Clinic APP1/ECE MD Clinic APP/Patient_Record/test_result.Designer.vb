@@ -39,9 +39,10 @@ Partial Class test_result
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(422, 12)
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!)
+        Me.Label1.Location = New System.Drawing.Point(475, 12)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(116, 13)
+        Me.Label1.Size = New System.Drawing.Size(133, 15)
         Me.Label1.TabIndex = 3
         Me.Label1.Text = "Submitted Test Results"
         '
@@ -50,13 +51,13 @@ Partial Class test_result
         Me.ListView1.Activation = System.Windows.Forms.ItemActivation.TwoClick
         Me.ListView1.AutoArrange = False
         Me.ListView1.BackColor = System.Drawing.SystemColors.Control
-        Me.ListView1.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.ListView1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.ListView1.GridLines = True
         Me.ListView1.LabelEdit = True
         Me.ListView1.LargeImageList = Me.ImageList1
-        Me.ListView1.Location = New System.Drawing.Point(42, 69)
+        Me.ListView1.Location = New System.Drawing.Point(32, 69)
         Me.ListView1.Name = "ListView1"
-        Me.ListView1.Size = New System.Drawing.Size(1044, 304)
+        Me.ListView1.Size = New System.Drawing.Size(1054, 304)
         Me.ListView1.TabIndex = 2
         Me.ListView1.UseCompatibleStateImageBehavior = False
         '
@@ -68,13 +69,12 @@ Partial Class test_result
         '
         'btn_add_photo
         '
-        Me.btn_add_photo.BackgroundImage = CType(resources.GetObject("btn_add_photo.BackgroundImage"), System.Drawing.Image)
         Me.btn_add_photo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btn_add_photo.FlatAppearance.BorderSize = 0
-        Me.btn_add_photo.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btn_add_photo.Image = CType(resources.GetObject("btn_add_photo.Image"), System.Drawing.Image)
         Me.btn_add_photo.Location = New System.Drawing.Point(1014, 12)
         Me.btn_add_photo.Name = "btn_add_photo"
-        Me.btn_add_photo.Size = New System.Drawing.Size(63, 64)
+        Me.btn_add_photo.Size = New System.Drawing.Size(63, 51)
         Me.btn_add_photo.TabIndex = 4
         Me.btn_add_photo.UseVisualStyleBackColor = True
         '
